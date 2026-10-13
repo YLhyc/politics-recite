@@ -1,21 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3e261b"/>
-      <stop offset="100%" stop-color="#24150e"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a2419"/>
+      <stop offset="100%" stop-color="#20120c"/>
+    </linearGradient>
+    <linearGradient id="sealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8382c"/>
+      <stop offset="100%" stop-color="#9a281e"/>
     </linearGradient>
   </defs>
+
+  <!-- 沉香大漆渐变底 -->
   <rect width="512" height="512" rx="100" fill="url(#bgGrad)"/>
-  <rect x="25" y="25" width="462" height="462" rx="90" fill="none" stroke="#c2955e" stroke-width="6" opacity="0.6"/>
-  <!-- Book -->
-  <path d="M 120 180 Q 240 160 250 170 L 250 310 Q 240 300 120 320 Z" fill="#faf6ed" opacity="0.95"/>
-  <path d="M 262 170 Q 272 160 392 180 L 392 320 Q 272 300 262 310 Z" fill="#faf6ed" opacity="0.95"/>
-  <!-- Sound waves -->
-  <path d="M 190 120 A 100 100 0 0 1 322 120" fill="none" stroke="#d4a373" stroke-width="6" stroke-linecap="round"/>
-  <path d="M 215 140 A 60 60 0 0 1 297 140" fill="none" stroke="#d4a373" stroke-width="5" stroke-linecap="round"/>
-  <!-- Seal -->
-  <rect x="181" y="270" width="150" height="150" rx="30" fill="#b3392f" stroke="#d97706" stroke-width="4"/>
-  <text x="256" y="380" font-family="'STKaiti','SimKai','Songti SC',serif" font-size="105" font-weight="bold" fill="#fffcf5" text-anchor="middle">政</text>
-  <!-- Text -->
-  <text x="256" y="468" font-family="'SimSun',serif" font-size="34" letter-spacing="8" fill="#d4af7d" text-anchor="middle">2 0 2 7</text>
+
+  <!-- 双层青铜金内框 -->
+  <rect x="26" y="26" width="460" height="460" rx="92" fill="none" stroke="#c2955e" stroke-width="3" opacity="0.5"/>
+  <rect x="41" y="41" width="430" height="430" rx="72" fill="none" stroke="#c2955e" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- 顶部声浪共鸣弧线 -->
+  <path d="M 152 145 A 180 180 0 0 1 360 145" fill="none" stroke="#d4a373" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 180 162 A 130 130 0 0 1 332 162" fill="none" stroke="#d4a373" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- 书页底层立体厚度阴影 -->
+  <polygon points="252,90 143.4,80 143.4,213.1 252,223.1" fill="#d2c3af"/>
+  <polygon points="260,90 368.6,80 368.6,213.1 260,223.1" fill="#d2c3af"/>
+
+  <!-- 主书页（米纸纯净白） -->
+  <polygon points="252,82 143.4,74 143.4,207.1 252,215.1" fill="#fcf8f0"/>
+  <polygon points="260,82 368.6,74 368.6,207.1 260,215.1" fill="#fcf8f0"/>
+
+  <!-- 书脊中缝金线 -->
+  <line x1="256" y1="82" x2="256" y2="215.1" stroke="#a07341" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- 严格平行于书页透视的排印文字虚线条纹 -->
+  <g stroke="#91785f" stroke-width="2" stroke-linecap="round" opacity="0.55">
+    <!-- 左页平行线 (上扬 8px) -->
+    <line x1="160" y1="99" x2="240" y2="105"/>
+    <line x1="160" y1="118" x2="240" y2="124"/>
+    <line x1="160" y1="137" x2="240" y2="143"/>
+    <line x1="160" y1="156" x2="240" y2="162"/>
+    <line x1="160" y1="175" x2="240" y2="181"/>
+
+    <!-- 右页平行线 (外倾 8px) -->
+    <line x1="272" y1="105" x2="352" y2="99"/>
+    <line x1="272" y1="124" x2="352" y2="118"/>
+    <line x1="272" y1="143" x2="352" y2="137"/>
+    <line x1="272" y1="162" x2="352" y2="156"/>
+    <line x1="272" y1="181" x2="352" y2="175"/>
+  </g>
+
+  <!-- 中央朱砂金石方印 -->
+  <rect x="184" y="271" width="144" height="144" rx="28" fill="url(#sealGrad)" stroke="#d97706" stroke-width="3" opacity="0.98"/>
+  <text x="256" y="380" font-family="'STKaiti','SimKai','Songti SC',serif" font-size="105" font-weight="bold" fill="#fffdf8" text-anchor="middle">政</text>
+
+  <!-- 底部典雅宋体年份 -->
+  <text x="256" y="448" font-family="'SimSun',serif" font-size="24" letter-spacing="8" fill="#d4af7d" text-anchor="middle" opacity="0.85">2 0 2 7</text>
 </svg>
