@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="政治带背">
   <meta name="format-detection" content="telephone=no">
-  <title>考研政治带背伴侣 | 2027精读音频精确定位</title>
+  <title>考研政治每日带背伴侣 | 2027精读音频精确定位</title>
   <style>
     :root {
       --bg-paper: #f8f6f0;
@@ -21,8 +21,6 @@
       --vermilion-soft: #fbf1ef;
       --vermilion-border: #f0c5c1;
       --indigo: #204b66;
-      --indigo-soft: #eaf1f5;
-      --forest: #2b593f;
       --border-color: #e5dfd3;
       --border-para: #ebe5d8;
       --shadow-card: 0 2px 10px rgba(44, 33, 22, 0.05);
@@ -52,7 +50,7 @@
       overflow-x: hidden;
     }
 
-    /* 顶部常驻导航 */
+    /* 顶部导航 */
     .header-bar {
       position: sticky;
       top: 0;
@@ -61,15 +59,16 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
-      padding: calc(var(--safe-top) + 10px) 16px 10px;
+      padding: calc(var(--safe-top) + 8px) 14px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .header-title-box {
+    .header-left {
       display: flex;
       flex-direction: column;
+      cursor: pointer;
     }
 
     .header-badge {
@@ -91,11 +90,23 @@
       background: var(--vermilion);
     }
 
-    .header-title {
+    .header-day-select {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-family: var(--font-serif);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--text-main);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .header-day-select .arrow-down {
+      font-size: 11px;
+      color: var(--vermilion);
     }
 
     .header-actions {
@@ -122,11 +133,10 @@
       transform: scale(0.96);
     }
 
-    /* 容器 */
     .container {
       max-width: 680px;
       margin: 0 auto;
-      padding: 16px 14px;
+      padding: 14px 14px;
     }
 
     /* 顶部导学标语卡 */
@@ -136,7 +146,7 @@
       border-left: 3.5px solid var(--vermilion);
       border-radius: 4px 10px 10px 4px;
       padding: 13px 15px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       box-shadow: var(--shadow-card);
     }
 
@@ -159,8 +169,8 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 14px;
-      padding: 16px 15px 14px;
-      margin-bottom: 18px;
+      padding: 16px 14px 14px;
+      margin-bottom: 16px;
       box-shadow: var(--shadow-card);
       transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
@@ -247,7 +257,7 @@
       border-bottom: 1px dashed var(--border-color);
     }
 
-    /* 核心分段容器（解决杂糅一整段的痛点） */
+    /* 结构语义分段块 */
     .para-item {
       background: var(--bg-para);
       border: 1px solid var(--border-para);
@@ -296,7 +306,7 @@
       word-break: break-word;
     }
 
-    /* 逐句朗读高亮（毫秒对齐） */
+    /* 逐句朗读高亮 */
     .sent {
       display: inline;
       padding: 1px 2px;
@@ -458,7 +468,145 @@
       color: var(--text-main);
     }
 
-    /* 提示气泡 */
+    /* 多期目录抽屉弹窗 (Day Drawer Modal) */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-panel {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 75vh;
+      background: #ffffff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 18px 18px calc(24px + var(--safe-bottom));
+      z-index: 501;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+    }
+
+    .drawer-overlay.open .drawer-panel {
+      transform: translateY(0);
+    }
+
+    .drawer-handle {
+      width: 36px;
+      height: 4px;
+      background: #d8d2c5;
+      border-radius: 2px;
+      margin: 0 auto 14px;
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .drawer-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .drawer-close {
+      background: #f0ece3;
+      border: none;
+      color: var(--text-sub);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .drawer-list {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+
+    .drawer-item {
+      background: #faf8f5;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .drawer-item:active {
+      transform: scale(0.98);
+    }
+
+    .drawer-item.current {
+      background: #fff8f5;
+      border-color: var(--vermilion);
+      box-shadow: 0 2px 10px rgba(179, 57, 47, 0.08);
+    }
+
+    .drawer-item-day {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--vermilion);
+      margin-bottom: 2px;
+    }
+
+    .drawer-item-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .drawer-item-desc {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .drawer-item-meta {
+      text-align: right;
+      min-width: 60px;
+    }
+
+    .drawer-item-dur {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+    }
+
     .toast {
       position: fixed;
       top: 60px;
@@ -485,16 +633,19 @@
 
   <!-- 顶部状态栏 -->
   <header class="header-bar">
-    <div class="header-title-box">
+    <div class="header-left" id="btnOpenDrawer" title="点击切换天数">
       <div class="header-badge">2027 考研政治背诵手册</div>
-      <div class="header-title">DAY 01 · 马原专题一、二</div>
+      <button class="header-day-select">
+        <span id="headerDayTitle">DAY 01 · 马原专题一、二</span>
+        <span class="arrow-down">▾ 切换</span>
+      </button>
     </div>
     <div class="header-actions">
       <button class="btn-header" id="btnScrollToggle">
         <span id="scrollStatusText">📜 跟随开</span>
       </button>
-      <button class="btn-header" id="btnAudioSrc">
-        <span id="srcText">🌐 微信源</span>
+      <button class="btn-header" id="btnDrawerTrigger">
+        <span>📅 目录</span>
       </button>
     </div>
   </header>
@@ -503,609 +654,19 @@
   <main class="container" id="contentArea">
 
     <div class="hero-card">
-      <div class="hero-title">《背诵手册》上册 P1-P7 全程原声精读</div>
-      <div class="hero-desc">
-        主讲：考研政治韩雪老师 · 全长 32分07秒 · 51 个精读语段<br>
+      <div class="hero-title" id="heroTitle">《背诵手册》上册 P1-P7 全程原声精读</div>
+      <div class="hero-desc" id="heroDesc">
+        主讲：考研政治韩雪老师 · 全长 32分07秒<br>
         💡 <strong>点句即播</strong>：点击下方任意一句话，音频精准跳转到该句播放！
       </div>
     </div>
 
-    <!-- 动态卡片 -->
-    <div id="cardsList">
-
-    <article class="recite-card" id="c1" data-start="0.28" data-end="187.15">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">导学说明</span>
-          <span class="time-badge">⏱️ 00:00 - 03:07</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c1')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【导学】《背诵手册》全书架构与上下册用法</div>
-      <div class="card-sub">上册主攻选择题理解，下册主攻时政热点、16大哲学分析题必备原理</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="0.28" data-pet="24.5">
-          <div class="para-head">
-            <span class="para-lead">👋 开篇导言：</span>
-            <span class="para-time">00:00 - 00:24</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="0.28" data-et="3.43">同学们大家好，我是考研政治韩雪老师。</span><span class="sent" data-st="3.43" data-et="9.34">想必同学们已经陆续收到了2027全新改版的考研政治背诵手册了。</span><span class="sent" data-st="9.34" data-et="13.87">那随着背诵手册到达呢，我们的代背音频也正式开始了。</span><span class="sent" data-st="13.87" data-et="24.5">先给大家说清楚这本书的用法，虽然名称叫做背诵手册，但是同学们不需要太大的心理压力，不是要求同学们大段大段的记忆默写。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="24.5" data-pet="46.81">
-          <div class="para-head">
-            <span class="para-lead">📘 上册定位：</span>
-            <span class="para-time">00:24 - 00:46</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="24.5" data-et="33.26">背诵手册呢分为了上册下册两本书籍，其中上册呢是重点为大家攻克选择题这个模块的考点内容的。</span><span class="sent" data-st="33.26" data-et="42.64">所以上册啊我们的核心要求就是通过带背音频帮助大家理解重难点考点，并且提升你的选择题的做题能力。</span><span class="sent" data-st="42.64" data-et="46.81">而下册呢则重点通过几大部分与上册形成配合。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="46.81" data-pet="77.69">
-          <div class="para-head">
-            <span class="para-lead">📙 下册配合·时政热点：</span>
-            <span class="para-time">00:46 - 01:17</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="46.81" data-et="54.52">比如说同学们应该都知道，考研政治呢每年都会出很多的题目，围绕着时政热点而展开的。</span><span class="sent" data-st="54.52" data-et="57.98">但到现在为止，我需要重点掌握哪些时政热点呢？</span><span class="sent" data-st="57.98" data-et="64.03">同学们可以直接来看到下册的第一大部分特别专题和第二大部分习题190题。</span><span class="sent" data-st="64.03" data-et="70.08">这两个部分呢就是围绕着时政热点的重点表述，为大家梳理清楚的讲练结合内容了。</span><span class="sent" data-st="70.08" data-et="77.69">那再比如说第三个部分分析题必备专题，这个内容呢是为同学们提前准备好可以记忆背诵的分析题表达。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="77.69" data-pet="113.56">
-          <div class="para-head">
-            <span class="para-lead">🎯 分析题唯一必背内容：</span>
-            <span class="para-time">01:17 - 01:53</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="77.69" data-et="83.57">也就意味着背诵手册这么多内容，只有哪部分需要同学们着重的记忆默写呢？</span><span class="sent" data-st="83.57" data-et="90.99">只有下册第三部分分析题必备专题需要背分别是哲学必备十六大原理和道法必备十四大专题。</span><span class="sent" data-st="90.99" data-et="95.26">那我建议大家，如果是有基础同学呢，我们可以提前去背。</span><span class="sent" data-st="95.26" data-et="100.08">如果是零基础同学呢，可以等到我们的代背音频帮助大家学习。</span><span class="sent" data-st="100.08" data-et="105.46">完成了马云和道法这两门学科之后，我们再进行系统的大段记忆默写。</span><span class="sent" data-st="105.46" data-et="113.56">再来关于下册的第四部分到第六部分呢，是重点为大家配合上册的选择题的重难点，给大家进行的总结梳理。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="113.56" data-pet="136.08">
-          <div class="para-head">
-            <span class="para-lead">🔍 干扰项与关键词梳理：</span>
-            <span class="para-time">01:53 - 02:16</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="113.56" data-et="123.47">比如说第四大部分经典干扰项总结，有一些表述呢是非常容易出错的那如何表达正确，如何表达错误，通过第四部分得以呈现出来了。</span><span class="sent" data-st="123.47" data-et="129.41">那同时还有一些关键词的表达，通过第五部分、第六部分给大家进行系统的梳理。</span><span class="sent" data-st="129.41" data-et="136.08">最后给大家总结一下，也就意味着带背音频呢为大家主攻的是上册的选择题重难点考点。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="136.08" data-pet="187.15">
-          <div class="para-head">
-            <span class="para-lead">💡 冲刺学习节奏与心态：</span>
-            <span class="para-time">02:16 - 03:07</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="136.08" data-et="146.66">上册通过带编音频帮助大家系统理解难点考点不必死记背，通过理解，通过攻克难点，帮助你大大提升选择题的做题能力。</span><span class="sent" data-st="146.66" data-et="156.6">而下册重点起到配合作用，主攻的是时证热点分析题和经典干扰选项关键词对应，希望同学们把上下册配合用好。</span><span class="sent" data-st="156.6" data-et="169.42">那未来呢我将通过一个月左右的时间，快速为大家提炼上册当中的重难点考点，帮助同学们把学习能力、做题能力在最后的冲刺阶段获得一次质的跃升。</span><span class="sent" data-st="169.42" data-et="180.53">在未来一个月的带背当中，你每听懂的一个考点，每参透的一个新表达，都在为质变悄悄的积累量遍水滴石穿非一日之功，我们一步一步来。</span><span class="sent" data-st="180.53" data-et="187.15">好，同学们，我们来进入到上册的第一大门学科的学习，进入到马克思主义基本原理。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c2" data-start="187.15" data-end="291.72">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">分值分布</span>
-          <span class="time-badge">⏱️ 03:07 - 04:51</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c2')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【考情】马原四大板块分值分布与重点定位</div>
-      <div class="card-sub">总分24分；马哲15-18分（重中之重）；政经约5分；导论与科社各0-2分</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="187.15" data-pet="215.85">
-          <div class="para-head">
-            <span class="para-lead">📊 马原总体分值与导论：</span>
-            <span class="para-time">03:07 - 03:35</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="187.15" data-et="192.21">我们来把书翻到目录部分，先为大家标注清楚马原的基本情况。</span><span class="sent" data-st="192.21" data-et="202.22">标注啊第一部分马原占比分值大概是24分左右，24分那其中专题一导论部分占比分值大概是零分到2分。</span><span class="sent" data-st="202.22" data-et="205.73">标注一下导论占比分值是零分到2分。</span><span class="sent" data-st="205.73" data-et="215.85">那总体而言呢，马原是由三大组成部分构成的，分别是马克思主义哲学、马克思主义政治经济学和科学社会主义。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="215.85" data-pet="246.65">
-          <div class="para-head">
-            <span class="para-lead">⭐ 第一大头·马克思主义哲学：</span>
-            <span class="para-time">03:35 - 04:06</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="215.85" data-et="227.06">那其中我们标注一下从专题2一直到专题19，标注一下专题二到专题19是围绕着马克思主义哲学而展开的相应考点。</span><span class="sent" data-st="227.06" data-et="237.47">标注其中专题二到专题19，马哲的占比分值大概是15分到18分左右，占比分值15到18分，非常高的一个分值占比啊。</span><span class="sent" data-st="237.47" data-et="246.65">再来后面的专题20一直到专题27，我们标注一下，这则对应的是马克思主义政治经济学这个部分的考点。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="246.65" data-pet="265.1">
-          <div class="para-head">
-            <span class="para-lead">📈 第二板块·政治经济学：</span>
-            <span class="para-time">04:06 - 04:25</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="246.65" data-et="253.03">标注专题20到专题27是围绕着马克思主义政治经济学而展开的考点。</span><span class="sent" data-st="253.03" data-et="258.42">那马正经的占比分值呢大概是五分左右，标注占比分值五分左右。</span><span class="sent" data-st="258.42" data-et="265.1">最后专题28到29呢则是围绕着最后一大部分科学社会主义而展开的考点。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="265.1" data-pet="275.97">
-          <div class="para-head">
-            <span class="para-lead">🚩 第三板块·科学社会主义：</span>
-            <span class="para-time">04:25 - 04:35</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="265.1" data-et="272.34">标志五专题28到29对应的部分是科学社会主义，而科设占比分值只有零分到2分。</span><span class="sent" data-st="272.34" data-et="275.97">那通过这个分值占比呢，重点已经非常突出了。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="275.97" data-pet="291.72">
-          <div class="para-head">
-            <span class="para-lead">🎯 复习重心点拨：</span>
-            <span class="para-time">04:35 - 04:51</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="275.97" data-et="281.31">我们着重需要把握的是马克思主义哲学和马克思主义政治经济学。</span><span class="sent" data-st="281.31" data-et="287.22">好的，同学们，明确了分值占比情况之后呢，我们来进入到具体的带背学习了。</span><span class="sent" data-st="287.22" data-et="291.72">今天我们的主要任务是完成马云专题一到专题二的学习。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c3" data-start="291.72" data-end="398.49">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">核心考点</span>
-          <span class="time-badge">⏱️ 04:51 - 06:38</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c3')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题一 导论】社会根源、阶级基础与思想渊源</div>
-      <div class="card-sub">资本主义经济发展（社会根源）· 无产阶级（阶级基础）· 德英法思想渊源</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="291.72" data-pet="322.89">
-          <div class="para-head">
-            <span class="para-lead">📝 题型规律与考查方式：</span>
-            <span class="para-time">04:51 - 05:22</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="291.72" data-et="303.53">来我们把书翻到第二页，首先进入到专题一导论部分，刚给大家提到了导论部分的真题占比分值呢大概是零分到2分，也就意味着一般会出一道选择题。</span><span class="sent" data-st="303.53" data-et="314.4">而且我们标注一下导论部分的真题出题方法一般是原文表达，也就意味着同学们简单标注一些关键词的表述，记清楚了就能够做对真题啦。</span><span class="sent" data-st="314.4" data-et="322.89">那既然呢我们要学马克思主义基本原理了，那首先我们得知道马克思主义到底是如何创立的，如何发展的问题。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="322.89" data-pet="353.78">
-          <div class="para-head">
-            <span class="para-lead">🏭 社会根源：资本主义经济发展：</span>
-            <span class="para-time">05:22 - 05:53</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="322.89" data-et="326.68">那我们来看到导论的创立部分就能够明晰清楚了。</span><span class="sent" data-st="326.68" data-et="331.91">那首先呢我们来看到第一个表格啊，关于马克思主义产生的社会根源。</span><span class="sent" data-st="331.91" data-et="333.36">那何为社会根源呢？</span><span class="sent" data-st="333.36" data-et="338.23">哎，就指的是马克思主义啊是在什么样的历史背景下得以诞生的。</span><span class="sent" data-st="338.23" data-et="343.82">很明确啊，什么样的背景当然是资本主义快速发展的背景下得以产生的了。</span><span class="sent" data-st="343.82" data-et="349.96">所以我们要注意一下，马克思主义产生的社会根源对应的是资本主义经济的发展。</span><span class="sent" data-st="349.96" data-et="353.78">那么第二个，马克思主义产生的阶级基础又是谁呢？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="353.78" data-pet="370.88">
-          <div class="para-head">
-            <span class="para-lead">👥 阶级基础：广大无产阶级：</span>
-            <span class="para-time">05:53 - 06:10</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="353.78" data-et="357.78">大家应该都能告诉我了，马克思主义是为谁而诞生的？</span><span class="sent" data-st="357.78" data-et="362.15">为了广大人民群众，为了无产阶级而诞生的科学理论，对吗？</span><span class="sent" data-st="362.15" data-et="365.97">所以我们标注一下其对应的阶级基础是无产阶级。</span><span class="sent" data-st="365.97" data-et="370.88">那关于第三栏马克思主义产生的思想渊源，同学们简单熟悉一下。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="370.88" data-pet="398.49">
-          <div class="para-head">
-            <span class="para-lead">📚 思想渊源与著作考法：</span>
-            <span class="para-time">06:10 - 06:38</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="370.88" data-et="378.34">那马克思主义的创立和发展呢形成了诸多的理论成果，那么理论成果呢则是通过著作得以阐发的。</span><span class="sent" data-st="378.34" data-et="382.67">下面呢我们来看一下第二个表格，关于马恩的重要著作。</span><span class="sent" data-st="382.67" data-et="388.13">马恩的重要著作这个部分啊考试频率还是比较高的，但难度系数不大。</span><span class="sent" data-st="388.13" data-et="391.33">一般呢都是以单选题的形式得以考察的。</span><span class="sent" data-st="391.33" data-et="398.49">只要同学们能够把著作名称和这篇著作所表达的论点是什么，能够做到一一对应就可以了。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c4" data-start="398.49" data-end="547.29">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">必考著作</span>
-          <span class="time-badge">⏱️ 06:38 - 09:07</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c4')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题一 著作】马恩三大经典著作定位与历史意义</div>
-      <div class="card-sub">《费尔巴哈提纲》（天才萌芽/科学实践观）· 《德意志意识形态》（首创唯物史观）· 《反杜林论》（理论体系百科全书）</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="398.49" data-pet="443.93">
-          <div class="para-head">
-            <span class="para-lead">🌱 《关于费尔巴哈的提纲》·天才萌芽：</span>
-            <span class="para-time">06:38 - 07:23</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="398.49" data-et="412.82">那其中呢给大家标注几个比较重要的表述啊，我们来看到第三栏关于费尔巴哈的提纲，标注一下这篇著作呢可以称之为包含着新世界观的天才萌芽的第一个文件，标注一下第一个文件。</span><span class="sent" data-st="412.82" data-et="417.98">那为什么能称之为是包含着新世界观的天才萌芽的第一个文件呢？</span><span class="sent" data-st="417.98" data-et="424.78">我们标注一下，因为这篇著作啊系统的论述了实践的观点，揭示了科学实践观的基本内容。</span><span class="sent" data-st="424.78" data-et="443.93">那一提到实践啊，如果是零基础同学呢会有点陌生，后面会大家重点去讲解什么叫实践观的这个阶段呢先给大家简单理解一下吧，比如说小时候同学们应该都学过游泳吧，你会发现啊如果你学游泳的话，只在岸上看动作，只在岸上被要领的话，是永远学不会的。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="443.93" data-pet="500.9">
-          <div class="para-head">
-            <span class="para-lead">🏊 核心理解：学游泳与改变世界：</span>
-            <span class="para-time">07:23 - 08:20</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="443.93" data-et="444.94">你必须要干嘛？</span><span class="sent" data-st="444.94" data-et="446.29">你必须得下水扑腾。</span><span class="sent" data-st="446.29" data-et="453.73">那这个下水扑腾下水实验的过程当中呢，你才知道这个动作到底是对还是不对的，才有可能真的学会游泳。</span><span class="sent" data-st="453.73" data-et="454.58">那这是什么？</span><span class="sent" data-st="454.58" data-et="459.14">不填出了实践是检然之理的唯一标准，实践是认识的来源所在吗？</span><span class="sent" data-st="459.14" data-et="463.54">再比如说在这篇著作当中呢，马克思还有一个类似这样的表达。</span><span class="sent" data-st="463.54" data-et="468.61">他说哲学家们啊只是用不同的方式解释世界，他们在解世界，而我不一样。</span><span class="sent" data-st="468.61" data-et="472.66">而问题呢应该在于改变世界，怎么样能够改变世界呢？</span><span class="sent" data-st="472.66" data-et="474.67">应该通过实践改变世界。</span><span class="sent" data-st="474.67" data-et="480.93">所以你看哪篇著作阐发了科学实践观基本内容，那就是关于费尔巴的提纲。</span><span class="sent" data-st="480.93" data-et="487.58">那基于此，这篇著作呢也可以称之为包含着新世界观天才萌芽的第一个文件啦。</span><span class="sent" data-st="487.58" data-et="500.9">再来我们看到第四栏关于德意志意识形态，我们标要注意下，这篇著作呢则可以称之为首次系统阐述了历史唯物主义的基本观点，实现了历史观上的伟大变革。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="500.9" data-pet="544.04">
-          <div class="para-head">
-            <span class="para-lead">🏛️ 《德意志意识形态》·首创唯物史观：</span>
-            <span class="para-time">08:20 - 09:04</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="500.9" data-et="508.05">那同学们一看到意识形态啊应该能够对应出来，这是围绕着唯物史观的相应表达了，对吧？</span><span class="sent" data-st="508.05" data-et="512.89">那你要注意为什么能称之为是实现了历史观的伟大变革呢？</span><span class="sent" data-st="512.89" data-et="519.66">在马克思主义啊提出唯物史观之前，其他哲位派别在历史观上都坚持的是唯新史观。</span><span class="sent" data-st="519.66" data-et="531.84">而咱不一样，咱在历史观上坚持的是历史唯物主义，也就是唯物史观，所以能称之为叫做实现了历史观上的伟大变革，唯新史观到唯物史观的伟大变革嘛。</span><span class="sent" data-st="531.84" data-et="544.04">再来看到第三页的第三栏关于反杜林论，标注一下这篇著作呢则称之为是全面阐述了马克思主义理论体系，标注一下理论体系对应的是反杜灵顿。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="544.04" data-pet="547.29">
-          <div class="para-head">
-            <span class="para-lead">📖 《反杜林论》·马克思主义理论体系：</span>
-            <span class="para-time">09:04 - 09:07</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="544.04" data-et="547.29">好，这是关于马克思主义的创立过程啊。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c5" data-start="547.29" data-end="644.45">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">核心特征</span>
-          <span class="time-badge">⏱️ 09:07 - 10:44</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c5')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题一 特征】基本特征与本质：实践性是根本特征</div>
-      <div class="card-sub">科学性与革命性的统一 · 实践性是区别于其他理论的根本特征</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="547.29" data-pet="578.89">
-          <div class="para-head">
-            <span class="para-lead">⭐ 四大基本特征与实践性定位：</span>
-            <span class="para-time">09:07 - 09:38</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="547.29" data-et="556.86">再来呢我们看到第二个小点，关于马克思主义的基本特征，一共有四大特征，分别是科学性、人民性、实践性和发展性。</span><span class="sent" data-st="556.86" data-et="562.76">那关于这个部分呢给大家点播一个小细节啊，关于实践观点的关键词。</span><span class="sent" data-st="562.76" data-et="573.84">对应来看到第三个小圈啊，实践观呢是马克思主义画起来首要的和基本的观点，同时实践性呢也是马克思主义理论区别于其他理论的根本特征。</span><span class="sent" data-st="573.84" data-et="577.99">标注一下，区别于其他理论的根本特征对应的是实践性。</span><span class="sent" data-st="577.99" data-et="578.89">那为什么呢？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="578.89" data-pet="609.76">
-          <div class="para-head">
-            <span class="para-lead">🔨 为什么实践性是根本特征：</span>
-            <span class="para-time">09:38 - 10:09</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="578.89" data-et="590.43">其实刚刚给大家提到了，马克思呢在关于费尔巴提纲当中给大家说了这样一句话，说哲学家们啊只是用不同的方式解释设计，而问题呢应该在于改变世界。</span><span class="sent" data-st="590.43" data-et="592.96">也就是说我们在用什么改变世界？</span><span class="sent" data-st="592.96" data-et="594.58">通过实践改变世界嘛。</span><span class="sent" data-st="594.58" data-et="598.01">我跟他们的不同点不就在于这个实践性了吗？</span><span class="sent" data-st="598.01" data-et="603.24">所以要注意啊，实践性是马克思主义理论区别于其他理论的根本特征。</span><span class="sent" data-st="603.24" data-et="609.76">那刚给大家说到马克思主义的基本特征呢有四个，科学性、人民性、实践性和发展性。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="609.76" data-pet="644.45">
-          <div class="para-head">
-            <span class="para-lead">✨ 一言以蔽之：科学性与革命性的统一：</span>
-            <span class="para-time">10:09 - 10:44</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="609.76" data-et="612.83">如果用一句话来概括可以称之为啥呢？</span><span class="sent" data-st="612.83" data-et="618.4">我们来看到圈一啊叫做用一句话来概括，就是科学性与革命性的统一。</span><span class="sent" data-st="618.4" data-et="622.04">同学可能会纳闷啊，说哎刚才不是四个特征吗？</span><span class="sent" data-st="622.04" data-et="623.39">为什么变两个了？</span><span class="sent" data-st="623.39" data-et="625.11">你看嘛什么叫革命性？</span><span class="sent" data-st="625.11" data-et="629.14">那不就是人民通过革命这样的实践在发展社会吗？</span><span class="sent" data-st="629.14" data-et="635.28">所以你看啊人民性加实践性和发展性呢可以统一为一个表达，那就是革命性。</span><span class="sent" data-st="635.28" data-et="641.04">所以一言以蔽之，马克思主义的基本特征就是科学性与革命性的统一了。</span><span class="sent" data-st="641.04" data-et="644.45">好的，那以上呢是关于导论当中的重要考点。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c6" data-start="644.45" data-end="720.9">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">经典干扰项</span>
-          <span class="time-badge">⏱️ 10:44 - 12:00</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c6')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题一 排雷】命题分析：马克思主义绝非“现成教条”</div>
-      <div class="card-sub">提供的是共性出发点与方法，选项出现“现成答案/现成理想方案”一律为干扰项</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="644.45" data-pet="676.54">
-          <div class="para-head">
-            <span class="para-lead">📈 历年考情与命题分析特色：</span>
-            <span class="para-time">10:44 - 11:16</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="644.45" data-et="649.57">最后我们来看到每个专题，下面小时为大家标注好的命题分析啊。</span><span class="sent" data-st="649.57" data-et="654.51">可以看到啊导论这个部分考试频率还是很高的，考察过六次啊。</span><span class="sent" data-st="654.51" data-et="667.59">那同时呢我们要注意啊，命题分析呢校老师不光为大家标注了这个专题的历年考察频率是如何的，同时呢给大家重点标注了那些在这个专题当中最容易混淆的表述。</span><span class="sent" data-st="667.59" data-et="676.54">那我问大一个问题啊，马克思主义给予任何国家的理论，它是一个共性的理论呢，还是一个个性的理论呢？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="676.54" data-pet="720.9">
-          <div class="para-head">
-            <span class="para-lead">🚫 经典干扰项排雷：非现成教条：</span>
-            <span class="para-time">11:16 - 12:00</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="676.54" data-et="682.93">它有没有告诉咱们中国具体该如何发展具有中国特色社会主义社会呢？</span><span class="sent" data-st="682.93" data-et="684.2">是没有的对吧？</span><span class="sent" data-st="684.2" data-et="693.36">所以我们看到第二段啊，要注意马克思主义为任何国家任何社会提供的都是共性的理论，而不是什么呢？</span><span class="sent" data-st="693.36" data-et="695.91">要注意一下，不是现成的教条。</span><span class="sent" data-st="695.91" data-et="703.58">所以我们来看到第二行叫做如果选项中出现现成方案，现成理想方案等，多是干扰选项。</span><span class="sent" data-st="703.58" data-et="714.86">啊，未来如果一旦选当中啊说马克思主义给予任何国家的是现成的方案，是具体的指导或者是个性化的指导，这都是经典的错误表达了。</span><span class="sent" data-st="714.86" data-et="717.28">好的，以上是导论的重要内容。</span><span class="sent" data-st="717.28" data-et="720.9">下面呢我们来进入到专题2，世界的物质型。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c7" data-start="720.9" data-end="1057.9">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">拉分基础</span>
-          <span class="time-badge">⏱️ 12:00 - 17:37</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c7')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 哲学基本问题】思维与存在：何为第一性与同一性</div>
-      <div class="card-sub">何为第一性（唯物vs唯心）· 有无同一性（可知论vs不可知论）· 对立在第一性范围内具有绝对意义</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="720.9" data-pet="777.36">
-          <div class="para-head">
-            <span class="para-lead">🚪 迈入马哲核心：辩证法与物质本源：</span>
-            <span class="para-time">12:00 - 12:57</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="720.9" data-et="730.57">我们要注意啊，同学们从专题二开始，我们要正式的迈入到马原当中占比分值最多的马克思主义哲学的模块学习了。</span><span class="sent" data-st="730.57" data-et="738.83">那其中我们标注一下从专题2一直到专题九呢，这几个专题我们将重点围绕着唯物辩证法而展开。</span><span class="sent" data-st="738.83" data-et="745.68">我们标注一下从专题2一直到专题9，我们将重点围绕着唯物辩证法而展开学习。</span><span class="sent" data-st="745.68" data-et="749.48">那首先呢我们来进入到第二个专题，世界的物质性。</span><span class="sent" data-st="749.48" data-et="754.91">通过这个专题名称啊，同学们应该已经潜移默化的了解这个根本立场了。</span><span class="sent" data-st="754.91" data-et="761.97">马克思主义是彻底的唯物主义哲学家，这个世界啊只有一个唯一的本源，那就是物质为本源了。</span><span class="sent" data-st="761.97" data-et="767.76">同学们先明辨这个根本立场，明辨了这个立场再接受后面的考点会简单很多。</span><span class="sent" data-st="767.76" data-et="777.36">好的，那首先呢我们来看到第一个小点啊，关于哲学的基本问题，也就意味着我们得先明确一下哲学是围绕着哪个问题而展开的。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="777.36" data-pet="819.2">
-          <div class="para-head">
-            <span class="para-lead">❓ 哲学的基本问题：思维与存在：</span>
-            <span class="para-time">12:57 - 13:39</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="777.36" data-et="783.58">我们标注一下这个问题是一个很宏大的关系问题，就是存在和思维的关系问题。</span><span class="sent" data-st="783.58" data-et="784.79">那何为存在呢？</span><span class="sent" data-st="784.79" data-et="791.05">存在啊就指的是物质层面，指的是不依赖人的意志为转移的客观世界层面。</span><span class="sent" data-st="791.05" data-et="794.88">你不要注意一下，存在等于物质，等于客观世界。</span><span class="sent" data-st="794.88" data-et="797.1">那么反过来什么叫思维呢？</span><span class="sent" data-st="797.1" data-et="804.77">你不要注意一下思维呢，你可以把它理解为就是精神，就是主观世界，等于精神等于主观世界。</span><span class="sent" data-st="804.77" data-et="809.62">那么哲学就是围绕着思维与存在的关系问题而展开的了。</span><span class="sent" data-st="809.62" data-et="819.2">那围绕着这组关系问题呢，我们将通过两个方面得以阐发马克思主义的根本立场，分别是和为低性和是否具有同性。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="819.2" data-pet="874.91">
-          <div class="para-head">
-            <span class="para-lead">1️⃣ 第一方面：何为第一性（唯物 vs 唯心）：</span>
-            <span class="para-time">13:39 - 14:34</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="819.2" data-et="826.38">那关于这部分表达，我们可以直接把书翻到第四页，来看到上方的哲学划分的逻辑框架图。</span><span class="sent" data-st="826.38" data-et="831.42">那首先呢我们来看到第一栏，关于对世界本源问题的不同回答。</span><span class="sent" data-st="831.42" data-et="837.44">那这个小点呢就是重点围绕着刚给大家提到的和为第性的问题而展开的。</span><span class="sent" data-st="837.44" data-et="844.43">很明确啊，如果我认为世界的本源应该是物质，应该是物质为第性的那这是什么立场呢？</span><span class="sent" data-st="844.43" data-et="846.76">那不就是唯物主义的观点吗？</span><span class="sent" data-st="846.76" data-et="853.93">那如果反过来呢，如果一旦认为世界本源应该是精神思维是第一性的这则是唯心主义立场啦。</span><span class="sent" data-st="853.93" data-et="863.68">所以我们不要注意一下关于对世界本源问题的不同回答，也就是在讨论何为第一性的问题，划分为了唯物主义和唯心主义观点。</span><span class="sent" data-st="863.68" data-et="870.49">南海明确咱马克思主义呢是彻底的唯物主义立场，我们在唯物主义这个部分画一个勾勾。</span><span class="sent" data-st="870.49" data-et="874.91">那么第二个方面呢叫做对世界是否可知问题的不同回答。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="874.91" data-pet="927.54">
-          <div class="para-head">
-            <span class="para-lead">2️⃣ 第二方面：有无同一性（可知 vs 不可知）：</span>
-            <span class="para-time">14:34 - 15:27</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="874.91" data-et="880.06">我们在讨论啊这个意识与物质是否具有同一性的问题，什么意思啊？</span><span class="sent" data-st="880.06" data-et="884.39">就我这个思维，我这个意识到底能否认识物质，能否认识存在？</span><span class="sent" data-st="884.39" data-et="887.67">如果认为具有同一性呢，那就是可知论的观点。</span><span class="sent" data-st="887.67" data-et="890.27">如果不具有呢，则是不可知论的观点。</span><span class="sent" data-st="890.27" data-et="897.36">那我们要明确一下，我们马克思主义什么立场叫做世界只有尚未被认知之物，没有不可被认知之物。</span><span class="sent" data-st="897.36" data-et="901.86">也就意味着我们马克思主义认为万事万物都是可以被认知的。</span><span class="sent" data-st="901.86" data-et="909.48">那我们就认为思维与存在是具有同一性的，我们是可知论的观点标要注意一下，马克思主义是可知论观点。</span><span class="sent" data-st="909.48" data-et="920.38">而反之，如果有人认为呢这个世界是不可以被完全认知的，或者完全不可以被认知的，就意味着他认为思维与存在不具有同一性，就是不可知论的观点啦。</span><span class="sent" data-st="920.38" data-et="927.54">好，以上两个小点和为第性和是否具有同一性的问题呢，是我们哲学问题的两个方面的不同回答。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="927.54" data-pet="968.13">
-          <div class="para-head">
-            <span class="para-lead">3️⃣ 第三方面：世界怎样存在（辩证法 vs 形而上学）：</span>
-            <span class="para-time">15:27 - 16:08</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="927.54" data-et="932.37">那关于第三点和第四点呢，我们先简单熟悉一下，后面会详细展开。</span><span class="sent" data-st="932.37" data-et="938.81">第三点围绕着关于世界怎样存在的不同回答，我们标注一下，分为了辩证法和形而上学。</span><span class="sent" data-st="938.81" data-et="942.57">那明确我们马克思主义呢是辩证法的方法论意呀。</span><span class="sent" data-st="942.57" data-et="953.33">所以标注辩证法叫做用联系的发展的全面的观点看问题，认为发展的根本原因在于画起来事物的内部矛盾，而与之对应的新尔上学呢是完全不同的。</span><span class="sent" data-st="953.33" data-et="958.74">新尔上学则是孤立的、禁止的、片面的观点看问题，否定事物内部矛盾的存在和作用。</span><span class="sent" data-st="958.74" data-et="964.15">所以会发现啊新尔上学辩证法恰好对立起来，我们马克思主义呢是辩证法的观点。</span><span class="sent" data-st="964.15" data-et="968.13">那最后一个问题呢叫做对社会历史观基本问题的不同回答。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="968.13" data-pet="993.61">
-          <div class="para-head">
-            <span class="para-lead">4️⃣ 第四方面：社会历史观（唯物史观 vs 唯心史观）：</span>
-            <span class="para-time">16:08 - 16:33</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="968.13" data-et="971.15">这个内容啊则围绕着人类社会层面而展开的。</span><span class="sent" data-st="971.15" data-et="975.45">明确一下人类社会层面到底是物质决定意识，还是意识决定物质。</span><span class="sent" data-st="975.45" data-et="978.63">那还明确我们马克思主义呢是彻底的唯物主义。</span><span class="sent" data-st="978.63" data-et="983.25">所以在人类社会层面呢，我们仍然认为应该是社会存在决定社会意识。</span><span class="sent" data-st="983.25" data-et="986.43">我们的立场是历史唯物主义，也就是唯物史观啦。</span><span class="sent" data-st="986.43" data-et="993.61">关于这个部分呢给大家深挖一个小考点，我们来看到下方的点拨圈一标，注意一下叫做物质和意识的对立。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="993.61" data-pet="1057.9">
-          <div class="para-head">
-            <span class="para-lead">⚠️ 难点深挖：对立的绝对性与相对性：</span>
-            <span class="para-time">16:33 - 17:37</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="993.61" data-et="999.11">只有在他们合为第一性，何为第二性这一范围内画起来才具有绝对的意义。</span><span class="sent" data-st="999.11" data-et="1003.72">但是如果一旦超出这个范围，物质和意识的对立便是相对的了。</span><span class="sent" data-st="1003.72" data-et="1005.32">给大家理解什么意思？</span><span class="sent" data-st="1005.32" data-et="1013.12">你看啊在我们讨论物质和意识他们两个到底谁是第一性，谁是第二性的时候呢，他们的关系是非常尖锐的。</span><span class="sent" data-st="1013.12" data-et="1020.75">如果物质第一性意识只能取决了2，所以在何为第一性的问题里面，他们的对立是具有绝对性的意义的。</span><span class="sent" data-st="1020.75" data-et="1022.7">针尖对麦芒一般的存在啊。</span><span class="sent" data-st="1022.7" data-et="1030.12">但是你看如果一旦超出这个范围呢，则变成相对的了，进入到思维与存在是否具有统一性的问题了。</span><span class="sent" data-st="1030.12" data-et="1035.36">在讨论这个意识到底能不能反映物质，我的思维到底能不能认识存在。</span><span class="sent" data-st="1035.36" data-et="1038.98">它们的关系没那么尖锐了，变得相对缓和了，对吧？</span><span class="sent" data-st="1038.98" data-et="1043.86">所以我们不要注啊，当超出这个范围，他们的关系则是相对的对立。</span><span class="sent" data-st="1043.86" data-et="1049.83">那接着到这里啊，同学们应该非常明确了，马克思主义呢是唯物主义的哲学派别。</span><span class="sent" data-st="1049.83" data-et="1057.9">马克思主义告诉我们世界的本源啊就只有一个，那就是物质了，物质是低性的那到底什么是物质这个本源？</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c8" data-start="1057.9" data-end="1220.22">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">高频核心</span>
-          <span class="time-badge">⏱️ 17:37 - 20:20</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c8')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 物质范畴】唯一特性是客观实在性</div>
-      <div class="card-sub">不依赖意识而存在并能被反映 · 未知世界也是物质的 · 哲学物质范畴（共性）≠ 自然科学结构（个性）</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="1057.9" data-pet="1107.48">
-          <div class="para-head">
-            <span class="para-lead">📱 什么是物质：不依赖意识的客观实在：</span>
-            <span class="para-time">17:37 - 18:27</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1057.9" data-et="1059.81">我们该如何去界定它呢？</span><span class="sent" data-st="1059.81" data-et="1063.62">我们来看到第二个小点，关于物质及其存在方式。</span><span class="sent" data-st="1063.62" data-et="1066.66">来看到括号一马克思主义的物质范畴。</span><span class="sent" data-st="1066.66" data-et="1070.85">也就是说到底什么是物质的问题开始喽，物质什么呀？</span><span class="sent" data-st="1070.85" data-et="1078.27">来看到圈一啊叫做物质啊，就是不依赖人的意识而存在，并能够为人的意识所反映的客观实在。</span><span class="sent" data-st="1078.27" data-et="1086.08">比如说现在同学们应该正在用手机听我们的带背音频，那这个手机呢是不依赖你的意识而存在的。</span><span class="sent" data-st="1086.08" data-et="1088.48">你想与不想，它就是客观存在的。</span><span class="sent" data-st="1088.48" data-et="1093.09">同时呢你能够去认识它，能够去反映它，那它就是物质所在了。</span><span class="sent" data-st="1093.09" data-et="1101.76">所以你看什么叫物质不依赖你的意识而存在，并且能够为你的意识所反映的客观存在，客观实在，那就是物质所在。</span><span class="sent" data-st="1101.76" data-et="1107.48">所以会发现啊，只要是物质呢，它都有一个共性，那个共性就是客观实在性了。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1107.48" data-pet="1157.32">
-          <div class="para-head">
-            <span class="para-lead">🌌 唯一特性与共性：未知世界也是客观实在：</span>
-            <span class="para-time">18:27 - 19:17</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1107.48" data-et="1114.86">我们来看第二点，叫做物质的唯一特性，我们标注啊也可以称之为是物质的共性，就是客观实在性。</span><span class="sent" data-st="1114.86" data-et="1119.48">所以总之啊同学们世界只有一个唯一的本源，那就是物质了。</span><span class="sent" data-st="1119.48" data-et="1124.1">整个世界都是具有物质性的，所以未来如果这样说行不行啊？</span><span class="sent" data-st="1124.1" data-et="1133.71">我说已知世界确实是物质的，是客观存在，而未知世界就不一样了，不是物质为本源的，而变成以人的意志为转移的世界，能选吗？</span><span class="sent" data-st="1133.71" data-et="1139.44">啊，当然不行了，甭管是未知世界也好，还是已知世界也罢，它都是客观存在的。</span><span class="sent" data-st="1139.44" data-et="1146.51">看到圈三就很明确了，甭管是未知世界还是已知世界，都是客观存在的，世界是物质性的。</span><span class="sent" data-st="1146.51" data-et="1153.0">好，这是第一个小点，关于马克思主义的物质范畴的界定，给大家来系统总结一下。</span><span class="sent" data-st="1153.0" data-et="1157.32">马克思主义告诉我们啊，世界的唯一本源就是物质了。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1157.32" data-pet="1220.22">
-          <div class="para-head">
-            <span class="para-lead">🔬 易混辨析：哲学范畴（共性）≠ 科学概念（个性）：</span>
-            <span class="para-time">19:17 - 20:20</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1157.32" data-et="1162.43">那物质呢作为整个世界的唯一本源，它应该是一个共性的问题。</span><span class="sent" data-st="1162.43" data-et="1164.98">物质的共性就是客观实在性了。</span><span class="sent" data-st="1164.98" data-et="1175.2">那么反推一下，如果有一些主派别呢，他们也是唯物主义论点，但是他们却把物质这个本源理解为个性的存在了，那就犯错误了。</span><span class="sent" data-st="1175.2" data-et="1182.58">我们来看到第五页上方的点拨圈一叫做不要混淆自然科学物质结构概念与哲学物质范畴。</span><span class="sent" data-st="1182.58" data-et="1190.65">你看自然科学物质结构概念呢那不过是一个个性而已，而哲学的物质范畴呢却是共性，是客观实在性。</span><span class="sent" data-st="1190.65" data-et="1194.87">那他们的关系就是个别与一般个性和共性的关系了。</span><span class="sent" data-st="1194.87" data-et="1206.4">那么在职业范畴当中啊，有一些同资转换给大家总结一下，看到后面啊叫做个别等于个性、等于特殊、等于具体，而一般等于共性、等于普遍、等于抽象。</span><span class="sent" data-st="1206.4" data-et="1211.21">这个部分呢我们简单熟悉一下，后面在辩证法还能够用得上。</span><span class="sent" data-st="1211.21" data-et="1215.82">好，这是第一个小点，我们明确一下物质到底是什么的问题。</span><span class="sent" data-st="1215.82" data-et="1220.22">那不光我们要讨论什么是物质，还要讨论物质在干嘛呢？</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c9" data-start="1220.22" data-end="1438.3">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">辩证唯物</span>
-          <span class="time-badge">⏱️ 20:20 - 23:58</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c9')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 运动观】物质与运动不可分割 · 绝对运动与相对静止</div>
-      <div class="card-sub">运动是物质的存在方式 · 设想不运动物质（形而上学）与设想无物质运动（唯心主义）· 动中有静，静中有动</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="1220.22" data-pet="1264.0">
-          <div class="para-head">
-            <span class="para-lead">🏃 运动是物质的根本属性与存在方式：</span>
-            <span class="para-time">20:20 - 21:04</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1220.22" data-et="1225.01">我们发现啊只要是物质啊，它就在无时无刻的变化着运动着。</span><span class="sent" data-st="1225.01" data-et="1230.18">所以下面呢我们来看到括号二物质与运动和括号三运动与静止。</span><span class="sent" data-st="1230.18" data-et="1242.24">我们标注意下这两个小点呢，则是围绕着物质的运动观而展开的，标注一下运动观，总之啊很明确一个根本立场了，只要是物质它都无时无刻的在运动着。</span><span class="sent" data-st="1242.24" data-et="1248.94">我们来看到圈一的定性叫做物质的根本属性，或者称之为是存在方式，那就是运动了。</span><span class="sent" data-st="1248.94" data-et="1252.2">换言之就是说只要是物质它如何存在呢？</span><span class="sent" data-st="1252.2" data-et="1253.92">在运动当中得以存在。</span><span class="sent" data-st="1253.92" data-et="1264.0">那同学就会发现一个问题啊，马克思在潜移默化的告诉我们一个问题，谁与谁是不可分割的，物质与运动是无法分割的。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1264.0" data-pet="1312.51">
-          <div class="para-head">
-            <span class="para-lead">❌ 两种割裂错误：形而上学 vs 唯心主义：</span>
-            <span class="para-time">21:04 - 21:52</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1264.0" data-et="1268.73">运动就是物质在运动物质它就是正在运动的物质，对吗？</span><span class="sent" data-st="1268.73" data-et="1277.79">既然马克思主义告诉我们，物质和运动是不可分割的，如果有一些人偏要把他们二者分割开来呢会怎么样？</span><span class="sent" data-st="1277.79" data-et="1278.82">那就犯错呗。</span><span class="sent" data-st="1278.82" data-et="1290.3">我们来看到圈二啊叫做设想，不运动的物质将导致形而上学，同学们应该知道什么叫形而上学，那不就是以静止的、片面的、孤立的观点看问题吗？</span><span class="sent" data-st="1290.3" data-et="1299.07">那反过来呢，如果设想无物质的运动将导致唯心主义，那你想啊如果不是物质在运动，是什么在驱使事物在运动呢？</span><span class="sent" data-st="1299.07" data-et="1300.19">那就是意识了。</span><span class="sent" data-st="1300.19" data-et="1304.48">如果意识决定了物质的运动，那不就是唯心主义错误吗？</span><span class="sent" data-st="1304.48" data-et="1306.91">所以你要注意两个错误的表达。</span><span class="sent" data-st="1306.91" data-et="1312.51">好，那通过物质与运动关系呢，再次体现出了马克思主义的唯物主义立场。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1312.51" data-pet="1380.42">
-          <div class="para-head">
-            <span class="para-lead">🌍 绝对运动：无条件且无时无刻不在运动：</span>
-            <span class="para-time">21:52 - 23:00</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1312.51" data-et="1317.7">运动是物质的运动，但同时呢马克思主义是唯物辩证法的立场啊。</span><span class="sent" data-st="1317.7" data-et="1318.68">何为辩证法？</span><span class="sent" data-st="1318.68" data-et="1325.12">指的是任何事物都是由矛盾组成的，而一组一组矛盾呢又是无法分割的关系了。</span><span class="sent" data-st="1325.12" data-et="1328.82">那运动与谁组成了一组矛盾，那不就是静止吗？</span><span class="sent" data-st="1328.82" data-et="1336.23">所以我们来看到括号三叫做运动与静止，他们二者呢作为一组矛盾又是无法分割的关系了。</span><span class="sent" data-st="1336.23" data-et="1342.86">首先我们来看圈一啊，叫做物质世界的运动是绝对的变动性无条件性，什么意思啊？</span><span class="sent" data-st="1342.86" data-et="1348.32">很好理解，只要是物质在任何情况下，任何条件里，它都在绝对运动着。</span><span class="sent" data-st="1348.32" data-et="1350.44">比如说此时此刻你在干嘛呢？</span><span class="sent" data-st="1350.44" data-et="1353.61">你坐在在小板凳上替我们带背音品呢，对吧？</span><span class="sent" data-st="1353.61" data-et="1359.26">看似你好像没动，但实则呢你在呼吸着，你的细胞在生长着、死亡着，亦在运动着。</span><span class="sent" data-st="1359.26" data-et="1372.13">看似你好像没动，但实则呢你正在以每秒465米的速度随着地球自转着，同时又以每秒约30公里速度围绕着太阳公转着，你一刻都没有停歇过，这就是绝对运动所在了。</span><span class="sent" data-st="1372.13" data-et="1376.72">运动是绝对的，是无条件性的那另外一个方面，静止又是如何的？</span><span class="sent" data-st="1376.72" data-et="1380.42">看到后面啊叫做静止，是相对的稳定性的，有条件性。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1380.42" data-pet="1402.73">
-          <div class="para-head">
-            <span class="para-lead">🪑 相对静止：相对位置与根本性质暂时不变：</span>
-            <span class="para-time">23:00 - 23:22</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1380.42" data-et="1384.11">相对静止啊是物质运动在一定条件下的特殊状态。</span><span class="sent" data-st="1384.11" data-et="1389.9">也就是说相对静止没有否定运动，它仍然是物质运动，只是一种特殊的物质运动。</span><span class="sent" data-st="1389.9" data-et="1391.13">特殊在于何处呢？</span><span class="sent" data-st="1391.13" data-et="1396.23">叫做具体包括空间的相对位置暂时不变和事物的根本性质暂时不变。</span><span class="sent" data-st="1396.23" data-et="1399.57">满足这样的状态就可以称之为是相对静止了。</span><span class="sent" data-st="1399.57" data-et="1402.73">那你来感受一下吧，同学们此刻的你在没在？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1402.73" data-pet="1438.3">
-          <div class="para-head">
-            <span class="para-lead">☯️ 辩证统一：动中有静，静中有动：</span>
-            <span class="para-time">23:22 - 23:58</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1402.73" data-et="1408.7">相对静止也在呀，你就坐在小板凳上，你的手就在你面前，你们的相对位置暂时不变。</span><span class="sent" data-st="1408.7" data-et="1414.67">同时呢你仍然是你你没有变成其他事物，你这个事物的根本性质也是暂时不变的。</span><span class="sent" data-st="1414.67" data-et="1428.06">所以你看你这个事物是不是既载绝对运动，同时呢也在相对静止，他们二者是无法分割的关系拉那我们来看到圈二就非常明确啊，叫做运动与静止啊是相互依赖、相互渗透、相互包含的。</span><span class="sent" data-st="1428.06" data-et="1431.59">是动中有静静中有动，二者是无法分割的关系了。</span><span class="sent" data-st="1431.59" data-et="1438.3">那到这儿呢我们理清楚了啊，这个世界呢是物质的世界，这个物质世界在无时无刻的运动着。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c10" data-start="1438.3" data-end="1703.04">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">易混高频</span>
-          <span class="time-badge">⏱️ 23:58 - 28:23</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c10')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 时空观】客观性 vs 主观性 · 意味性 · 有限与无限</div>
-      <div class="card-sub">时空是客观存在形式而非观念形式 · 时空观念具有主观性 · 时间一维性珍惜时光 · 具体物质有限，整个物质世界无限</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="1438.3" data-pet="1510.66">
-          <div class="para-head">
-            <span class="para-lead">⏳ 时空是物质运动的客观存在形式：</span>
-            <span class="para-time">23:58 - 25:10</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1438.3" data-et="1443.07">下面呢我们继续深入讨论啊，那这个物质的世界在哪里运动着呢？</span><span class="sent" data-st="1443.07" data-et="1448.37">我们发现啊只要是运动的物质，它无时无刻都在经历着时间，占据着空间。</span><span class="sent" data-st="1448.37" data-et="1452.08">所以下面呢我们将围绕着物质运动与时空而展开。</span><span class="sent" data-st="1452.08" data-et="1457.38">我们标注一下括号4则是围绕着时空观而展开的考点，标注一下时空观。</span><span class="sent" data-st="1457.38" data-et="1461.09">那时空与物质运动的关系具体如何界定呢？</span><span class="sent" data-st="1461.09" data-et="1468.31">是这样讲的，来看到圈一啊叫做时间和空间，是运动着的物质的画起来基本存在形式。</span><span class="sent" data-st="1468.31" data-et="1471.62">大家把存在这个词儿画起来，还记得吗？</span><span class="sent" data-st="1471.62" data-et="1472.44">何为存在？</span><span class="sent" data-st="1472.44" data-et="1474.71">存在指的是客观还是主观？</span><span class="sent" data-st="1474.71" data-et="1477.18">存在等于客观，等于物质，对吗？</span><span class="sent" data-st="1477.18" data-et="1485.23">也就意味着时空啊以不以人的意志为转移，不它是存在形式，是不依赖人的想法而发生变化的。</span><span class="sent" data-st="1485.23" data-et="1489.36">所以我们要注意啊，如果未来一旦这样说行不行？</span><span class="sent" data-st="1489.36" data-et="1494.31">我说时空是运动着的物质的观念形式或者观念载体，对吗？</span><span class="sent" data-st="1494.31" data-et="1498.02">不，它是客观的，是不依赖人的意志为转移的。</span><span class="sent" data-st="1498.02" data-et="1505.72">所以我们要注意一下，未来如果一旦说时空是运动着的物质的观念载体，观念形式则是错误的表达。</span><span class="sent" data-st="1505.72" data-et="1510.66">所以接下来我们看圈二就非常简单了，叫做时间空间具有什么性？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1510.66" data-pet="1537.41">
-          <div class="para-head">
-            <span class="para-lead">🌞 时空客观性：时间不偏心不等人的24小时：</span>
-            <span class="para-time">25:10 - 25:37</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1510.66" data-et="1513.58">具有不依赖人的意志为转移的客观性。</span><span class="sent" data-st="1513.58" data-et="1517.78">这个同学们应该都知道，时间是不偏心的，也是不等人的。</span><span class="sent" data-st="1517.78" data-et="1521.25">它很公平，给每个人每天呢都是24个小时。</span><span class="sent" data-st="1521.25" data-et="1522.53">那差别在于什么？</span><span class="sent" data-st="1522.53" data-et="1524.54">差别在于你如何去运用它。</span><span class="sent" data-st="1524.54" data-et="1527.46">你到底是让时光空转还是让时光沉淀？</span><span class="sent" data-st="1527.46" data-et="1530.93">这个不同的用法才决定了不一样的人生，对吧？</span><span class="sent" data-st="1530.93" data-et="1537.41">所以时空是具有客观性的，但如果我加几个字儿呢，我问你时空的观念则具有什么性？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1537.41" data-pet="1584.27">
-          <div class="para-head">
-            <span class="para-lead">💭 时空观念主观性：聊天如飞 vs 学习难熬：</span>
-            <span class="para-time">25:37 - 26:24</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1537.41" data-et="1538.9">什么叫时空的观念？</span><span class="sent" data-st="1538.9" data-et="1544.3">时空的观念指的是你对于时空的认知，那这个认知呢则具有了主观性。</span><span class="sent" data-st="1544.3" data-et="1556.03">比如说都是一样的时间，下午3个小时，现在呢你在跟你的小伙伴聊八卦，在打游戏，你会感觉这个时间怎么过得这么快啊，一转眼这一下午时间都流逝了。</span><span class="sent" data-st="1556.03" data-et="1564.23">但如果说这个时刻你在学习呢，你会感觉哎呀度日如年，1分1秒怎么都那么难熬啊，你会发现时间变了吗？</span><span class="sent" data-st="1564.23" data-et="1567.58">没变，科观时间仍然是3个小时，变的是什么？</span><span class="sent" data-st="1567.58" data-et="1570.74">变的是你对于时空的主观的感受，对不对？</span><span class="sent" data-st="1570.74" data-et="1578.53">所以你要注意时空是客观的，但时空的观念指的是人对于时空的认知，时空的观念则具有的是主观性。</span><span class="sent" data-st="1578.53" data-et="1584.27">那再来呢给大家点播一下关于时空观当中那些高频的和易混淆的考点啊。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1584.27" data-pet="1640.45">
-          <div class="para-head">
-            <span class="para-lead">📜 时间一维性与高频诗词考点：</span>
-            <span class="para-time">26:24 - 27:20</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1584.27" data-et="1590.38">比如说我们来看到圈三关于时间的特点，我们要注意啊时间呢是具有意味性的。</span><span class="sent" data-st="1590.38" data-et="1591.49">何为意味性呢？</span><span class="sent" data-st="1591.49" data-et="1597.79">就指的是时间的流逝是一去不复返的那既然时间具有意味性，同学们应该干嘛呢？</span><span class="sent" data-st="1597.79" data-et="1603.9">标要注意一下时间意味性在警醒各位，我们应该珍惜时光，标注意一下珍惜时光。</span><span class="sent" data-st="1603.9" data-et="1607.83">那关于时间意味性啊，常常可以通过一些诗词得以考察。</span><span class="sent" data-st="1607.83" data-et="1611.07">比如说当我们看到了百川东到海，何时复西归。</span><span class="sent" data-st="1611.07" data-et="1615.34">再比如盛年不重来，一日难再晨，或者少壮不努力，老大徒伤悲。</span><span class="sent" data-st="1615.34" data-et="1617.73">黑发不知勤学早，白首方悔读书迟。</span><span class="sent" data-st="1617.73" data-et="1623.71">这样的诗词呢都非常丰富的体现出我们应该珍惜时光，体现出时间意味性的含义啊。</span><span class="sent" data-st="1623.71" data-et="1629.0">这个部分要注意，常常可以通过诗词考察时间的意味性，这是一个高频考点。</span><span class="sent" data-st="1629.0" data-et="1640.45">然后再来呢还有个非常重要的易混淆考点，我们来看到最后一行圈6的表达，你要注意啊舌尖空间呢是具有有限性和无限性的。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1640.45" data-pet="1703.04">
-          <div class="para-head">
-            <span class="para-lead">⚠️ 极易混淆：具体形态有限 vs 整个世界无限：</span>
-            <span class="para-time">27:20 - 28:23</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1640.45" data-et="1649.31">但是如果把有限性无限性改为有限的无限的了，那前面的主语我们要标注的非常的准确，划清楚啊。</span><span class="sent" data-st="1649.31" data-et="1654.93">当主语是具体物质形态的时候，具体物质形态的时空是有限的。</span><span class="sent" data-st="1654.93" data-et="1661.84">而主体发生变化了，变为了整个物质世界，整个物质世界的时空呢则是无限的。</span><span class="sent" data-st="1661.84" data-et="1664.0">比如说什么是具体物质形态？</span><span class="sent" data-st="1664.0" data-et="1671.74">一个人、一个手机，你屁股下面坐着小板凳或者一栋楼，这些具体的物质形态呢时间空间都是有限的对吧？</span><span class="sent" data-st="1671.74" data-et="1676.96">终归即灭的时间是有限的，有始有终的空间也是有限的，是有边有界的。</span><span class="sent" data-st="1676.96" data-et="1679.84">所以具体物质形态的时空呢是有限的。</span><span class="sent" data-st="1679.84" data-et="1683.8">但如果主体呢变为了整个物质世界，时空则是无限的。</span><span class="sent" data-st="1683.8" data-et="1690.28">你看物质和能量，它们是不生不灭的，只是从一种形式出发转化为了另外一种形式而已。</span><span class="sent" data-st="1690.28" data-et="1692.62">它们是没有起点，也没有终点的。</span><span class="sent" data-st="1692.62" data-et="1696.94">所以当主体是整个物质世的时候，它的时空呢则是无限的。</span><span class="sent" data-st="1696.94" data-et="1700.36">这个关键词对应要非常的准确，不能相互混淆。</span><span class="sent" data-st="1700.36" data-et="1703.04">好，这是关于时空观的重点内容。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c11" data-start="1703.04" data-end="1806.52">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">世界基石</span>
-          <span class="time-badge">⏱️ 28:23 - 30:06</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c11')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 二重化与基石】物质世界二重化 · 物质统一性原理</div>
-      <div class="card-sub">实践是自然界与人类社会、客观世界与主观世界相分化与相统一的关键 · 物质统一性是马克思主义基石</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="1703.04" data-pet="1731.73">
-          <div class="para-head">
-            <span class="para-lead">🌱 物质世界的两重分化：</span>
-            <span class="para-time">28:23 - 28:51</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1703.04" data-et="1707.17">再来我们看到括号5啊关于物质世界的二重化。</span><span class="sent" data-st="1707.17" data-et="1717.08">就是说物质世界啊进行了两重分化，分别是从自然界中分化出人类社会，同时呢还有从客观世界中分化出主观世界。</span><span class="sent" data-st="1717.08" data-et="1723.06">这重划分给大家解释一下什么叫客观世界，就是物质层面啊存在层面。</span><span class="sent" data-st="1723.06" data-et="1724.51">什么是主观世界？</span><span class="sent" data-st="1724.51" data-et="1726.98">就是人的精神，人的思维世界。</span><span class="sent" data-st="1726.98" data-et="1731.73">那你会发现啊这两重划分都是通过什么得以实现的呢？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1731.73" data-pet="1774.14">
-          <div class="para-head">
-            <span class="para-lead">🔑 单选高频考点：实践是相分化与统一的关键：</span>
-            <span class="para-time">28:51 - 29:34</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1731.73" data-et="1733.38">人的实践活动对吗？</span><span class="sent" data-st="1733.38" data-et="1744.42">人通过实践去开垦土地，去建设发展，去改造自然界，从而获得了人类社会，从自然界中分化出了人类社会，那同时如何获得主观世界呢？</span><span class="sent" data-st="1744.42" data-et="1745.83">不依然是实践吗？</span><span class="sent" data-st="1745.83" data-et="1750.45">未来我们会讲到实践决定认识，实践是认识的唯一来源。</span><span class="sent" data-st="1750.45" data-et="1754.26">所以我发现啊两重划分的关键都在于什么呢？</span><span class="sent" data-st="1754.26" data-et="1765.31">来看到圈二把握道单选题了，叫做人的实践活动，是自然界与人类社会，客观世界与主观世界画起来相分化的关键，也是相统一的关键。</span><span class="sent" data-st="1765.31" data-et="1768.12">总之关键对应的是人的实践活动。</span><span class="sent" data-st="1768.12" data-et="1768.92">就可以了。</span><span class="sent" data-st="1768.92" data-et="1774.14">好，那今着到这里呢，我们围绕着物质这个本源进行了非常丰富的学习。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1774.14" data-pet="1806.52">
-          <div class="para-head">
-            <span class="para-lead">🏛️ 世界的物质统一性原理：马克思主义基石：</span>
-            <span class="para-time">29:34 - 30:06</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1774.14" data-et="1779.17">那最后我们来进入到括号6，关于世界的物质统一性原理及其意义。</span><span class="sent" data-st="1779.17" data-et="1785.29">那关于这个原理啊，其实他回答了哲学当中最基本的追问，世界的本源到底是什么？</span><span class="sent" data-st="1785.29" data-et="1791.77">马克思主义告诉你了，通过这个原理名称就能告诉我，世界唯一的本源就统一于物质了。</span><span class="sent" data-st="1791.77" data-et="1795.37">所以我发现啊这个原理呢就是基石一般的存在。</span><span class="sent" data-st="1795.37" data-et="1804.18">那我们来直接看到圈二关于这大原理的意义所在，叫做它是辩证唯物主义最基本最核心的观点，是马克思主义的基石。</span><span class="sent" data-st="1804.18" data-et="1806.52">好，以上呢是今天的重点内容了。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    <article class="recite-card" id="c12" data-start="1806.52" data-end="1926.98">
-      <div class="card-top">
-        <div class="card-meta">
-          <span class="tag-badge">总结排雷</span>
-          <span class="time-badge">⏱️ 30:06 - 32:06</span>
-        </div>
-        <button class="btn-repeat" onclick="setCardLoop('c12')">🔁 循环本章</button>
-      </div>
-      <div class="card-title">【专题二 总结与大题】命题分析 · 井蛙夏虫生动解构 · 大题训练</div>
-      <div class="card-sub">井蛙不可语海（空间局限）与夏虫不可语冰（时间局限）· 读材料找原理思维训练</div>
-      <div class="card-body">
-        
-        <div class="para-item" data-pst="1806.52" data-pet="1852.98">
-          <div class="para-head">
-            <span class="para-lead">📊 专题二命题分析与干扰项排查：</span>
-            <span class="para-time">30:06 - 30:52</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1806.52" data-et="1814.54">那同学们会发现啊，在马原当中，每个专题后面小数一达标注好了命题分析，体现出了这个专题的历年考察频次。</span><span class="sent" data-st="1814.54" data-et="1818.38">比如专题二呢近几年考察过十次，是尤为重要的考点。</span><span class="sent" data-st="1818.38" data-et="1822.56">并且呢根据真题的经典干扰选项给大家进行了系统总结。</span><span class="sent" data-st="1822.56" data-et="1830.93">同学们可以听完今天的带背音频之后，通过经典干扰项来判断一下自己的能力是如何的，能不能辨识这些经典表达。</span><span class="sent" data-st="1830.93" data-et="1839.82">那给大家举个例子啊，比如说我们来看到第七页最下方经典干扰项的最后一句话，叫做整个物质事界的时空是有限的对吗？</span><span class="sent" data-st="1839.82" data-et="1847.55">错误了，给大家特意说了啊，具体的物质形态的时空那才是有限的，而整个物质世界时空呢则是无限的。</span><span class="sent" data-st="1847.55" data-et="1852.98">比如同学们可能都听过这句话，叫做井蛙不可逾海者，下虫不可鱼冰者。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1852.98" data-pet="1874.91">
-          <div class="para-head">
-            <span class="para-lead">🐸 生动注脚：井底之蛙与夏日之虫：</span>
-            <span class="para-time">30:52 - 31:14</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1852.98" data-et="1853.92">什么意思呢？</span><span class="sent" data-st="1853.92" data-et="1858.42">就是你无法跟井里的蛙去讨论大海，它被空间所局限住了。</span><span class="sent" data-st="1858.42" data-et="1862.92">你无法跟夏天的虫去讨论冰雪，因为它被时间所局限住了。</span><span class="sent" data-st="1862.92" data-et="1865.54">具绝的物质形态，时空就是有限的。</span><span class="sent" data-st="1865.54" data-et="1869.47">其实这也是我们关于时空观很生动的一个注脚啊。</span><span class="sent" data-st="1869.47" data-et="1874.91">再比如说我们看倒数第二行叫做时空是标示物质运动的观念形式吗？</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1874.91" data-pet="1912.1">
-          <div class="para-head">
-            <span class="para-lead">🚀 突破局限：在实践求知中扩宽认知边界：</span>
-            <span class="para-time">31:14 - 31:52</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1874.91" data-et="1879.22">不，时空是具有客观性的，应该是存在形式而非观念形式。</span><span class="sent" data-st="1879.22" data-et="1885.78">再重申一下，如果说的是时空的观念呢，我们人对于时空的认知，这则是具有主观性的了。</span><span class="sent" data-st="1885.78" data-et="1895.45">比如说有的人呢就是困于自己的经历，也误以为世界真的井口这么大，呃，但有的人呢承认自己的局限，但不甘于自己被井口困住。</span><span class="sent" data-st="1895.45" data-et="1899.09">通过实践，通过读书去求知，去见世界，也在见自己。</span><span class="sent" data-st="1899.09" data-et="1906.93">在这个过程当中一点点扩宽了自己的认知边界啊，所以你看这样的认知，这样的观念则是具有主观性的。</span><span class="sent" data-st="1906.93" data-et="1909.12">也希望同学们能够做到如此。</span><span class="sent" data-st="1909.12" data-et="1912.1">好的同学们，以上是今天的重点内容了。</span></div>
-        </div>
-        
-        <div class="para-item" data-pst="1912.1" data-pet="1926.98">
-          <div class="para-head">
-            <span class="para-lead">📝 分析题思维训练与结语：</span>
-            <span class="para-time">31:52 - 32:06</span>
-          </div>
-          <div class="para-text"><span class="sent" data-st="1912.1" data-et="1923.44">那最后呢向回大家准备好了读材料，找原理模块，提前训练同学们的分析题做题能力，可以把答案打在评论区或弹幕当中，视频最后会给出大家答案。</span><span class="sent" data-st="1923.44" data-et="1926.98">好，这是今天的重点，带背同学们，我们明天再见。</span></div>
-        </div>
-        
-      </div>
-    </article>
-    
-    </div>
+    <!-- 动态卡片容器 -->
+    <div id="cardsList"></div>
 
   </main>
 
-  <!-- 悬浮播放栏 -->
+  <!-- 底部悬浮控制台 -->
   <footer class="player-dock">
     <div class="dock-container">
       
@@ -1144,19 +705,35 @@
     </div>
   </footer>
 
+  <!-- 多期抽屉弹窗 (Day Switcher Drawer) -->
+  <div class="drawer-overlay" id="drawerOverlay">
+    <div class="drawer-panel">
+      <div class="drawer-handle"></div>
+      <div class="drawer-head">
+        <div class="drawer-title">📅 每日政治带背目录</div>
+        <button class="drawer-close" id="btnCloseDrawer">✕</button>
+      </div>
+      <div class="drawer-list" id="drawerList"></div>
+    </div>
+  </div>
+
   <div class="toast" id="toastMsg">已就绪</div>
   <audio id="audioEngine" preload="metadata" playsinline webkit-playsinline></audio>
 
+  <!-- 载入多天聚合数据库 -->
+  <script src="data/database.js"></script>
+
   <script>
-    const AUDIO_SOURCES = {
-      wechat: "https://res.wx.qq.com/voice/getvoice?mediaid=MzI0MzAxMzQzNF8yNjUzMTg0MjEz",
-      local: "../带背音频/2027带背音频D1_【背诵手册D1】马原专题一、二.mp3"
-    };
+    const DB = window.RECITE_DATABASE || { manifest: [], days: {} };
 
-    let currentSourceKey = "wechat";
+    let currentDayId = "d01";
+    let currentDayData = DB.days[currentDayId] || null;
+
     const audio = document.getElementById("audioEngine");
-    audio.src = AUDIO_SOURCES[currentSourceKey];
-
+    const cardsListEl = document.getElementById("cardsList");
+    const headerDayTitle = document.getElementById("headerDayTitle");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroDesc = document.getElementById("heroDesc");
     const btnPlay = document.getElementById("btnPlay");
     const playIcon = document.getElementById("playIcon");
     const pauseIcon = document.getElementById("pauseIcon");
@@ -1170,14 +747,14 @@
     const btnFwd15 = document.getElementById("btnFwd15");
     const btnScrollToggle = document.getElementById("btnScrollToggle");
     const scrollStatusText = document.getElementById("scrollStatusText");
-    const btnAudioSrc = document.getElementById("btnAudioSrc");
-    const srcText = document.getElementById("srcText");
     const btnLocate = document.getElementById("btnLocate");
     const toast = document.getElementById("toastMsg");
 
-    const cards = Array.from(document.querySelectorAll(".recite-card"));
-    const paras = Array.from(document.querySelectorAll(".para-item"));
-    const allSentences = Array.from(document.querySelectorAll(".sent"));
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const drawerList = document.getElementById("drawerList");
+    const btnOpenDrawer = document.getElementById("btnOpenDrawer");
+    const btnDrawerTrigger = document.getElementById("btnDrawerTrigger");
+    const btnCloseDrawer = document.getElementById("btnCloseDrawer");
 
     let isAutoScrollEnabled = true;
     let loopMode = "none";
@@ -1201,6 +778,129 @@
       return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
+    // 渲染天数目录抽屉
+    function renderDrawer() {
+      drawerList.innerHTML = DB.manifest.map(item => `
+        <div class="drawer-item ${item.id === currentDayId ? 'current' : ''}" onclick="switchDay('${item.id}')">
+          <div>
+            <div class="drawer-item-day">${item.day} · ${item.pages}</div>
+            <div class="drawer-item-title">${item.title}</div>
+            <div class="drawer-item-desc">${item.desc}</div>
+          </div>
+          <div class="drawer-item-meta">
+            <div class="drawer-item-dur">⏱️ ${item.duration}</div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // 打开/关闭目录抽屉
+    function openDrawer() {
+      renderDrawer();
+      drawerOverlay.classList.add("open");
+    }
+
+    function closeDrawer() {
+      drawerOverlay.classList.remove("open");
+    }
+
+    btnOpenDrawer.addEventListener("click", openDrawer);
+    btnDrawerTrigger.addEventListener("click", openDrawer);
+    btnCloseDrawer.addEventListener("click", closeDrawer);
+    drawerOverlay.addEventListener("click", (e) => {
+      if (e.target === drawerOverlay) closeDrawer();
+    });
+
+    // 渲染指定天数的卡片与正文
+    function loadDay(dayId) {
+      currentDayId = dayId;
+      currentDayData = DB.days[dayId];
+      if (!currentDayData) return;
+
+      headerDayTitle.innerText = currentDayData.title;
+      heroTitle.innerText = `${currentDayData.sub} 全程原声精读`;
+      heroDesc.innerHTML = `
+        主讲：考研政治韩雪老师 · 全长 ${formatTime(currentDayData.duration)} · 涵盖 ${currentDayData.cards.length} 个重点模块<br>
+        💡 <strong>点句即播</strong>：点击下方任意一句话，音频精准跳转到该句播放！
+      `;
+
+      // 组装卡片 HTML
+      cardsListEl.innerHTML = currentDayData.cards.map(c => `
+        <article class="recite-card" id="${c.id}" data-start="${c.start}" data-end="${c.end}">
+          <div class="card-top">
+            <div class="card-meta">
+              <span class="tag-badge">${c.tag}</span>
+              <span class="time-badge">⏱️ ${formatTime(c.start)} - ${formatTime(c.end)}</span>
+            </div>
+            <button class="btn-repeat" onclick="setCardLoop('${c.id}')">🔁 循环本章</button>
+          </div>
+          <div class="card-title">${c.title}</div>
+          <div class="card-sub">${c.sub}</div>
+          <div class="card-body">
+            ${c.paras.map(p => `
+              <div class="para-item" data-pst="${p.st}" data-pet="${p.et}">
+                <div class="para-head">
+                  <span class="para-lead">${p.lead}</span>
+                  <span class="para-time">${formatTime(p.st)} - ${formatTime(p.et)}</span>
+                </div>
+                <div class="para-text">
+                  ${p.sentences.map(s => `<span class="sent" data-st="${s.st}" data-et="${s.et}">${s.text}</span>`).join("")}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </article>
+      `).join("");
+
+      // 绑定点句即播
+      document.querySelectorAll(".sent").forEach(s => {
+        s.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const st = parseFloat(s.dataset.st);
+          audio.currentTime = st;
+          if (audio.paused) audio.play();
+          showToast(`跳转到 ${formatTime(st)}`);
+        });
+      });
+
+      // 设置音频源
+      audio.src = currentDayData.audioUrl;
+      totalTimeLbl.innerText = formatTime(currentDayData.duration);
+      currTimeLbl.innerText = "00:00";
+      progressBarFill.style.width = "0%";
+      currentActiveCard = null;
+      currentActivePara = null;
+      currentActiveSent = null;
+
+      // 更新 iOS 锁屏信息
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: currentDayData.title,
+          artist: "考研政治韩雪老师",
+          album: "2027背诵手册带背",
+          artwork: [
+            { src: "http://mmbiz.qpic.cn/sz_mmbiz_jpg/UlbnV5yQRt8Qukpyft1pZha5W1WrSO6xVJe3bO81UKHtpocITMLbQHpQPKaQ3IWpXcBHXE5BbtO8yuqwxOB674Fa47MCWHvTX14JlNEic8hk/0?wx_fmt=jpeg", sizes: "512x512", type: "image/jpeg" }
+          ]
+        });
+      }
+    }
+
+    // 切换天数
+    window.switchDay = function(dayId) {
+      if (dayId === currentDayId) {
+        closeDrawer();
+        return;
+      }
+      closeDrawer();
+      const wasPlaying = !audio.paused;
+      loadDay(dayId);
+      if (wasPlaying) {
+        audio.play().catch(e => console.log(e));
+      }
+      showToast(`已切换至 ${dayId.toUpperCase()}`);
+    };
+
+    // 播放状态控制
     function togglePlay() {
       if (audio.paused) {
         audio.play().then(() => updatePlayState(true)).catch(() => showToast("请点击播放"));
@@ -1223,7 +923,7 @@
     });
 
     btnFwd15.addEventListener("click", () => {
-      audio.currentTime = Math.min(audio.duration || 1927, audio.currentTime + 15);
+      audio.currentTime = Math.min(audio.duration || 1800, audio.currentTime + 15);
       showToast("快进 15 秒");
     });
 
@@ -1269,7 +969,7 @@
       const rect = progressBarBg.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const total = audio.duration || 1927;
+      const total = audio.duration || 1800;
       audio.currentTime = pct * total;
     }
 
@@ -1282,21 +982,10 @@
       }, { once: true });
     });
 
-    // 点句即播
-    allSentences.forEach(s => {
-      s.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const st = parseFloat(s.dataset.st);
-        audio.currentTime = st;
-        if (audio.paused) audio.play();
-        showToast(`跳转到 ${formatTime(st)}`);
-      });
-    });
-
-    // 音频同步监听
+    // 毫秒级对齐事件监听
     audio.addEventListener("timeupdate", () => {
       const curr = audio.currentTime;
-      const total = audio.duration || 1927;
+      const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
 
       progressBarFill.style.width = ((curr / total) * 100) + "%";
       currTimeLbl.innerText = formatTime(curr);
@@ -1309,7 +998,8 @@
         }
       }
 
-      // 1. 匹配激活卡片
+      // 1. 卡片匹配
+      const cards = document.querySelectorAll(".recite-card");
       let activeCard = null;
       for (const card of cards) {
         const s = parseFloat(card.dataset.start);
@@ -1319,14 +1009,14 @@
           break;
         }
       }
-
       if (activeCard && activeCard !== currentActiveCard) {
         if (currentActiveCard) currentActiveCard.classList.remove("active");
         activeCard.classList.add("active");
         currentActiveCard = activeCard;
       }
 
-      // 2. 匹配激活段落（结构分段高亮）
+      // 2. 段落匹配
+      const paras = document.querySelectorAll(".para-item");
       let activePara = null;
       for (const p of paras) {
         const s = parseFloat(p.dataset.pst);
@@ -1336,16 +1026,16 @@
           break;
         }
       }
-
       if (activePara && activePara !== currentActivePara) {
         if (currentActivePara) currentActivePara.classList.remove("active-para");
         activePara.classList.add("active-para");
         currentActivePara = activePara;
       }
 
-      // 3. 匹配激活单句（卡拉OK微观高亮）
+      // 3. 逐句匹配
+      const sents = document.querySelectorAll(".sent");
       let activeSent = null;
-      for (const sent of allSentences) {
+      for (const sent of sents) {
         const st = parseFloat(sent.dataset.st);
         const et = parseFloat(sent.dataset.et);
         if (curr >= st && curr < et) {
@@ -1353,7 +1043,6 @@
           break;
         }
       }
-
       if (activeSent && activeSent !== currentActiveSent) {
         if (currentActiveSent) currentActiveSent.classList.remove("reading");
         activeSent.classList.add("reading");
@@ -1366,7 +1055,7 @@
     });
 
     audio.addEventListener("loadedmetadata", () => {
-      totalTimeLbl.innerText = formatTime(audio.duration || 1927);
+      totalTimeLbl.innerText = formatTime(audio.duration || currentDayData.duration);
     });
 
     audio.addEventListener("play", () => updatePlayState(true));
@@ -1387,42 +1076,19 @@
       }
     });
 
-    btnAudioSrc.addEventListener("click", () => {
-      const curr = audio.currentTime;
-      const wasPlaying = !audio.paused;
-      if (currentSourceKey === "wechat") {
-        currentSourceKey = "local";
-        srcText.innerText = "💻 本地源";
-        showToast("已切换到本地音频");
-      } else {
-        currentSourceKey = "wechat";
-        srcText.innerText = "🌐 微信源";
-        showToast("已切换到微信云端源");
-      }
-      audio.src = AUDIO_SOURCES[currentSourceKey];
-      audio.currentTime = curr;
-      if (wasPlaying) audio.play();
-    });
-
     if ("mediaSession" in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: "2027带背音频 D1 · 马原专题一、二",
-        artist: "韩雪老师 · 肖秀荣团队",
-        album: "《背诵手册》每日带背",
-        artwork: [
-          { src: "http://mmbiz.qpic.cn/sz_mmbiz_jpg/UlbnV5yQRt8Qukpyft1pZha5W1WrSO6xVJe3bO81UKHtpocITMLbQHpQPKaQ3IWpXcBHXE5BbtO8yuqwxOB674Fa47MCWHvTX14JlNEic8hk/0?wx_fmt=jpeg", sizes: "512x512", type: "image/jpeg" }
-        ]
-      });
-
       navigator.mediaSession.setActionHandler("play", () => togglePlay());
       navigator.mediaSession.setActionHandler("pause", () => togglePlay());
       navigator.mediaSession.setActionHandler("seekbackward", () => {
         audio.currentTime = Math.max(0, audio.currentTime - 15);
       });
       navigator.mediaSession.setActionHandler("seekforward", () => {
-        audio.currentTime = Math.min(audio.duration || 1927, audio.currentTime + 15);
+        audio.currentTime = Math.min(audio.duration || 1800, audio.currentTime + 15);
       });
     }
+
+    // 默认加载 Day 01
+    loadDay("d01");
   </script>
 </body>
 </html>
