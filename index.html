@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- PWA & Apple Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="政治带背">
+  <meta name="theme-color" content="#3e261b">
   <meta name="format-detection" content="telephone=no">
   <title>考研政治每日带背伴侣 | 2027精读音频精确定位</title>
   <style>
@@ -17,6 +25,10 @@
       --text-main: #23201d;
       --text-sub: #575047;
       --text-light: #8c8275;
+      --brown-main: #6e4027;
+      --brown-dark: #4d2b18;
+      --brown-soft: #f4ece4;
+      --brown-border: #dcc8b6;
       --vermilion: #b3392f;
       --vermilion-soft: #fbf1ef;
       --vermilion-border: #f0c5c1;
@@ -50,6 +62,20 @@
       overflow-x: hidden;
     }
 
+    /* 棕色矢量 SVG 规范 */
+    .svg-icon {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .svg-stroke-brown {
+      stroke: var(--brown-main);
+      fill: none;
+    }
+    .svg-fill-brown {
+      fill: var(--brown-main);
+    }
+
     /* 顶部导航 */
     .header-bar {
       position: sticky;
@@ -74,26 +100,17 @@
     .header-badge {
       font-size: 11px;
       font-weight: 700;
-      color: var(--vermilion);
+      color: var(--brown-main);
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 4px;
-    }
-
-    .header-badge::before {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--vermilion);
+      gap: 5px;
     }
 
     .header-day-select {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--font-serif);
       font-size: 16px;
       font-weight: 700;
@@ -102,11 +119,6 @@
       border: none;
       cursor: pointer;
       padding: 0;
-    }
-
-    .header-day-select .arrow-down {
-      font-size: 11px;
-      color: var(--vermilion);
     }
 
     .header-actions {
@@ -118,19 +130,21 @@
     .btn-header {
       background: #ffffff;
       border: 1px solid var(--border-color);
-      color: var(--text-sub);
+      color: var(--brown-main);
       border-radius: 16px;
       padding: 5px 10px;
       font-size: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      font-weight: 600;
     }
 
     .btn-header:active {
       transform: scale(0.96);
+      background: var(--brown-soft);
     }
 
     .container {
@@ -162,6 +176,15 @@
       font-size: 13px;
       color: var(--text-sub);
       line-height: 1.55;
+    }
+
+    .hero-tip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+      color: var(--brown-main);
+      font-weight: 600;
     }
 
     /* 知识点大卡片 */
@@ -219,6 +242,9 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
       font-variant-numeric: tabular-nums;
     }
 
@@ -228,16 +254,20 @@
 
     .btn-repeat {
       background: #fbf9f5;
-      border: 1px solid var(--border-color);
-      color: var(--text-sub);
+      border: 1px solid var(--brown-border);
+      color: var(--brown-main);
       font-size: 11.5px;
       border-radius: 12px;
       padding: 3px 9px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
     }
 
     .btn-repeat:active {
-      background: #f0ece3;
+      background: var(--brown-soft);
     }
 
     .card-title {
@@ -289,8 +319,19 @@
     .para-lead {
       font-size: 12.5px;
       font-weight: 700;
-      color: var(--indigo);
+      color: var(--brown-main);
       letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .para-lead-icon {
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: var(--brown-main);
+      display: inline-block;
     }
 
     .para-time {
@@ -418,7 +459,7 @@
     .dock-btn {
       background: transparent;
       border: none;
-      color: var(--text-main);
+      color: var(--brown-main);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -433,9 +474,12 @@
       padding: 5px 9px;
       background: #f5f2eb;
       border: 1px solid var(--border-color);
-      color: var(--text-sub);
+      color: var(--brown-main);
       border-radius: 12px;
       font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .dock-btn.text-btn.active {
@@ -460,12 +504,14 @@
     .skip-btn {
       width: 36px;
       height: 36px;
-      color: var(--text-sub);
-      font-size: 17px;
+      color: var(--brown-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .skip-btn:active {
-      color: var(--text-main);
+      transform: scale(0.92);
     }
 
     /* 多期目录抽屉弹窗 (Day Drawer Modal) */
@@ -533,17 +579,22 @@
       font-size: 17px;
       font-weight: 700;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .drawer-close {
       background: #f0ece3;
       border: none;
-      color: var(--text-sub);
+      color: var(--brown-main);
       width: 28px;
       height: 28px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .drawer-list {
@@ -579,7 +630,7 @@
     .drawer-item-day {
       font-size: 12px;
       font-weight: 700;
-      color: var(--vermilion);
+      color: var(--brown-main);
       margin-bottom: 2px;
     }
 
@@ -605,6 +656,10 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
     }
 
     .toast {
@@ -634,18 +689,33 @@
   <!-- 顶部状态栏 -->
   <header class="header-bar">
     <div class="header-left" id="btnOpenDrawer" title="点击切换天数">
-      <div class="header-badge">2027 考研政治背诵手册</div>
+      <div class="header-badge">
+        <svg class="svg-icon svg-fill-brown" width="10" height="10" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+        2027 考研政治背诵手册
+      </div>
       <button class="header-day-select">
         <span id="headerDayTitle">DAY 01 · 马原专题一、二</span>
-        <span class="arrow-down">▾ 切换</span>
+        <!-- 棕色 Chevron 下拉图标 -->
+        <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
       </button>
     </div>
     <div class="header-actions">
+      <!-- 棕色 跟随图标 -->
       <button class="btn-header" id="btnScrollToggle">
-        <span id="scrollStatusText">📜 跟随开</span>
+        <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span id="scrollStatusText">跟随开</span>
       </button>
+      <!-- 棕色 目录书本图标 -->
       <button class="btn-header" id="btnDrawerTrigger">
-        <span>📅 目录</span>
+        <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span>目录</span>
       </button>
     </div>
   </header>
@@ -656,8 +726,14 @@
     <div class="hero-card">
       <div class="hero-title" id="heroTitle">《背诵手册》上册 P1-P7 全程原声精读</div>
       <div class="hero-desc" id="heroDesc">
-        主讲：考研政治韩雪老师 · 全长 32分07秒<br>
-        💡 <strong>点句即播</strong>：点击下方任意一句话，音频精准跳转到该句播放！
+        主讲：考研政治韩雪老师 · 涵盖重难点考点
+      </div>
+      <div class="hero-tip">
+        <!-- 棕色 触控/灵感图标 -->
+        <svg class="svg-icon svg-stroke-brown" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>点句即播：点击下方任意一句话，音频精准跳转到该句播放</span>
       </div>
     </div>
 
@@ -681,11 +757,28 @@
       <div class="controls-row">
         <div class="sub-btn-group">
           <button class="dock-btn text-btn" id="btnSpeed">1.0x</button>
-          <button class="dock-btn text-btn" id="btnLoop">全篇</button>
+          <button class="dock-btn text-btn" id="btnLoop">
+            <!-- 棕色 循环图标 -->
+            <svg class="svg-icon svg-stroke-brown" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+            <span id="loopText">全篇</span>
+          </button>
         </div>
 
         <div class="main-btn-group">
-          <button class="dock-btn skip-btn" id="btnBack15" title="快退15秒">↺15</button>
+          <!-- 棕色 快退15秒图标 -->
+          <button class="dock-btn skip-btn" id="btnBack15" title="快退15秒">
+            <svg class="svg-icon svg-stroke-brown" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path>
+              <path d="M3 3v5h5"></path>
+              <text x="12" y="15.5" font-size="7.5" font-family="-apple-system, sans-serif" font-weight="700" fill="#6e4027" stroke="none" text-anchor="middle">15</text>
+            </svg>
+          </button>
+          <!-- 播放/暂停大按键 -->
           <button class="dock-btn play-btn" id="btnPlay" title="播放/暂停">
             <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z"/>
@@ -694,11 +787,25 @@
               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
             </svg>
           </button>
-          <button class="dock-btn skip-btn" id="btnFwd15" title="快进15秒">15↻</button>
+          <!-- 棕色 快进15秒图标 -->
+          <button class="dock-btn skip-btn" id="btnFwd15" title="快进15秒">
+            <svg class="svg-icon svg-stroke-brown" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 1 1-3-6.7L21 8"></path>
+              <path d="M21 3v5h-5"></path>
+              <text x="12" y="15.5" font-size="7.5" font-family="-apple-system, sans-serif" font-weight="700" fill="#6e4027" stroke="none" text-anchor="middle">15</text>
+            </svg>
+          </button>
         </div>
 
         <div class="sub-btn-group">
-          <button class="dock-btn text-btn" id="btnLocate" title="回正当前句">📍 定位</button>
+          <!-- 棕色 定位十字图标 -->
+          <button class="dock-btn text-btn" id="btnLocate" title="回正当前句">
+            <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="3" fill="#6e4027"></circle>
+            </svg>
+            <span>定位</span>
+          </button>
         </div>
       </div>
 
@@ -710,8 +817,21 @@
     <div class="drawer-panel">
       <div class="drawer-handle"></div>
       <div class="drawer-head">
-        <div class="drawer-title">📅 每日政治带背目录</div>
-        <button class="drawer-close" id="btnCloseDrawer">✕</button>
+        <div class="drawer-title">
+          <!-- 棕色 目录图标 -->
+          <svg class="svg-icon svg-stroke-brown" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          每日政治带背目录
+        </div>
+        <!-- 棕色 关闭X图标 -->
+        <button class="drawer-close" id="btnCloseDrawer">
+          <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
       <div class="drawer-list" id="drawerList"></div>
     </div>
@@ -743,6 +863,7 @@
     const totalTimeLbl = document.getElementById("totalTimeLbl");
     const btnSpeed = document.getElementById("btnSpeed");
     const btnLoop = document.getElementById("btnLoop");
+    const loopText = document.getElementById("loopText");
     const btnBack15 = document.getElementById("btnBack15");
     const btnFwd15 = document.getElementById("btnFwd15");
     const btnScrollToggle = document.getElementById("btnScrollToggle");
@@ -788,13 +909,15 @@
             <div class="drawer-item-desc">${item.desc}</div>
           </div>
           <div class="drawer-item-meta">
-            <div class="drawer-item-dur">⏱️ ${item.duration}</div>
+            <div class="drawer-item-dur">
+              <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              ${item.duration}
+            </div>
           </div>
         </div>
       `).join("");
     }
 
-    // 打开/关闭目录抽屉
     function openDrawer() {
       renderDrawer();
       drawerOverlay.classList.add("open");
@@ -819,20 +942,23 @@
 
       headerDayTitle.innerText = currentDayData.title;
       heroTitle.innerText = `${currentDayData.sub} 全程原声精读`;
-      heroDesc.innerHTML = `
-        主讲：考研政治韩雪老师 · 全长 ${formatTime(currentDayData.duration)} · 涵盖 ${currentDayData.cards.length} 个重点模块<br>
-        💡 <strong>点句即播</strong>：点击下方任意一句话，音频精准跳转到该句播放！
-      `;
+      heroDesc.innerHTML = `主讲：考研政治韩雪老师 · 全长 ${formatTime(currentDayData.duration)} · 涵盖 ${currentDayData.cards.length} 个重点模块`;
 
-      // 组装卡片 HTML
+      // 组装卡片 HTML（嵌入棕色时钟与循环图标）
       cardsListEl.innerHTML = currentDayData.cards.map(c => `
         <article class="recite-card" id="${c.id}" data-start="${c.start}" data-end="${c.end}">
           <div class="card-top">
             <div class="card-meta">
               <span class="tag-badge">${c.tag}</span>
-              <span class="time-badge">⏱️ ${formatTime(c.start)} - ${formatTime(c.end)}</span>
+              <span class="time-badge">
+                <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                ${formatTime(c.start)} - ${formatTime(c.end)}
+              </span>
             </div>
-            <button class="btn-repeat" onclick="setCardLoop('${c.id}')">🔁 循环本章</button>
+            <button class="btn-repeat" onclick="setCardLoop('${c.id}')">
+              <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+              循环本章
+            </button>
           </div>
           <div class="card-title">${c.title}</div>
           <div class="card-sub">${c.sub}</div>
@@ -840,7 +966,10 @@
             ${c.paras.map(p => `
               <div class="para-item" data-pst="${p.st}" data-pet="${p.et}">
                 <div class="para-head">
-                  <span class="para-lead">${p.lead}</span>
+                  <span class="para-lead">
+                    <span class="para-lead-icon"></span>
+                    ${p.lead}
+                  </span>
                   <span class="para-time">${formatTime(p.st)} - ${formatTime(p.et)}</span>
                 </div>
                 <div class="para-text">
@@ -863,7 +992,6 @@
         });
       });
 
-      // 设置音频源
       audio.src = currentDayData.audioUrl;
       totalTimeLbl.innerText = formatTime(currentDayData.duration);
       currTimeLbl.innerText = "00:00";
@@ -872,14 +1000,14 @@
       currentActivePara = null;
       currentActiveSent = null;
 
-      // 更新 iOS 锁屏信息
       if ("mediaSession" in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: currentDayData.title,
           artist: "考研政治韩雪老师",
           album: "2027背诵手册带背",
           artwork: [
-            { src: "http://mmbiz.qpic.cn/sz_mmbiz_jpg/UlbnV5yQRt8Qukpyft1pZha5W1WrSO6xVJe3bO81UKHtpocITMLbQHpQPKaQ3IWpXcBHXE5BbtO8yuqwxOB674Fa47MCWHvTX14JlNEic8hk/0?wx_fmt=jpeg", sizes: "512x512", type: "image/jpeg" }
+            { src: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
+            { src: "icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
           ]
         });
       }
@@ -900,7 +1028,6 @@
       showToast(`已切换至 ${dayId.toUpperCase()}`);
     };
 
-    // 播放状态控制
     function togglePlay() {
       if (audio.paused) {
         audio.play().then(() => updatePlayState(true)).catch(() => showToast("请点击播放"));
@@ -943,7 +1070,7 @@
       repeatRange = [s, e];
       loopMode = "card";
       btnLoop.classList.add("active");
-      btnLoop.innerText = "单章🔁";
+      loopText.innerText = "单章";
       audio.currentTime = s;
       if (audio.paused) audio.play();
       showToast("已开启本章循环复读");
@@ -960,7 +1087,7 @@
         loopMode = "none";
         repeatRange = null;
         btnLoop.classList.remove("active");
-        btnLoop.innerText = "全篇";
+        loopText.innerText = "全篇";
         showToast("已恢复连续播放");
       }
     });
@@ -982,7 +1109,6 @@
       }, { once: true });
     });
 
-    // 毫秒级对齐事件监听
     audio.addEventListener("timeupdate", () => {
       const curr = audio.currentTime;
       const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
@@ -1063,7 +1189,7 @@
 
     btnScrollToggle.addEventListener("click", () => {
       isAutoScrollEnabled = !isAutoScrollEnabled;
-      scrollStatusText.innerText = isAutoScrollEnabled ? "📜 跟随开" : "📜 跟随关";
+      scrollStatusText.innerText = isAutoScrollEnabled ? "跟随开" : "跟随关";
       showToast(isAutoScrollEnabled ? "开启自动跟随" : "锁定手动滚动");
     });
 
@@ -1087,7 +1213,6 @@
       });
     }
 
-    // 默认加载 Day 01
     loadDay("d01");
   </script>
 </body>

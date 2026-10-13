@@ -1,0 +1,26 @@
+{
+  "name": "2027考研政治背诵手册·每日带背",
+  "short_name": "政治带背",
+  "description": "2027考研政治原声精读带背伴侣，支持点句即播与自动高亮跟随",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#3e261b",
+  "theme_color": "#f8f6f0",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

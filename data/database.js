@@ -45,7 +45,7 @@ window.RECITE_DATABASE = {
           "end": 187.15,
           "paras": [
             {
-              "lead": "👋 开篇导言：",
+              "lead": "开篇导言：",
               "st": 0.28,
               "et": 24.5,
               "sentences": [
@@ -72,7 +72,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📘 上册定位：",
+              "lead": "上册定位：",
               "st": 24.5,
               "et": 46.81,
               "sentences": [
@@ -94,7 +94,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📙 下册配合·时政热点：",
+              "lead": "下册配合·时政热点：",
               "st": 46.81,
               "et": 77.69,
               "sentences": [
@@ -126,7 +126,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🎯 分析题唯一必背内容：",
+              "lead": "分析题唯一必背内容：",
               "st": 77.69,
               "et": 113.56,
               "sentences": [
@@ -163,7 +163,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🔍 干扰项与关键词梳理：",
+              "lead": "干扰项与关键词梳理：",
               "st": 113.56,
               "et": 136.08,
               "sentences": [
@@ -185,7 +185,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "💡 冲刺学习节奏与心态：",
+              "lead": "冲刺学习节奏与心态：",
               "st": 136.08,
               "et": 187.15,
               "sentences": [
@@ -227,7 +227,7 @@ window.RECITE_DATABASE = {
           "end": 291.72,
           "paras": [
             {
-              "lead": "📊 马原总体分值与导论：",
+              "lead": "马原总体分值与导论：",
               "st": 187.15,
               "et": 215.85,
               "sentences": [
@@ -254,7 +254,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "⭐ 第一大头·马克思主义哲学：",
+              "lead": "第一大头·马克思主义哲学：",
               "st": 215.85,
               "et": 246.65,
               "sentences": [
@@ -276,7 +276,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📈 第二板块·政治经济学：",
+              "lead": "第二板块·政治经济学：",
               "st": 246.65,
               "et": 265.1,
               "sentences": [
@@ -298,7 +298,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🚩 第三板块·科学社会主义：",
+              "lead": "第三板块·科学社会主义：",
               "st": 265.1,
               "et": 275.97,
               "sentences": [
@@ -315,7 +315,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🎯 复习重心点拨：",
+              "lead": "复习重心点拨：",
               "st": 275.97,
               "et": 291.72,
               "sentences": [
@@ -347,7 +347,7 @@ window.RECITE_DATABASE = {
           "end": 398.49,
           "paras": [
             {
-              "lead": "📝 题型规律与考查方式：",
+              "lead": "题型规律与考查方式：",
               "st": 291.72,
               "et": 322.89,
               "sentences": [
@@ -369,7 +369,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🏭 社会根源：资本主义经济发展：",
+              "lead": "社会根源：资本主义经济发展：",
               "st": 322.89,
               "et": 353.78,
               "sentences": [
@@ -411,7 +411,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "👥 阶级基础：广大无产阶级：",
+              "lead": "阶级基础：广大无产阶级：",
               "st": 353.78,
               "et": 370.88,
               "sentences": [
@@ -438,7 +438,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📚 思想渊源与著作考法：",
+              "lead": "思想渊源与著作考法：",
               "st": 370.88,
               "et": 398.49,
               "sentences": [
@@ -480,7 +480,7 @@ window.RECITE_DATABASE = {
           "end": 547.29,
           "paras": [
             {
-              "lead": "🌱 《关于费尔巴哈的提纲》·天才萌芽：",
+              "lead": "《关于费尔巴哈的提纲》·天才萌芽：",
               "st": 398.49,
               "et": 443.93,
               "sentences": [
@@ -507,7 +507,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🏊 核心理解：学游泳与改变世界：",
+              "lead": "核心理解：学游泳与改变世界：",
               "st": 443.93,
               "et": 500.9,
               "sentences": [
@@ -574,7 +574,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🏛️ 《德意志意识形态》·首创唯物史观：",
+              "lead": "《德意志意识形态》·首创唯物史观：",
               "st": 500.9,
               "et": 544.04,
               "sentences": [
@@ -606,7 +606,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📖 《反杜林论》·马克思主义理论体系：",
+              "lead": "《反杜林论》·马克思主义理论体系：",
               "st": 544.04,
               "et": 547.29,
               "sentences": [
@@ -628,7 +628,7 @@ window.RECITE_DATABASE = {
           "end": 644.45,
           "paras": [
             {
-              "lead": "⭐ 四大基本特征与实践性定位：",
+              "lead": "四大基本特征与实践性定位：",
               "st": 547.29,
               "et": 578.89,
               "sentences": [
@@ -660,7 +660,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🔨 为什么实践性是根本特征：",
+              "lead": "为什么实践性是根本特征：",
               "st": 578.89,
               "et": 609.76,
               "sentences": [
@@ -697,7 +697,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "✨ 一言以蔽之：科学性与革命性的统一：",
+              "lead": "一言以蔽之：科学性与革命性的统一：",
               "st": 609.76,
               "et": 644.45,
               "sentences": [
@@ -759,7 +759,7 @@ window.RECITE_DATABASE = {
           "end": 720.9,
           "paras": [
             {
-              "lead": "📈 历年考情与命题分析特色：",
+              "lead": "历年考情与命题分析特色：",
               "st": 644.45,
               "et": 676.54,
               "sentences": [
@@ -786,7 +786,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🚫 经典干扰项排雷：非现成教条：",
+              "lead": "经典干扰项排雷：非现成教条：",
               "st": 676.54,
               "et": 720.9,
               "sentences": [
@@ -843,7 +843,7 @@ window.RECITE_DATABASE = {
           "end": 1057.9,
           "paras": [
             {
-              "lead": "🚪 迈入马哲核心：辩证法与物质本源：",
+              "lead": "迈入马哲核心：辩证法与物质本源：",
               "st": 720.9,
               "et": 777.36,
               "sentences": [
@@ -890,7 +890,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "❓ 哲学的基本问题：思维与存在：",
+              "lead": "哲学的基本问题：思维与存在：",
               "st": 777.36,
               "et": 819.2,
               "sentences": [
@@ -937,7 +937,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "1️⃣ 第一方面：何为第一性（唯物 vs 唯心）：",
+              "lead": "1⃣ 第一方面：何为第一性（唯物 vs 唯心）：",
               "st": 819.2,
               "et": 874.91,
               "sentences": [
@@ -989,7 +989,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "2️⃣ 第二方面：有无同一性（可知 vs 不可知）：",
+              "lead": "2⃣ 第二方面：有无同一性（可知 vs 不可知）：",
               "st": 874.91,
               "et": 927.54,
               "sentences": [
@@ -1041,7 +1041,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "3️⃣ 第三方面：世界怎样存在（辩证法 vs 形而上学）：",
+              "lead": "3⃣ 第三方面：世界怎样存在（辩证法 vs 形而上学）：",
               "st": 927.54,
               "et": 968.13,
               "sentences": [
@@ -1083,7 +1083,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "4️⃣ 第四方面：社会历史观（唯物史观 vs 唯心史观）：",
+              "lead": "4⃣ 第四方面：社会历史观（唯物史观 vs 唯心史观）：",
               "st": 968.13,
               "et": 993.61,
               "sentences": [
@@ -1120,7 +1120,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "⚠️ 难点深挖：对立的绝对性与相对性：",
+              "lead": "难点深挖：对立的绝对性与相对性：",
               "st": 993.61,
               "et": 1057.9,
               "sentences": [
@@ -1197,7 +1197,7 @@ window.RECITE_DATABASE = {
           "end": 1220.22,
           "paras": [
             {
-              "lead": "📱 什么是物质：不依赖意识的客观实在：",
+              "lead": "什么是物质：不依赖意识的客观实在：",
               "st": 1057.9,
               "et": 1107.48,
               "sentences": [
@@ -1254,7 +1254,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🌌 唯一特性与共性：未知世界也是客观实在：",
+              "lead": "唯一特性与共性：未知世界也是客观实在：",
               "st": 1107.48,
               "et": 1157.32,
               "sentences": [
@@ -1301,7 +1301,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🔬 易混辨析：哲学范畴（共性）≠ 科学概念（个性）：",
+              "lead": "易混辨析：哲学范畴（共性）≠ 科学概念（个性）：",
               "st": 1157.32,
               "et": 1220.22,
               "sentences": [
@@ -1368,7 +1368,7 @@ window.RECITE_DATABASE = {
           "end": 1438.3,
           "paras": [
             {
-              "lead": "🏃 运动是物质的根本属性与存在方式：",
+              "lead": "运动是物质的根本属性与存在方式：",
               "st": 1220.22,
               "et": 1264.0,
               "sentences": [
@@ -1410,7 +1410,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "❌ 两种割裂错误：形而上学 vs 唯心主义：",
+              "lead": "两种割裂错误：形而上学 vs 唯心主义：",
               "st": 1264.0,
               "et": 1312.51,
               "sentences": [
@@ -1462,7 +1462,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🌍 绝对运动：无条件且无时无刻不在运动：",
+              "lead": "绝对运动：无条件且无时无刻不在运动：",
               "st": 1312.51,
               "et": 1380.42,
               "sentences": [
@@ -1534,7 +1534,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🪑 相对静止：相对位置与根本性质暂时不变：",
+              "lead": "相对静止：相对位置与根本性质暂时不变：",
               "st": 1380.42,
               "et": 1402.73,
               "sentences": [
@@ -1571,7 +1571,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "☯️ 辩证统一：动中有静，静中有动：",
+              "lead": "辩证统一：动中有静，静中有动：",
               "st": 1402.73,
               "et": 1438.3,
               "sentences": [
@@ -1613,7 +1613,7 @@ window.RECITE_DATABASE = {
           "end": 1703.04,
           "paras": [
             {
-              "lead": "⏳ 时空是物质运动的客观存在形式：",
+              "lead": "时空是物质运动的客观存在形式：",
               "st": 1438.3,
               "et": 1510.66,
               "sentences": [
@@ -1700,7 +1700,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🌞 时空客观性：时间不偏心不等人的24小时：",
+              "lead": "时空客观性：时间不偏心不等人的24小时：",
               "st": 1510.66,
               "et": 1537.41,
               "sentences": [
@@ -1747,7 +1747,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "💭 时空观念主观性：聊天如飞 vs 学习难熬：",
+              "lead": "时空观念主观性：聊天如飞 vs 学习难熬：",
               "st": 1537.41,
               "et": 1584.27,
               "sentences": [
@@ -1794,7 +1794,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📜 时间一维性与高频诗词考点：",
+              "lead": "时间一维性与高频诗词考点：",
               "st": 1584.27,
               "et": 1640.45,
               "sentences": [
@@ -1856,7 +1856,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "⚠️ 极易混淆：具体形态有限 vs 整个世界无限：",
+              "lead": "极易混淆：具体形态有限 vs 整个世界无限：",
               "st": 1640.45,
               "et": 1703.04,
               "sentences": [
@@ -1938,7 +1938,7 @@ window.RECITE_DATABASE = {
           "end": 1806.52,
           "paras": [
             {
-              "lead": "🌱 物质世界的两重分化：",
+              "lead": "物质世界的两重分化：",
               "st": 1703.04,
               "et": 1731.73,
               "sentences": [
@@ -1975,7 +1975,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🔑 单选高频考点：实践是相分化与统一的关键：",
+              "lead": "单选高频考点：实践是相分化与统一的关键：",
               "st": 1731.73,
               "et": 1774.14,
               "sentences": [
@@ -2027,7 +2027,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🏛️ 世界的物质统一性原理：马克思主义基石：",
+              "lead": "世界的物质统一性原理：马克思主义基石：",
               "st": 1774.14,
               "et": 1806.52,
               "sentences": [
@@ -2074,7 +2074,7 @@ window.RECITE_DATABASE = {
           "end": 1926.98,
           "paras": [
             {
-              "lead": "📊 专题二命题分析与干扰项排查：",
+              "lead": "专题二命题分析与干扰项排查：",
               "st": 1806.52,
               "et": 1852.98,
               "sentences": [
@@ -2116,7 +2116,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🐸 生动注脚：井底之蛙与夏日之虫：",
+              "lead": "生动注脚：井底之蛙与夏日之虫：",
               "st": 1852.98,
               "et": 1874.91,
               "sentences": [
@@ -2153,7 +2153,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "🚀 突破局限：在实践求知中扩宽认知边界：",
+              "lead": "突破局限：在实践求知中扩宽认知边界：",
               "st": 1874.91,
               "et": 1912.1,
               "sentences": [
@@ -2195,7 +2195,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📝 分析题思维训练与结语：",
+              "lead": "分析题思维训练与结语：",
               "st": 1912.1,
               "et": 1926.98,
               "sentences": [
@@ -2231,7 +2231,7 @@ window.RECITE_DATABASE = {
           "end": 124.87,
           "paras": [
             {
-              "lead": "【开篇导语】 ",
+              "lead": "【开篇导语】",
               "st": 0.26,
               "et": 36.53,
               "sentences": [
@@ -2268,7 +2268,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 36.53,
               "et": 60.73,
               "sentences": [
@@ -2305,7 +2305,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 60.73,
               "et": 93.3,
               "sentences": [
@@ -2342,7 +2342,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 93.3,
               "et": 106.2,
               "sentences": [
@@ -2359,7 +2359,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 106.2,
               "et": 124.87,
               "sentences": [
@@ -2401,7 +2401,7 @@ window.RECITE_DATABASE = {
           "end": 307.56,
           "paras": [
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 124.87,
               "et": 159.11,
               "sentences": [
@@ -2438,7 +2438,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 159.11,
               "et": 201.83,
               "sentences": [
@@ -2470,7 +2470,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 201.83,
               "et": 266.99,
               "sentences": [
@@ -2507,7 +2507,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 266.99,
               "et": 285.18,
               "sentences": [
@@ -2544,7 +2544,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 285.18,
               "et": 307.56,
               "sentences": [
@@ -2581,7 +2581,7 @@ window.RECITE_DATABASE = {
           "end": 413.96,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 307.56,
               "et": 321.11,
               "sentences": [
@@ -2603,7 +2603,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 321.11,
               "et": 343.35,
               "sentences": [
@@ -2620,7 +2620,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 343.35,
               "et": 354.69,
               "sentences": [
@@ -2637,7 +2637,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 354.69,
               "et": 371.27,
               "sentences": [
@@ -2659,7 +2659,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 371.27,
               "et": 413.96,
               "sentences": [
@@ -2706,7 +2706,7 @@ window.RECITE_DATABASE = {
           "end": 502.26,
           "paras": [
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 413.96,
               "et": 423.78,
               "sentences": [
@@ -2728,7 +2728,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 423.78,
               "et": 432.62,
               "sentences": [
@@ -2745,7 +2745,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 432.62,
               "et": 454.0,
               "sentences": [
@@ -2782,7 +2782,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 454.0,
               "et": 476.94,
               "sentences": [
@@ -2799,7 +2799,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 476.94,
               "et": 502.26,
               "sentences": [
@@ -2840,13 +2840,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d02_c5",
           "tag": "模块 5",
-          "title": "📌 重点讲授： · 语段 21-25",
+          "title": "重点讲授： · 语段 21-25",
           "sub": "涵盖 5 个精读小节",
           "start": 502.26,
           "end": 564.48,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 502.26,
               "et": 509.37,
               "sentences": [
@@ -2868,7 +2868,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 509.37,
               "et": 520.95,
               "sentences": [
@@ -2885,7 +2885,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 520.95,
               "et": 527.46,
               "sentences": [
@@ -2902,7 +2902,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 527.46,
               "et": 553.03,
               "sentences": [
@@ -2929,7 +2929,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 553.03,
               "et": 564.48,
               "sentences": [
@@ -2956,7 +2956,7 @@ window.RECITE_DATABASE = {
           "end": 669.41,
           "paras": [
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 564.48,
               "et": 581.19,
               "sentences": [
@@ -2973,7 +2973,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 581.19,
               "et": 588.92,
               "sentences": [
@@ -2995,7 +2995,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 588.92,
               "et": 609.66,
               "sentences": [
@@ -3032,7 +3032,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 609.66,
               "et": 626.29,
               "sentences": [
@@ -3054,7 +3054,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 626.29,
               "et": 669.41,
               "sentences": [
@@ -3095,13 +3095,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d02_c7",
           "tag": "模块 7",
-          "title": "📌 重点讲授： · 语段 31-35",
+          "title": "重点讲授： · 语段 31-35",
           "sub": "涵盖 5 个精读小节",
           "start": 669.41,
           "end": 766.72,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 669.41,
               "et": 694.62,
               "sentences": [
@@ -3128,7 +3128,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 694.62,
               "et": 706.51,
               "sentences": [
@@ -3155,7 +3155,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 706.51,
               "et": 716.02,
               "sentences": [
@@ -3172,7 +3172,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 716.02,
               "et": 750.66,
               "sentences": [
@@ -3209,7 +3209,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 750.66,
               "et": 766.72,
               "sentences": [
@@ -3241,7 +3241,7 @@ window.RECITE_DATABASE = {
           "end": 872.32,
           "paras": [
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 766.72,
               "et": 785.93,
               "sentences": [
@@ -3263,7 +3263,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 785.93,
               "et": 811.88,
               "sentences": [
@@ -3295,7 +3295,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 811.88,
               "et": 822.69,
               "sentences": [
@@ -3312,7 +3312,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 822.69,
               "et": 842.39,
               "sentences": [
@@ -3339,7 +3339,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 842.39,
               "et": 872.32,
               "sentences": [
@@ -3380,13 +3380,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d02_c9",
           "tag": "模块 9",
-          "title": "📌 重点讲授： · 语段 41-45",
+          "title": "重点讲授： · 语段 41-45",
           "sub": "涵盖 5 个精读小节",
           "start": 872.32,
           "end": 966.87,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 872.32,
               "et": 910.37,
               "sentences": [
@@ -3423,7 +3423,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 910.37,
               "et": 928.53,
               "sentences": [
@@ -3460,7 +3460,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 928.53,
               "et": 947.92,
               "sentences": [
@@ -3497,7 +3497,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 947.92,
               "et": 955.6,
               "sentences": [
@@ -3514,7 +3514,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【命题分析】 ",
+              "lead": "【命题分析】",
               "st": 955.6,
               "et": 966.87,
               "sentences": [
@@ -3541,7 +3541,7 @@ window.RECITE_DATABASE = {
           "end": 1092.76,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 966.87,
               "et": 986.92,
               "sentences": [
@@ -3558,7 +3558,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 986.92,
               "et": 1010.4,
               "sentences": [
@@ -3590,7 +3590,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1010.4,
               "et": 1032.13,
               "sentences": [
@@ -3612,7 +3612,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1032.13,
               "et": 1051.95,
               "sentences": [
@@ -3639,7 +3639,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1051.95,
               "et": 1092.76,
               "sentences": [
@@ -3680,13 +3680,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d02_c11",
           "tag": "模块 11",
-          "title": "📌 重点讲授： · 语段 51-55",
+          "title": "重点讲授： · 语段 51-55",
           "sub": "涵盖 5 个精读小节",
           "start": 1092.76,
           "end": 1230.62,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1092.76,
               "et": 1116.86,
               "sentences": [
@@ -3708,7 +3708,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1116.86,
               "et": 1160.44,
               "sentences": [
@@ -3745,7 +3745,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1160.44,
               "et": 1189.81,
               "sentences": [
@@ -3782,7 +3782,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1189.81,
               "et": 1218.09,
               "sentences": [
@@ -3819,7 +3819,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1218.09,
               "et": 1230.62,
               "sentences": [
@@ -3846,7 +3846,7 @@ window.RECITE_DATABASE = {
           "end": 1332.49,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1230.62,
               "et": 1256.69,
               "sentences": [
@@ -3883,7 +3883,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1256.69,
               "et": 1268.0,
               "sentences": [
@@ -3905,7 +3905,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1268.0,
               "et": 1277.05,
               "sentences": [
@@ -3922,7 +3922,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1277.05,
               "et": 1318.37,
               "sentences": [
@@ -3959,7 +3959,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1318.37,
               "et": 1332.49,
               "sentences": [
@@ -3991,7 +3991,7 @@ window.RECITE_DATABASE = {
           "end": 1475.89,
           "paras": [
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1332.49,
               "et": 1368.47,
               "sentences": [
@@ -4028,7 +4028,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1368.47,
               "et": 1401.74,
               "sentences": [
@@ -4065,7 +4065,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1401.74,
               "et": 1426.94,
               "sentences": [
@@ -4087,7 +4087,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1426.94,
               "et": 1467.79,
               "sentences": [
@@ -4124,7 +4124,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1467.79,
               "et": 1475.89,
               "sentences": [
@@ -4151,7 +4151,7 @@ window.RECITE_DATABASE = {
           "end": 1606.5,
           "paras": [
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1475.89,
               "et": 1515.87,
               "sentences": [
@@ -4188,7 +4188,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1515.87,
               "et": 1537.47,
               "sentences": [
@@ -4215,7 +4215,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1537.47,
               "et": 1550.12,
               "sentences": [
@@ -4232,7 +4232,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【命题分析】 ",
+              "lead": "【命题分析】",
               "st": 1550.12,
               "et": 1586.04,
               "sentences": [
@@ -4269,7 +4269,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1586.04,
               "et": 1606.5,
               "sentences": [
@@ -4300,13 +4300,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d02_c15",
           "tag": "模块 15",
-          "title": "📝 今日复盘： · 语段 71-71",
+          "title": "今日复盘： · 语段 71-71",
           "sub": "涵盖 1 个精读小节",
           "start": 1606.5,
           "end": 1621.32,
           "paras": [
             {
-              "lead": "📝 今日复盘：",
+              "lead": "今日复盘：",
               "st": 1606.5,
               "et": 1621.32,
               "sentences": [
@@ -4336,13 +4336,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d03_c1",
           "tag": "模块 1",
-          "title": "📌 重点讲授： · 语段 1-5",
+          "title": "重点讲授： · 语段 1-5",
           "sub": "涵盖 5 个精读小节",
           "start": 0.0,
           "end": 80.62,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 0.0,
               "et": 24.42,
               "sentences": [
@@ -4374,7 +4374,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 24.42,
               "et": 35.42,
               "sentences": [
@@ -4391,7 +4391,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 35.42,
               "et": 55.27,
               "sentences": [
@@ -4408,7 +4408,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 55.27,
               "et": 70.28,
               "sentences": [
@@ -4430,7 +4430,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 70.28,
               "et": 80.62,
               "sentences": [
@@ -4457,7 +4457,7 @@ window.RECITE_DATABASE = {
           "end": 155.74,
           "paras": [
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 80.62,
               "et": 105.85,
               "sentences": [
@@ -4479,7 +4479,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 105.85,
               "et": 114.24,
               "sentences": [
@@ -4496,7 +4496,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 114.24,
               "et": 126.82,
               "sentences": [
@@ -4513,7 +4513,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 126.82,
               "et": 140.41,
               "sentences": [
@@ -4530,7 +4530,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 140.41,
               "et": 155.74,
               "sentences": [
@@ -4557,7 +4557,7 @@ window.RECITE_DATABASE = {
           "end": 244.29,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 155.74,
               "et": 185.17,
               "sentences": [
@@ -4594,7 +4594,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 185.17,
               "et": 200.48,
               "sentences": [
@@ -4611,7 +4611,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 200.48,
               "et": 219.19,
               "sentences": [
@@ -4648,7 +4648,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 219.19,
               "et": 235.16,
               "sentences": [
@@ -4670,7 +4670,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 235.16,
               "et": 244.29,
               "sentences": [
@@ -4707,7 +4707,7 @@ window.RECITE_DATABASE = {
           "end": 395.43,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 244.29,
               "et": 267.65,
               "sentences": [
@@ -4734,7 +4734,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 267.65,
               "et": 317.19,
               "sentences": [
@@ -4771,7 +4771,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 317.19,
               "et": 366.62,
               "sentences": [
@@ -4808,7 +4808,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 366.62,
               "et": 377.19,
               "sentences": [
@@ -4825,7 +4825,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 377.19,
               "et": 395.43,
               "sentences": [
@@ -4852,7 +4852,7 @@ window.RECITE_DATABASE = {
           "end": 472.1,
           "paras": [
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 395.43,
               "et": 421.13,
               "sentences": [
@@ -4874,7 +4874,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 421.13,
               "et": 428.14,
               "sentences": [
@@ -4891,7 +4891,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 428.14,
               "et": 432.8,
               "sentences": [
@@ -4908,7 +4908,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 432.8,
               "et": 444.16,
               "sentences": [
@@ -4930,7 +4930,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 444.16,
               "et": 472.1,
               "sentences": [
@@ -4967,7 +4967,7 @@ window.RECITE_DATABASE = {
           "end": 587.03,
           "paras": [
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 472.1,
               "et": 483.93,
               "sentences": [
@@ -4984,7 +4984,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 483.93,
               "et": 509.34,
               "sentences": [
@@ -5021,7 +5021,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 509.34,
               "et": 525.24,
               "sentences": [
@@ -5048,7 +5048,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 525.24,
               "et": 563.65,
               "sentences": [
@@ -5085,7 +5085,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 563.65,
               "et": 587.03,
               "sentences": [
@@ -5132,7 +5132,7 @@ window.RECITE_DATABASE = {
           "end": 681.2,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 587.03,
               "et": 596.59,
               "sentences": [
@@ -5149,7 +5149,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 596.59,
               "et": 644.55,
               "sentences": [
@@ -5186,7 +5186,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 644.55,
               "et": 646.67,
               "sentences": [
@@ -5203,7 +5203,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 646.67,
               "et": 661.94,
               "sentences": [
@@ -5220,7 +5220,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 661.94,
               "et": 681.2,
               "sentences": [
@@ -5257,7 +5257,7 @@ window.RECITE_DATABASE = {
           "end": 777.13,
           "paras": [
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 681.2,
               "et": 719.88,
               "sentences": [
@@ -5294,7 +5294,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 719.88,
               "et": 728.78,
               "sentences": [
@@ -5311,7 +5311,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 728.78,
               "et": 741.25,
               "sentences": [
@@ -5328,7 +5328,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 741.25,
               "et": 759.15,
               "sentences": [
@@ -5360,7 +5360,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 759.15,
               "et": 777.13,
               "sentences": [
@@ -5387,7 +5387,7 @@ window.RECITE_DATABASE = {
           "end": 865.55,
           "paras": [
             {
-              "lead": "【命题分析】 ",
+              "lead": "【命题分析】",
               "st": 777.13,
               "et": 787.12,
               "sentences": [
@@ -5404,7 +5404,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 787.12,
               "et": 799.52,
               "sentences": [
@@ -5421,7 +5421,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 799.52,
               "et": 827.32,
               "sentences": [
@@ -5453,7 +5453,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 827.32,
               "et": 850.65,
               "sentences": [
@@ -5485,7 +5485,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 850.65,
               "et": 865.55,
               "sentences": [
@@ -5512,7 +5512,7 @@ window.RECITE_DATABASE = {
           "end": 983.66,
           "paras": [
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 865.55,
               "et": 878.71,
               "sentences": [
@@ -5534,7 +5534,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 878.71,
               "et": 912.08,
               "sentences": [
@@ -5571,7 +5571,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 912.08,
               "et": 943.7,
               "sentences": [
@@ -5608,7 +5608,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 943.7,
               "et": 973.82,
               "sentences": [
@@ -5645,7 +5645,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 973.82,
               "et": 983.66,
               "sentences": [
@@ -5672,7 +5672,7 @@ window.RECITE_DATABASE = {
           "end": 1083.54,
           "paras": [
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 983.66,
               "et": 1012.88,
               "sentences": [
@@ -5709,7 +5709,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1012.88,
               "et": 1025.16,
               "sentences": [
@@ -5726,7 +5726,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1025.16,
               "et": 1037.45,
               "sentences": [
@@ -5743,7 +5743,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 1037.45,
               "et": 1067.01,
               "sentences": [
@@ -5770,7 +5770,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1067.01,
               "et": 1083.54,
               "sentences": [
@@ -5812,7 +5812,7 @@ window.RECITE_DATABASE = {
           "end": 1194.23,
           "paras": [
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1083.54,
               "et": 1105.58,
               "sentences": [
@@ -5844,7 +5844,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1105.58,
               "et": 1127.9,
               "sentences": [
@@ -5876,7 +5876,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1127.9,
               "et": 1159.49,
               "sentences": [
@@ -5913,7 +5913,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1159.49,
               "et": 1181.23,
               "sentences": [
@@ -5945,7 +5945,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1181.23,
               "et": 1194.23,
               "sentences": [
@@ -5977,7 +5977,7 @@ window.RECITE_DATABASE = {
           "end": 1314.52,
           "paras": [
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1194.23,
               "et": 1226.78,
               "sentences": [
@@ -5999,7 +5999,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 1226.78,
               "et": 1243.53,
               "sentences": [
@@ -6026,7 +6026,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1243.53,
               "et": 1261.3,
               "sentences": [
@@ -6048,7 +6048,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1261.3,
               "et": 1280.45,
               "sentences": [
@@ -6065,7 +6065,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1280.45,
               "et": 1314.52,
               "sentences": [
@@ -6106,13 +6106,13 @@ window.RECITE_DATABASE = {
         {
           "id": "d03_c14",
           "tag": "模块 14",
-          "title": "📌 重点讲授： · 语段 66-70",
+          "title": "重点讲授： · 语段 66-70",
           "sub": "涵盖 5 个精读小节",
           "start": 1314.52,
           "end": 1432.76,
           "paras": [
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1314.52,
               "et": 1335.44,
               "sentences": [
@@ -6139,7 +6139,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1335.44,
               "et": 1358.06,
               "sentences": [
@@ -6166,7 +6166,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1358.06,
               "et": 1383.28,
               "sentences": [
@@ -6198,7 +6198,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【维度剖析】 ",
+              "lead": "【维度剖析】",
               "st": 1383.28,
               "et": 1419.15,
               "sentences": [
@@ -6230,7 +6230,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1419.15,
               "et": 1432.76,
               "sentences": [
@@ -6257,7 +6257,7 @@ window.RECITE_DATABASE = {
           "end": 1503.15,
           "paras": [
             {
-              "lead": "【命题分析】 ",
+              "lead": "【命题分析】",
               "st": 1432.76,
               "et": 1440.95,
               "sentences": [
@@ -6274,7 +6274,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1440.95,
               "et": 1455.89,
               "sentences": [
@@ -6291,7 +6291,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【易错排雷】 ",
+              "lead": "【易错排雷】",
               "st": 1455.89,
               "et": 1466.19,
               "sentences": [
@@ -6313,7 +6313,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1466.19,
               "et": 1486.48,
               "sentences": [
@@ -6335,7 +6335,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1486.48,
               "et": 1503.15,
               "sentences": [
@@ -6362,7 +6362,7 @@ window.RECITE_DATABASE = {
           "end": 1602.01,
           "paras": [
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1503.15,
               "et": 1520.24,
               "sentences": [
@@ -6384,7 +6384,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1520.24,
               "et": 1548.75,
               "sentences": [
@@ -6421,7 +6421,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1548.75,
               "et": 1571.88,
               "sentences": [
@@ -6443,7 +6443,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1571.88,
               "et": 1582.28,
               "sentences": [
@@ -6470,7 +6470,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1582.28,
               "et": 1602.01,
               "sentences": [
@@ -6507,7 +6507,7 @@ window.RECITE_DATABASE = {
           "end": 1720.95,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1602.01,
               "et": 1619.5,
               "sentences": [
@@ -6524,7 +6524,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1619.5,
               "et": 1647.98,
               "sentences": [
@@ -6561,7 +6561,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1647.98,
               "et": 1683.22,
               "sentences": [
@@ -6598,7 +6598,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1683.22,
               "et": 1703.66,
               "sentences": [
@@ -6635,7 +6635,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1703.66,
               "et": 1720.95,
               "sentences": [
@@ -6677,7 +6677,7 @@ window.RECITE_DATABASE = {
           "end": 1856.91,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1720.95,
               "et": 1744.88,
               "sentences": [
@@ -6714,7 +6714,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1744.88,
               "et": 1780.65,
               "sentences": [
@@ -6741,7 +6741,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1780.65,
               "et": 1802.27,
               "sentences": [
@@ -6773,7 +6773,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1802.27,
               "et": 1842.37,
               "sentences": [
@@ -6810,7 +6810,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📌 重点讲授：",
+              "lead": "重点讲授：",
               "st": 1842.37,
               "et": 1856.91,
               "sentences": [
@@ -6837,7 +6837,7 @@ window.RECITE_DATABASE = {
           "end": 1946.94,
           "paras": [
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1856.91,
               "et": 1877.2,
               "sentences": [
@@ -6859,7 +6859,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1877.2,
               "et": 1885.34,
               "sentences": [
@@ -6876,7 +6876,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1885.34,
               "et": 1915.26,
               "sentences": [
@@ -6908,7 +6908,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【深挖辨析】 ",
+              "lead": "【深挖辨析】",
               "st": 1915.26,
               "et": 1933.31,
               "sentences": [
@@ -6930,7 +6930,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【通俗举例】 ",
+              "lead": "【通俗举例】",
               "st": 1933.31,
               "et": 1946.94,
               "sentences": [
@@ -6967,7 +6967,7 @@ window.RECITE_DATABASE = {
           "end": 2034.84,
           "paras": [
             {
-              "lead": "【考点点拨】 ",
+              "lead": "【考点点拨】",
               "st": 1946.94,
               "et": 1976.86,
               "sentences": [
@@ -6999,7 +6999,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【核心概念】 ",
+              "lead": "【核心概念】",
               "st": 1976.86,
               "et": 1990.23,
               "sentences": [
@@ -7021,7 +7021,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "【复盘结语】 ",
+              "lead": "【复盘结语】",
               "st": 1990.23,
               "et": 2020.17,
               "sentences": [
@@ -7048,7 +7048,7 @@ window.RECITE_DATABASE = {
               ]
             },
             {
-              "lead": "📝 今日复盘：",
+              "lead": "今日复盘：",
               "st": 2020.17,
               "et": 2034.84,
               "sentences": [
