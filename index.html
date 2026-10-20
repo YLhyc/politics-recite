@@ -597,6 +597,59 @@
       justify-content: center;
     }
 
+    
+    /* 专栏分类筛选与徽章 */
+    .drawer-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+    .drawer-tab {
+      background: #f7f4ee;
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .drawer-tab.active {
+      background: var(--vermilion);
+      border-color: var(--vermilion);
+      color: #ffffff;
+    }
+    .drawer-item-topline {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .drawer-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 6px;
+      letter-spacing: 0.2px;
+      line-height: 1.4;
+    }
+    .drawer-pill.tuijie {
+      background: #fff0ed;
+      color: #c93b2b;
+      border: 1px solid #f8c9c4;
+    }
+    .drawer-pill.hanxue {
+      background: #f5efe6;
+      color: #6e4027;
+      border: 1px solid #dec8b5;
+    }
+
     .drawer-list {
       overflow-y: auto;
       display: flex;
@@ -691,7 +744,7 @@
     <div class="header-left" id="btnOpenDrawer" title="点击切换天数">
       <div class="header-badge">
         <svg class="svg-icon svg-fill-brown" width="10" height="10" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
-        2027 考研政治背诵手册
+        <span id="headerBadgeText">2027 腿姐冲刺带背</span>
       </div>
       <button class="header-day-select">
         <span id="headerDayTitle">DAY 01 · 马原专题一、二</span>
@@ -833,6 +886,11 @@
           </svg>
         </button>
       </div>
+      <div class="drawer-filter-bar" id="drawerFilterBar">
+        <button class="drawer-tab active" onclick="setDrawerFilter('all', this)">全部</button>
+        <button class="drawer-tab" onclick="setDrawerFilter('tuijie', this)">腿姐冲刺带背</button>
+        <button class="drawer-tab" onclick="setDrawerFilter('hanxue', this)">肖秀荣精读</button>
+      </div>
       <div class="drawer-list" id="drawerList"></div>
     </div>
   </div>
@@ -846,7 +904,7 @@
   <script>
     const DB = window.RECITE_DATABASE || { manifest: [], days: {} };
 
-    let currentDayId = "d01";
+    let currentDayId = "tj_d01";
     let currentDayData = DB.days[currentDayId] || null;
 
     const audio = document.getElementById("audioEngine");
@@ -899,12 +957,29 @@
       return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
-    // 渲染天数目录抽屉
+    let currentDrawerFilter = 'all';
+
+    window.setDrawerFilter = function(filter, btn) {
+      currentDrawerFilter = filter;
+      document.querySelectorAll('#drawerFilterBar .drawer-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderDrawer();
+    };
+
+    // 渲染天数目录抽屉（支持专栏分类）
     function renderDrawer() {
-      drawerList.innerHTML = DB.manifest.map(item => `
+      const items = DB.manifest.filter(item => {
+        if (currentDrawerFilter === 'all') return true;
+        return item.series === currentDrawerFilter;
+      });
+
+      drawerList.innerHTML = items.map(item => `
         <div class="drawer-item ${item.id === currentDayId ? 'current' : ''}" onclick="switchDay('${item.id}')">
-          <div>
-            <div class="drawer-item-day">${item.day} · ${item.pages}</div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="drawer-item-topline">
+              <span class="drawer-pill ${item.series || 'hanxue'}">${item.badge || (item.series === 'tuijie' ? '腿姐冲刺' : '肖秀荣精读')}</span>
+              <span class="drawer-item-day">${item.day} · ${item.pages}</span>
+            </div>
             <div class="drawer-item-title">${item.title}</div>
             <div class="drawer-item-desc">${item.desc}</div>
           </div>
@@ -935,14 +1010,21 @@
     });
 
     // 渲染指定天数的卡片与正文
-    function loadDay(dayId) {
+        function loadDay(dayId) {
       currentDayId = dayId;
       currentDayData = DB.days[dayId];
       if (!currentDayData) return;
 
-      headerDayTitle.innerText = currentDayData.title;
-      heroTitle.innerText = `${currentDayData.sub} 全程原声精读`;
-      heroDesc.innerHTML = `主讲：考研政治韩雪老师 · 全长 ${formatTime(currentDayData.duration)} · 涵盖 ${currentDayData.cards.length} 个重点模块`;
+      const headerBadge = document.getElementById("headerBadgeText");
+      if (headerBadge) {
+        headerBadge.innerText = currentDayData.series === "tuijie" ? "2027 腿姐冲刺抢分带背" : "2027 肖秀荣背诵手册";
+      }
+
+      const pureTitle = (currentDayData.title || '').replace(/^DAY\s*\d+\s*[·•\s]*/i, '').trim();
+      headerDayTitle.innerText = `${currentDayData.day || ''} · ${pureTitle}`;
+      heroTitle.innerText = `${currentDayData.sub || currentDayData.title} 全程原声`;
+      const speaker = currentDayData.speaker || (currentDayData.series === 'tuijie' ? '腿姐 (陆寓丰)' : '韩雪老师');
+      heroDesc.innerHTML = `主讲：${speaker} · 全长 ${formatTime(currentDayData.duration)} · 共 ${currentDayData.cards.length} 核心考点模块`;
 
       // 组装卡片 HTML（嵌入棕色时钟与循环图标）
       cardsListEl.innerHTML = currentDayData.cards.map(c => `
@@ -993,6 +1075,16 @@
       });
 
       audio.src = currentDayData.audioUrl;
+
+      audio.onerror = () => {
+        if (currentDayData && currentDayData.id.startsWith("tj_") && !audio.src.includes("/audio/")) {
+          console.warn("Audio CDN failed, falling back to local audio file...");
+          audio.src = `audio/tuijie_${currentDayData.id.replace('tj_', '').toUpperCase()}.mp3`;
+          audio.load();
+          if (!audio.paused) audio.play().catch(e => console.log(e));
+        }
+      };
+    
       totalTimeLbl.innerText = formatTime(currentDayData.duration);
       currTimeLbl.innerText = "00:00";
       progressBarFill.style.width = "0%";
@@ -1025,7 +1117,7 @@
       if (wasPlaying) {
         audio.play().catch(e => console.log(e));
       }
-      showToast(`已切换至 ${dayId.toUpperCase()}`);
+      showToast(`已切换至 ${currentDayData.day || dayId}`);
     };
 
     function togglePlay() {
@@ -1213,7 +1305,7 @@
       });
     }
 
-    loadDay("d01");
+    loadDay("tj_d01");
   </script>
 </body>
 </html>

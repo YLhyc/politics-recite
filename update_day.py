@@ -27,22 +27,41 @@ def run_update(url):
     print(f"[+] Found Voice ID: {voice_id}")
     print(f"[+] Audio URL: {audio_url}")
     
-    # Detect Day number from title (e.g. D4, DAY 4, D04)
+    # Identify Speaker & Series
+    is_tuijie = bool(re.search(r'腿姐|陆寓丰', raw_title + html[:3000]))
     day_num_m = re.search(r'D(\d+)|DAY\s*(\d+)', raw_title, re.I)
-    if day_num_m:
-        num = int(day_num_m.group(1) or day_num_m.group(2))
-        day_key = f"d{num:02d}"
-        day_label = f"DAY {num:02d}"
+    num = int(day_num_m.group(1) or day_num_m.group(2)) if day_num_m else 1
+
+    if is_tuijie:
+        series = "tuijie"
+        speaker = "腿姐 (陆寓丰)"
+        badge = "腿姐冲刺"
+        day_key = f"tj_d{num:02d}"
+        day_label = f"腿姐 D{num:02d}"
+        book_sub = "《冲刺背诵手册》下册"
     else:
-        # Default increment based on existing manifest
-        manifest_path = os.path.join(os.path.dirname(__file__), "data", "manifest.json")
-        with open(manifest_path, "r", encoding="utf-8") as f:
-            m_list = json.load(f)
-        day_key = f"d{len(m_list)+1:02d}"
-        day_label = f"DAY {len(m_list)+1:02d}"
+        series = "hanxue"
+        speaker = "韩雪老师"
+        badge = "肖秀荣精读"
+        day_key = f"d{num:02d}"
+        day_label = f"韩雪 D{num:02d}"
+        book_sub = "《背诵手册》上册"
         
-    print(f"[+] Target Day Key: {day_key} ({day_label})")
+    print(f"[+] Target Series: {series} ({speaker}), Key: {day_key} ({day_label})")
     
+    # Download audio backup
+    audio_dir = os.path.join(os.path.dirname(__file__), "audio")
+    os.makedirs(audio_dir, exist_ok=True)
+    audio_file_name = f"{'tuijie' if is_tuijie else 'hanxue'}_D{num}.mp3"
+    audio_backup_path = os.path.join(audio_dir, audio_file_name)
+    try:
+        print(f"[*] Downloading audio backup to {audio_backup_path}...")
+        with urllib.request.urlopen(urllib.request.Request(audio_url, headers=headers)) as resp, open(audio_backup_path, 'wb') as f:
+            f.write(resp.read())
+        print(f"[+] Audio downloaded ({os.path.getsize(audio_backup_path)} bytes)")
+    except Exception as e:
+        print(f"[!] Warning: Audio download backup failed: {e}")
+
     # 2. Call DashScope ASR
     import dashscope
     from dashscope.audio.asr import Transcription
@@ -87,16 +106,15 @@ def run_update(url):
     paras = []
     current_para = []
     lead_keywords = [
-        ("【开篇导语】", r"同学们大家好|欢迎回到|今天是第"),
-        ("【核心概念】", r"到底什么是|何为|概念|范畴|定义"),
-        ("【通俗举例】", r"比如|比如说|举个例子|就像"),
-        ("【考点点拨】", r"标注一下|画起来|重点是|注意一下|一定要注意"),
-        ("【维度剖析】", r"第一方面|第二方面|第三方面|第一点|第二点|第三点|首先|其次|再次"),
-        ("【深挖辨析】", r"深挖|为什么|怎么理解|关系是什么|对立|统一"),
-        ("【易错排雷】", r"错误|犯错误|形而上学|唯心主义|经典干扰|干扰项|陷阱"),
-        ("【命题分析】", r"命题分析|历年考查|真题考查|真题出题|频次"),
-        ("【做题训练】", r"选择题|单选|多选|练习|真题|大题|材料分析"),
-        ("【复盘结语】", r"总结一下|最后|一言以蔽之|明天见|今天的内容")
+        ("【开篇导语】", r"同学们大家好|欢迎回到|今天是第|早上好|小太阳|聪明勇敢"),
+        ("【核心概念】", r"到底什么是|何为|概念|范畴|定义|第一个纲领|党章"),
+        ("【通俗举例】", r"比如|比如说|举个例子|就像|四川担担面|川全"),
+        ("【考点点拨】", r"标注一下|画起来|重点是|注意一下|一定要注意|打两颗星|周年纪念|须知政权"),
+        ("【维度剖析】", r"第一方面|第二方面|第三方面|第一点|第二点|第三点|首先|其次|再次|第一|第二|第三|第四|第五|第六"),
+        ("【深挖辨析】", r"深挖|为什么|怎么理解|关系是什么|对立|统一|基本一致|完全相同"),
+        ("【易错排雷】", r"错误|犯错误|形而上学|唯心主义|经典干扰|干扰项|陷阱|左倾|右倾|关门主义"),
+        ("【命题分析】", r"命题分析|历年考查|真题考查|真题出题|频次|单选|多选"),
+        ("【复盘结语】", r"总结一下|最后|一言以蔽之|明天见|今天的内容|加油")
     ]
     
     for s in sents:
@@ -150,25 +168,28 @@ def run_update(url):
         })
         
     cards = []
-    card_size = 5
+    card_size = 4 if is_tuijie else 5
     for c_i in range(0, len(paras), card_size):
         sub_paras = paras[c_i : c_i + card_size]
         cards.append({
             "id": f"{day_key}_c{len(cards)+1}",
             "tag": f"模块 {len(cards)+1}",
             "title": f"{sub_paras[0]['lead'].strip()} · 语段 {c_i+1}-{min(c_i+card_size, len(paras))}",
-            "sub": f"涵盖 {len(sub_paras)} 个精读小节",
+            "sub": f"涵盖 {len(sub_paras)} 个重点小节",
             "start": sub_paras[0]['st'],
             "end": sub_paras[-1]['et'],
             "paras": sub_paras
         })
         
     # Clean up topic title
-    topic_clean = re.sub(r'【.*?】', '', raw_title).strip()
+    topic_clean = re.sub(r'【.*?】|‼️|📢', '', raw_title).strip()
     day_data = {
         "id": day_key,
+        "day": day_label,
+        "series": series,
+        "speaker": speaker,
         "title": f"{day_label} · {topic_clean}",
-        "sub": f"《背诵手册》每日带背",
+        "sub": f"{book_sub} 每日带背",
         "audioUrl": audio_url,
         "duration": sents[-1]['end_time'] / 1000.0,
         "cards": cards
@@ -188,21 +209,22 @@ def run_update(url):
         with open(manifest_path, "r", encoding="utf-8") as f:
             m_list = json.load(f)
             
-    # update or append
     dur_m = int((sents[-1]['end_time'] / 1000.0) // 60)
     dur_s = int((sents[-1]['end_time'] / 1000.0) % 60)
     new_entry = {
         "id": day_key,
         "day": day_label,
+        "series": series,
+        "speaker": speaker,
+        "badge": badge,
         "title": topic_clean,
-        "pages": "背诵手册",
-        "desc": f"涵盖 {len(paras)} 个语段精讲",
+        "pages": book_sub,
+        "desc": f"涵盖 {len(paras)} 个考点语段精讲",
         "duration": f"{dur_m:02d}:{dur_s:02d}",
         "file": f"data/{day_key}.json"
     }
     m_list = [x for x in m_list if x["id"] != day_key]
     m_list.append(new_entry)
-    m_list.sort(key=lambda x: x["id"])
     
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(m_list, f, ensure_ascii=False, indent=2)
@@ -216,7 +238,7 @@ def run_update(url):
             with open(d_path, "r", encoding="utf-8") as f:
                 days_dict[item["id"]] = json.load(f)
                 
-    db_content = f"window.RECITE_DATABASE = {json.dumps({'manifest': m_list, 'days': days_dict}, ensure_ascii=False, indent=2)};"
+    db_content = f"window.RECITE_DATABASE = {json.dumps({'manifest': m_list, 'days': days_dict}, ensure_ascii=False, indent=2)};\n"
     with open(os.path.join(data_dir, "database.js"), "w", encoding="utf-8") as f:
         f.write(db_content)
     print(f"[+] Updated database.js")
