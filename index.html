@@ -62,6 +62,162 @@
       overflow-x: hidden;
     }
 
+    
+    :root {
+      --font-scale: 16px;
+      --font-line-height: 1.85;
+    }
+
+    body {
+      font-size: var(--font-scale);
+      line-height: var(--font-line-height);
+    }
+
+    .para-text, .sent {
+      font-size: var(--font-scale);
+      line-height: var(--font-line-height);
+    }
+
+    /* 抽屉实时搜索栏 */
+    .drawer-search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #f4efe6;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 7px 11px;
+      margin-bottom: 10px;
+      gap: 7px;
+    }
+    .drawer-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13px;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+    .drawer-search-input::placeholder {
+      color: var(--text-light);
+    }
+    .drawer-search-clear {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    /* 手卷考点直达胶囊 */
+    .btn-handbook-link {
+      background: #fbf6ee;
+      border: 1px solid #dec8b5;
+      color: var(--brown-main);
+      font-size: 11px;
+      border-radius: 12px;
+      padding: 2.5px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .btn-handbook-link:active {
+      background: var(--brown-soft);
+      transform: scale(0.96);
+    }
+
+    /* 自测挖空模式 (Cloze / Memory Mode) */
+    .cloze-word {
+      display: inline;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    body.cloze-mode .cloze-word {
+      background: #f0e6da;
+      color: transparent !important;
+      border-bottom: 2px dashed #b3392f;
+      border-radius: 4px;
+      padding: 0 4px;
+      margin: 0 1px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    body.cloze-mode .cloze-word::after {
+      content: "[?]";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #b3392f;
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+    body.cloze-mode .cloze-word.revealed {
+      background: #faefe7 !important;
+      color: #b3392f !important;
+      border-bottom: 2px solid #b3392f;
+    }
+    body.cloze-mode .cloze-word.revealed::after {
+      display: none;
+    }
+
+    /* 采分点高亮与巧记口诀便签卡 */
+    .key-mark {
+      font-weight: 700;
+      color: #9e2a22;
+      background: rgba(179, 57, 47, 0.08);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+    .mnemonic-box {
+      background: #fffdf9;
+      border: 1px dashed #dcc8b6;
+      border-left: 3px solid #b3392f;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin: 6px 0;
+      font-size: 12.5px;
+      color: var(--brown-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 收藏星标 */
+    .btn-star-sent {
+      opacity: 0.35;
+      cursor: pointer;
+      display: inline-flex;
+      vertical-align: middle;
+      margin-left: 4px;
+      transition: all 0.15s;
+    }
+    .btn-star-sent:hover, .btn-star-sent.active {
+      opacity: 1;
+    }
+    .btn-star-sent.active svg {
+      fill: #b3392f;
+      stroke: #b3392f;
+    }
+
+    /* 顶栏操作区按钮微调 */
+    .btn-header.active {
+      background: var(--vermilion-soft);
+      border-color: var(--vermilion-border);
+      color: var(--vermilion);
+    }
+    .btn-header.active svg {
+      stroke: var(--vermilion);
+    }
+
     /* 棕色矢量 SVG 规范 */
     .svg-icon {
       display: inline-block;
@@ -110,36 +266,45 @@
     .header-day-select {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       font-family: var(--font-serif);
-      font-size: 16px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--text-main);
       background: transparent;
       border: none;
       cursor: pointer;
       padding: 0;
+      max-width: 175px;
+      white-space: nowrap;
+    }
+    .header-day-select span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4.5px;
+      flex-shrink: 0;
     }
 
     .btn-header {
       background: #ffffff;
       border: 1px solid var(--border-color);
       color: var(--brown-main);
-      border-radius: 16px;
-      padding: 5px 10px;
-      font-size: 12px;
+      border-radius: 14px;
+      padding: 4px 7.5px;
+      font-size: 11px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 3.5px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.03);
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .btn-header:active {
@@ -606,7 +771,7 @@
       margin-bottom: 12px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border-color);
-      overflow-x: auto;
+      flex-wrap: wrap; gap: 6px;
     }
     .drawer-tab {
       background: #f7f4ee;
@@ -754,17 +919,36 @@
         </svg>
       </button>
     </div>
-    <div class="header-actions">
+        <div class="header-actions">
+      <!-- 字号调节循环按钮 -->
+      <button class="btn-header" id="btnFontToggle" title="切换字号大小 (14/16/18/20px)">
+        <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12"></path>
+          <line x1="4" y1="13" x2="20" y2="13"></line>
+        </svg>
+        <span id="fontScaleText">16px</span>
+      </button>
+
+      <!-- 填空自测模式开关 -->
+      <button class="btn-header" id="btnTestMode" title="开启填空自测模式">
+        <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <span id="testModeText">自测</span>
+      </button>
+
       <!-- 棕色 跟随图标 -->
-      <button class="btn-header" id="btnScrollToggle">
-        <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button class="btn-header" id="btnScrollToggle" title="切换自动滚屏居中">
+        <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
         </svg>
-        <span id="scrollStatusText">跟随开</span>
+        <span id="scrollStatusText">跟随</span>
       </button>
+
       <!-- 棕色 目录书本图标 -->
       <button class="btn-header" id="btnDrawerTrigger">
-        <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="svg-icon svg-stroke-brown" width="13" height="13" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
         </svg>
@@ -822,7 +1006,15 @@
           </button>
         </div>
 
-        <div class="main-btn-group">
+                <div class="main-btn-group">
+          <!-- 上一期按钮 -->
+          <button class="dock-btn skip-btn" id="btnPrevDay" title="上一期带背">
+            <svg class="svg-icon svg-stroke-brown" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="19 20 9 12 19 4 19 20"></polygon>
+              <line x1="5" y1="19" x2="5" y2="5"></line>
+            </svg>
+          </button>
+
           <!-- 棕色 快退15秒图标 -->
           <button class="dock-btn skip-btn" id="btnBack15" title="快退15秒">
             <svg class="svg-icon svg-stroke-brown" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -831,6 +1023,7 @@
               <text x="12" y="15.5" font-size="7.5" font-family="-apple-system, sans-serif" font-weight="700" fill="#6e4027" stroke="none" text-anchor="middle">15</text>
             </svg>
           </button>
+          
           <!-- 播放/暂停大按键 -->
           <button class="dock-btn play-btn" id="btnPlay" title="播放/暂停">
             <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -840,12 +1033,21 @@
               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
             </svg>
           </button>
+          
           <!-- 棕色 快进15秒图标 -->
           <button class="dock-btn skip-btn" id="btnFwd15" title="快进15秒">
             <svg class="svg-icon svg-stroke-brown" width="22" height="22" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12a9 9 0 1 1-3-6.7L21 8"></path>
               <path d="M21 3v5h-5"></path>
               <text x="12" y="15.5" font-size="7.5" font-family="-apple-system, sans-serif" font-weight="700" fill="#6e4027" stroke="none" text-anchor="middle">15</text>
+            </svg>
+          </button>
+
+          <!-- 下一期按钮 -->
+          <button class="dock-btn skip-btn" id="btnNextDay" title="下一期带背">
+            <svg class="svg-icon svg-stroke-brown" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 4 15 12 5 20 5 4"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
             </svg>
           </button>
         </div>
@@ -886,10 +1088,29 @@
           </svg>
         </button>
       </div>
+            <!-- 抽屉全局即时搜索 -->
+      <div class="drawer-search-wrap">
+        <svg class="svg-icon svg-stroke-brown" width="14" height="14" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="drawerSearchInput" class="drawer-search-input" placeholder="秒搜考点、会议、真题金句..." autocomplete="off">
+        <button id="drawerSearchClear" class="drawer-search-clear" style="display:none;" title="清空搜索">
+          <svg class="svg-icon svg-stroke-brown" width="12" height="12" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
       <div class="drawer-filter-bar" id="drawerFilterBar">
         <button class="drawer-tab active" onclick="setDrawerFilter('all', this)">全部</button>
-        <button class="drawer-tab" onclick="setDrawerFilter('tuijie', this)">腿姐冲刺带背</button>
+        <button class="drawer-tab" onclick="setDrawerFilter('tuijie', this)">腿姐冲刺</button>
         <button class="drawer-tab" onclick="setDrawerFilter('hanxue', this)">肖秀荣精读</button>
+        <button class="drawer-tab" onclick="setDrawerFilter('starred', this)" id="tabStarred">
+          <svg class="svg-icon" width="11" height="11" viewBox="0 0 24 24" fill="#b3392f" stroke="#b3392f"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          重点金句
+        </button>
       </div>
       <div class="drawer-list" id="drawerList"></div>
     </div>
@@ -957,41 +1178,7 @@
       return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
     }
 
-    let currentDrawerFilter = 'all';
-
-    window.setDrawerFilter = function(filter, btn) {
-      currentDrawerFilter = filter;
-      document.querySelectorAll('#drawerFilterBar .drawer-tab').forEach(t => t.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderDrawer();
-    };
-
-    // 渲染天数目录抽屉（支持专栏分类）
-    function renderDrawer() {
-      const items = DB.manifest.filter(item => {
-        if (currentDrawerFilter === 'all') return true;
-        return item.series === currentDrawerFilter;
-      });
-
-      drawerList.innerHTML = items.map(item => `
-        <div class="drawer-item ${item.id === currentDayId ? 'current' : ''}" onclick="switchDay('${item.id}')">
-          <div style="flex: 1; min-width: 0;">
-            <div class="drawer-item-topline">
-              <span class="drawer-pill ${item.series || 'hanxue'}">${item.badge || (item.series === 'tuijie' ? '腿姐冲刺' : '肖秀荣精读')}</span>
-              <span class="drawer-item-day">${item.day} · ${item.pages}</span>
-            </div>
-            <div class="drawer-item-title">${item.title}</div>
-            <div class="drawer-item-desc">${item.desc}</div>
-          </div>
-          <div class="drawer-item-meta">
-            <div class="drawer-item-dur">
-              <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              ${item.duration}
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
+    
 
     function openDrawer() {
       renderDrawer();
@@ -1009,8 +1196,81 @@
       if (e.target === drawerOverlay) closeDrawer();
     });
 
-    // 渲染指定天数的卡片与正文
-        function loadDay(dayId) {
+// ==================== 1. 考研重点词库与自测挖空引擎 ====================
+    const CORE_KEYWORDS = ['第一个纲领', '最高纲领', '最低纲领', '第一部党章', '反帝反封建', '无产阶级专政', '资本家私有制', '社会主义和共产主义', '民主联合战线', '独立性', '第一次国共合作', '新三民主义', '基本一致', '完全相同', '三大革命政策', '联俄、联共、扶助农工', '耕者有其田', '领导权和工农联盟', '八七会议', '须知政权是由枪杆子中取得的', '枪杆子中取得', '古田会议', '思想建党、政治建军', '思想建党', '政治建军', '执行革命的政治任务的武装集团', '打仗、筹款', '群众工作', '遵义会议', '生死攸关', '军事问题和组织问题', '政治上开始走向成熟', '第一代中央领导集体', '王明“左”倾教条主义', '瓦窑堡会议', '把朋友搞得多多的', '抗日民族统一战线', '关门主义', '人民共和国', '工农共和国', '洛川会议', '抗日救国十大纲领', '全面的全民族抗战', '全国总动员', '山地游击战', '六届六中全会', '马克思主义中国化', '客观实在性', '世界的物质性', '主观能动性', '对立统一', '量变与质变', '肯定与否定', '真理的客观性', '实践是检验真理的唯一标准', '社会存在', '社会意识', '生产力与生产关系', '经济基础与上层建筑'];
+
+    // 本地收藏夹与字号存储
+    let starredSentences = JSON.parse(localStorage.getItem("recite_starred_sentences") || "[]");
+    let currentFontScaleIdx = parseInt(localStorage.getItem("recite_font_scale_idx") || "1");
+    const FONT_SCALES = [
+      { size: "14px", label: "小号", lh: "1.75" },
+      { size: "16px", label: "标准", lh: "1.85" },
+      { size: "18px", label: "大号", lh: "1.9" },
+      { size: "20px", label: "特大", lh: "1.95" }
+    ];
+
+    function applyFontScale(idx) {
+      currentFontScaleIdx = (idx + FONT_SCALES.length) % FONT_SCALES.length;
+      const s = FONT_SCALES[currentFontScaleIdx];
+      document.documentElement.style.setProperty("--font-scale", s.size);
+      document.documentElement.style.setProperty("--font-line-height", s.lh);
+      const fontTextEl = document.getElementById("fontScaleText");
+      if (fontTextEl) fontTextEl.innerText = s.size;
+      localStorage.setItem("recite_font_scale_idx", currentFontScaleIdx);
+    }
+
+    // 句子文本增强：挖空标记、高亮与收藏星标
+    function enrichSentenceText(text, dayId, cardId, sentIdx) {
+      let enriched = text;
+      // 匹配核心关键词并包裹为可挖空 token
+      CORE_KEYWORDS.forEach(kw => {
+        if (enriched.includes(kw)) {
+          const regex = new RegExp(`(${kw})`, 'g');
+          enriched = enriched.replace(regex, `<span class="cloze-word" onclick="toggleClozeReveal(this, event)">$1</span>`);
+        }
+      });
+      return enriched;
+    }
+
+    window.toggleClozeReveal = function(el, e) {
+      if (!document.body.classList.contains("cloze-mode")) return;
+      e.stopPropagation();
+      el.classList.toggle("revealed");
+    };
+
+    // 收藏星标切换
+    window.toggleStarSent = function(sentKey, sentText, e) {
+      e.stopPropagation();
+      const idx = starredSentences.findIndex(x => x.key === sentKey);
+      if (idx >= 0) {
+        starredSentences.splice(idx, 1);
+        showToast("已取消收藏此金句");
+      } else {
+        starredSentences.push({
+          key: sentKey,
+          text: sentText,
+          dayId: currentDayId,
+          dayTitle: currentDayData ? currentDayData.title : "",
+          speaker: currentDayData ? currentDayData.speaker : "",
+          st: parseFloat(e.currentTarget.dataset.st || 0)
+        });
+        showToast("已收藏至【重点金句本】⭐");
+      }
+      localStorage.setItem("recite_starred_sentences", JSON.stringify(starredSentences));
+      updateStarIcons();
+      if (currentDrawerFilter === 'starred') renderDrawer();
+    };
+
+    function updateStarIcons() {
+      document.querySelectorAll(".btn-star-sent").forEach(btn => {
+        const key = btn.dataset.key;
+        const isStarred = starredSentences.some(x => x.key === key);
+        btn.classList.toggle("active", isStarred);
+      });
+    }
+
+    // ==================== 2. 渲染指定天数的卡片与正文 ====================
+    function loadDay(dayId) {
       currentDayId = dayId;
       currentDayData = DB.days[dayId];
       if (!currentDayData) return;
@@ -1026,8 +1286,8 @@
       const speaker = currentDayData.speaker || (currentDayData.series === 'tuijie' ? '腿姐 (陆寓丰)' : '韩雪老师');
       heroDesc.innerHTML = `主讲：${speaker} · 全长 ${formatTime(currentDayData.duration)} · 共 ${currentDayData.cards.length} 核心考点模块`;
 
-      // 组装卡片 HTML（嵌入棕色时钟与循环图标）
-      cardsListEl.innerHTML = currentDayData.cards.map(c => `
+      // 组装卡片 HTML（嵌入背诵手卷直达入口与循环图标）
+      cardsListEl.innerHTML = currentDayData.cards.map((c, cIdx) => `
         <article class="recite-card" id="${c.id}" data-start="${c.start}" data-end="${c.end}">
           <div class="card-top">
             <div class="card-meta">
@@ -1037,15 +1297,22 @@
                 ${formatTime(c.start)} - ${formatTime(c.end)}
               </span>
             </div>
-            <button class="btn-repeat" onclick="setCardLoop('${c.id}')">
-              <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-              循环本章
-            </button>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <!-- 直达背诵手卷对应考点入口 -->
+              <a class="btn-handbook-link" href="https://ylhyc.github.io/-1/handbook/?search=${encodeURIComponent(c.tag.replace(/【.*?】/g, ''))}" target="_blank" title="直达《背诵手卷》体系研读">
+                <svg class="svg-icon svg-stroke-brown" width="10" height="10" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                手卷考点
+              </a>
+              <button class="btn-repeat" onclick="setCardLoop('${c.id}')">
+                <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                单章循环
+              </button>
+            </div>
           </div>
           <div class="card-title">${c.title}</div>
           <div class="card-sub">${c.sub}</div>
           <div class="card-body">
-            ${c.paras.map(p => `
+            ${c.paras.map((p, pIdx) => `
               <div class="para-item" data-pst="${p.st}" data-pet="${p.et}">
                 <div class="para-head">
                   <span class="para-lead">
@@ -1055,7 +1322,18 @@
                   <span class="para-time">${formatTime(p.st)} - ${formatTime(p.et)}</span>
                 </div>
                 <div class="para-text">
-                  ${p.sentences.map(s => `<span class="sent" data-st="${s.st}" data-et="${s.et}">${s.text}</span>`).join("")}
+                  ${p.sentences.map((s, sIdx) => {
+                    const sentKey = `${currentDayId}_${c.id}_p${pIdx}_s${sIdx}`;
+                    const isStarred = starredSentences.some(x => x.key === sentKey);
+                    return `
+                      <span class="sent" data-st="${s.st}" data-et="${s.et}">
+                        ${enrichSentenceText(s.text, currentDayId, c.id, sIdx)}
+                        <span class="btn-star-sent ${isStarred ? 'active' : ''}" data-key="${sentKey}" data-st="${s.st}" onclick="toggleStarSent('${sentKey}', '${s.text.replace(/'/g, "\'")}', event)" title="收藏金句">
+                          <svg class="svg-icon" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke="#b3392f" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </span>
+                      </span>
+                    `;
+                  }).join("")}
                 </div>
               </div>
             `).join("")}
@@ -1066,6 +1344,7 @@
       // 绑定点句即播
       document.querySelectorAll(".sent").forEach(s => {
         s.addEventListener("click", (e) => {
+          if (e.target.closest(".btn-star-sent") || e.target.closest(".cloze-word")) return;
           e.stopPropagation();
           const st = parseFloat(s.dataset.st);
           audio.currentTime = st;
@@ -1095,14 +1374,219 @@
       if ("mediaSession" in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: currentDayData.title,
-          artist: "考研政治韩雪老师",
-          album: "2027背诵手册带背",
+          artist: currentDayData.speaker || "考研政治名师带背",
+          album: currentDayData.series === "tuijie" ? "2027腿姐冲刺背诵手册" : "2027肖秀荣背诵手册",
           artwork: [
             { src: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
             { src: "icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
           ]
         });
       }
+    }
+
+    // ==================== 3. 抽屉即时搜索与专栏分类 ====================
+    let currentDrawerFilter = 'all';
+    let drawerSearchQuery = '';
+
+    window.setDrawerFilter = function(filter, btn) {
+      currentDrawerFilter = filter;
+      document.querySelectorAll('#drawerFilterBar .drawer-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderDrawer();
+    };
+
+    const drawerSearchInput = document.getElementById("drawerSearchInput");
+    const drawerSearchClear = document.getElementById("drawerSearchClear");
+
+    if (drawerSearchInput) {
+      drawerSearchInput.addEventListener("input", (e) => {
+        drawerSearchQuery = e.target.value.trim().toLowerCase();
+        if (drawerSearchClear) {
+          drawerSearchClear.style.display = drawerSearchQuery ? "block" : "none";
+        }
+        renderDrawer();
+      });
+    }
+
+    if (drawerSearchClear) {
+      drawerSearchClear.addEventListener("click", () => {
+        drawerSearchInput.value = '';
+        drawerSearchQuery = '';
+        drawerSearchClear.style.display = "none";
+        renderDrawer();
+      });
+    }
+
+    function renderDrawer() {
+      // 1. 如果是收藏夹模式
+      if (currentDrawerFilter === 'starred') {
+        if (!starredSentences.length) {
+          drawerList.innerHTML = `<div style="text-align:center; padding:30px 10px; color:var(--text-light); font-size:13px;">暂无收藏金句<br>在正文中点击句子末尾的 ⭐ 即可收藏难点</div>`;
+          return;
+        }
+        drawerList.innerHTML = starredSentences.map((item, idx) => `
+          <div class="drawer-item" onclick="jumpToStarred('${item.dayId}', ${item.st})">
+            <div style="flex:1; min-width:0;">
+              <div class="drawer-item-topline">
+                <span class="drawer-pill tuijie">重点金句</span>
+                <span class="drawer-item-day">${item.dayTitle} · ${item.speaker}</span>
+              </div>
+              <div class="drawer-item-title" style="font-size:13.5px; font-weight:normal; line-height:1.5;">“${item.text}”</div>
+            </div>
+            <div class="drawer-item-meta">
+              <div class="drawer-item-dur">${formatTime(item.st)}</div>
+            </div>
+          </div>
+        `).join("");
+        return;
+      }
+
+      // 2. 正常目录或搜索匹配
+      let items = DB.manifest.filter(item => {
+        if (currentDrawerFilter !== 'all' && item.series !== currentDrawerFilter) {
+          return false;
+        }
+        if (!drawerSearchQuery) return true;
+        // 匹配日历、标题、描述
+        const matchMeta = (item.day + item.title + item.desc + item.speaker).toLowerCase().includes(drawerSearchQuery);
+        if (matchMeta) return true;
+        // 深入匹配该天所有卡片与句子
+        const dayObj = DB.days[item.id];
+        if (dayObj && dayObj.cards) {
+          return dayObj.cards.some(c => 
+            c.title.toLowerCase().includes(drawerSearchQuery) ||
+            c.sub.toLowerCase().includes(drawerSearchQuery) ||
+            c.paras.some(p => p.sentences.some(s => s.text.toLowerCase().includes(drawerSearchQuery)))
+          );
+        }
+        return false;
+      });
+
+      if (!items.length) {
+        drawerList.innerHTML = `<div style="text-align:center; padding:30px 10px; color:var(--text-light); font-size:13px;">没有找到匹配 “${drawerSearchQuery}” 的带背内容</div>`;
+        return;
+      }
+
+      drawerList.innerHTML = items.map(item => `
+        <div class="drawer-item ${item.id === currentDayId ? 'current' : ''}" onclick="switchDay('${item.id}')">
+          <div style="flex: 1; min-width: 0;">
+            <div class="drawer-item-topline">
+              <span class="drawer-pill ${item.series || 'hanxue'}">${item.badge || (item.series === 'tuijie' ? '腿姐冲刺' : '肖秀荣精读')}</span>
+              <span class="drawer-item-day">${item.day} · ${item.pages}</span>
+            </div>
+            <div class="drawer-item-title">${item.title}</div>
+            <div class="drawer-item-desc">${item.desc}</div>
+          </div>
+          <div class="drawer-item-meta">
+            <div class="drawer-item-dur">
+              <svg class="svg-icon svg-stroke-brown" width="11" height="11" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              ${item.duration}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.jumpToStarred = function(dayId, st) {
+      closeDrawer();
+      if (dayId !== currentDayId) {
+        loadDay(dayId);
+      }
+      setTimeout(() => {
+        audio.currentTime = st;
+        audio.play().catch(e => console.log(e));
+        showToast(`已跳转至收藏点: ${formatTime(st)}`);
+      }, 300);
+    };
+
+    // ==================== 4. 视线黄金区域居中算法 (Golden Center Auto-Scroll) ====================
+    function scrollSentenceIntoOptimalView(sentEl) {
+      if (!isAutoScrollEnabled || !sentEl) return;
+      const headerHeight = 60;
+      const dockHeight = 136;
+      const visibleHeight = window.innerHeight - headerHeight - dockHeight;
+      const targetY = headerHeight + visibleHeight * 0.38; // 停留于黄金视线区
+      
+      const rect = sentEl.getBoundingClientRect();
+      const currentY = rect.top + rect.height / 2;
+      const diff = currentY - targetY;
+      
+      if (Math.abs(diff) > 25) {
+        window.scrollBy({ top: diff, behavior: "smooth" });
+      }
+    }
+
+    // ==================== 5. 切天与连播控制 ====================
+    function getAdjacentDayId(direction) {
+      const idx = DB.manifest.findIndex(x => x.id === currentDayId);
+      if (idx === -1) return null;
+      const nextIdx = idx + direction;
+      if (nextIdx >= 0 && nextIdx < DB.manifest.length) {
+        return DB.manifest[nextIdx].id;
+      }
+      return null;
+    }
+
+    const btnPrevDay = document.getElementById("btnPrevDay");
+    const btnNextDay = document.getElementById("btnNextDay");
+
+    if (btnPrevDay) {
+      btnPrevDay.addEventListener("click", () => {
+        const prevId = getAdjacentDayId(-1);
+        if (prevId) {
+          switchDay(prevId);
+        } else {
+          showToast("已经是第一期了");
+        }
+      });
+    }
+
+    if (btnNextDay) {
+      btnNextDay.addEventListener("click", () => {
+        const nextId = getAdjacentDayId(1);
+        if (nextId) {
+          switchDay(nextId);
+        } else {
+          showToast("已是最新一期");
+        }
+      });
+    }
+
+    // 播放完毕自动连播下一期
+    audio.addEventListener("ended", () => {
+      const nextId = getAdjacentDayId(1);
+      if (nextId && loopMode === "none") {
+        showToast("本期播放完毕，即将进入下一期...");
+        setTimeout(() => switchDay(nextId), 1500);
+      }
+    });
+
+    // ==================== 6. 顶栏按钮交互绑定 ====================
+    // 字号调节
+    const btnFontToggle = document.getElementById("btnFontToggle");
+    if (btnFontToggle) {
+      btnFontToggle.addEventListener("click", () => {
+        applyFontScale(currentFontScaleIdx + 1);
+        showToast(`字号已调整: ${FONT_SCALES[currentFontScaleIdx].label} (${FONT_SCALES[currentFontScaleIdx].size})`);
+      });
+    }
+
+    // 填空自测模式
+    const btnTestMode = document.getElementById("btnTestMode");
+    if (btnTestMode) {
+      btnTestMode.addEventListener("click", () => {
+        const isCloze = document.body.classList.toggle("cloze-mode");
+        btnTestMode.classList.toggle("active", isCloze);
+        const testText = document.getElementById("testModeText");
+        if (testText) testText.innerText = isCloze ? "显隐" : "自测";
+        if (isCloze) {
+          // 重置所有遮挡块为遮蔽状态
+          document.querySelectorAll(".cloze-word").forEach(w => w.classList.remove("revealed"));
+          showToast("已开启填空自测模式：轻触词块查看答案");
+        } else {
+          showToast("已退出自测，恢复全文呈现");
+        }
+      });
     }
 
     // 切换天数
@@ -1120,191 +1604,7 @@
       showToast(`已切换至 ${currentDayData.day || dayId}`);
     };
 
-    function togglePlay() {
-      if (audio.paused) {
-        audio.play().then(() => updatePlayState(true)).catch(() => showToast("请点击播放"));
-      } else {
-        audio.pause();
-        updatePlayState(false);
-      }
-    }
-
-    function updatePlayState(isPlaying) {
-      playIcon.style.display = isPlaying ? "none" : "block";
-      pauseIcon.style.display = isPlaying ? "block" : "none";
-    }
-
-    btnPlay.addEventListener("click", togglePlay);
-
-    btnBack15.addEventListener("click", () => {
-      audio.currentTime = Math.max(0, audio.currentTime - 15);
-      showToast("后退 15 秒");
-    });
-
-    btnFwd15.addEventListener("click", () => {
-      audio.currentTime = Math.min(audio.duration || 1800, audio.currentTime + 15);
-      showToast("快进 15 秒");
-    });
-
-    btnSpeed.addEventListener("click", () => {
-      speedIdx = (speedIdx + 1) % speeds.length;
-      const spd = speeds[speedIdx];
-      audio.playbackRate = spd;
-      btnSpeed.innerText = spd + "x";
-      showToast(`语速: ${spd}x`);
-    });
-
-    window.setCardLoop = function(cardId) {
-      const card = document.getElementById(cardId);
-      if (!card) return;
-      const s = parseFloat(card.dataset.start);
-      const e = parseFloat(card.dataset.end);
-      repeatRange = [s, e];
-      loopMode = "card";
-      btnLoop.classList.add("active");
-      loopText.innerText = "单章";
-      audio.currentTime = s;
-      if (audio.paused) audio.play();
-      showToast("已开启本章循环复读");
-    };
-
-    btnLoop.addEventListener("click", () => {
-      if (loopMode === "none") {
-        if (currentActiveCard) {
-          setCardLoop(currentActiveCard.id);
-        } else {
-          showToast("请先播放某个段落");
-        }
-      } else {
-        loopMode = "none";
-        repeatRange = null;
-        btnLoop.classList.remove("active");
-        loopText.innerText = "全篇";
-        showToast("已恢复连续播放");
-      }
-    });
-
-    function seekByEvent(e) {
-      const rect = progressBarBg.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const total = audio.duration || 1800;
-      audio.currentTime = pct * total;
-    }
-
-    progressBarBg.addEventListener("click", seekByEvent);
-    progressBarBg.addEventListener("touchstart", (e) => {
-      seekByEvent(e);
-      window.addEventListener("touchmove", seekByEvent);
-      window.addEventListener("touchend", () => {
-        window.removeEventListener("touchmove", seekByEvent);
-      }, { once: true });
-    });
-
-    audio.addEventListener("timeupdate", () => {
-      const curr = audio.currentTime;
-      const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
-
-      progressBarFill.style.width = ((curr / total) * 100) + "%";
-      currTimeLbl.innerText = formatTime(curr);
-      totalTimeLbl.innerText = formatTime(total);
-
-      if (loopMode === "card" && repeatRange) {
-        if (curr >= repeatRange[1]) {
-          audio.currentTime = repeatRange[0];
-          return;
-        }
-      }
-
-      // 1. 卡片匹配
-      const cards = document.querySelectorAll(".recite-card");
-      let activeCard = null;
-      for (const card of cards) {
-        const s = parseFloat(card.dataset.start);
-        const e = parseFloat(card.dataset.end);
-        if (curr >= s && curr < e) {
-          activeCard = card;
-          break;
-        }
-      }
-      if (activeCard && activeCard !== currentActiveCard) {
-        if (currentActiveCard) currentActiveCard.classList.remove("active");
-        activeCard.classList.add("active");
-        currentActiveCard = activeCard;
-      }
-
-      // 2. 段落匹配
-      const paras = document.querySelectorAll(".para-item");
-      let activePara = null;
-      for (const p of paras) {
-        const s = parseFloat(p.dataset.pst);
-        const e = parseFloat(p.dataset.pet);
-        if (curr >= s && curr < e) {
-          activePara = p;
-          break;
-        }
-      }
-      if (activePara && activePara !== currentActivePara) {
-        if (currentActivePara) currentActivePara.classList.remove("active-para");
-        activePara.classList.add("active-para");
-        currentActivePara = activePara;
-      }
-
-      // 3. 逐句匹配
-      const sents = document.querySelectorAll(".sent");
-      let activeSent = null;
-      for (const sent of sents) {
-        const st = parseFloat(sent.dataset.st);
-        const et = parseFloat(sent.dataset.et);
-        if (curr >= st && curr < et) {
-          activeSent = sent;
-          break;
-        }
-      }
-      if (activeSent && activeSent !== currentActiveSent) {
-        if (currentActiveSent) currentActiveSent.classList.remove("reading");
-        activeSent.classList.add("reading");
-        currentActiveSent = activeSent;
-
-        if (isAutoScrollEnabled) {
-          activeSent.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      }
-    });
-
-    audio.addEventListener("loadedmetadata", () => {
-      totalTimeLbl.innerText = formatTime(audio.duration || currentDayData.duration);
-    });
-
-    audio.addEventListener("play", () => updatePlayState(true));
-    audio.addEventListener("pause", () => updatePlayState(false));
-
-    btnScrollToggle.addEventListener("click", () => {
-      isAutoScrollEnabled = !isAutoScrollEnabled;
-      scrollStatusText.innerText = isAutoScrollEnabled ? "跟随开" : "跟随关";
-      showToast(isAutoScrollEnabled ? "开启自动跟随" : "锁定手动滚动");
-    });
-
-    btnLocate.addEventListener("click", () => {
-      if (currentActiveSent) {
-        currentActiveSent.scrollIntoView({ behavior: "smooth", block: "center" });
-        showToast("已定位至当前朗读句");
-      } else if (currentActiveCard) {
-        currentActiveCard.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-
-    if ("mediaSession" in navigator) {
-      navigator.mediaSession.setActionHandler("play", () => togglePlay());
-      navigator.mediaSession.setActionHandler("pause", () => togglePlay());
-      navigator.mediaSession.setActionHandler("seekbackward", () => {
-        audio.currentTime = Math.max(0, audio.currentTime - 15);
-      });
-      navigator.mediaSession.setActionHandler("seekforward", () => {
-        audio.currentTime = Math.min(audio.duration || 1800, audio.currentTime + 15);
-      });
-    }
-
+    applyFontScale(currentFontScaleIdx);
     loadDay("tj_d01");
   </script>
 </body>
