@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
   <!-- PWA & Apple Touch Icons -->
@@ -50,165 +51,148 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background-color: var(--bg-paper);
       color: var(--text-main);
       font-family: var(--font-sans);
-      line-height: 1.85;
-      font-size: 16px;
+      font-size: var(--font-scale, 16px);
+      line-height: var(--font-line-height, 1.85);
       -webkit-font-smoothing: antialiased;
+      padding-top: calc(var(--safe-top) + 54px);
       padding-bottom: calc(136px + var(--safe-bottom));
       min-height: 100vh;
-      overflow-x: hidden;
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
     }
 
-    
-    :root {
-      --font-scale: 16px;
-      --font-line-height: 1.85;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    body {
-      font-size: var(--font-scale);
-      line-height: var(--font-line-height);
-    }
-
-    .para-text, .sent {
-      font-size: var(--font-scale);
-      line-height: var(--font-line-height);
-    }
-
-    /* 抽屉实时搜索栏 */
-    .drawer-search-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      background: #f4efe6;
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 7px 11px;
-      margin-bottom: 10px;
-      gap: 7px;
-    }
-    .drawer-search-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 13px;
-      color: var(--text-main);
-      font-family: inherit;
-    }
-    .drawer-search-input::placeholder {
-      color: var(--text-light);
-    }
-    .drawer-search-clear {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
+    /* 原生 SVG 矢量图标规范与设计对齐 */
+    .svg-icon {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
+      vertical-align: middle;
+      flex-shrink: 0;
     }
 
-    /* 手卷考点直达胶囊 */
-    .btn-handbook-link {
-      background: #fbf6ee;
-      border: 1px solid #dec8b5;
-      color: var(--brown-main);
-      font-size: 11px;
-      border-radius: 12px;
-      padding: 2.5px 8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.15s;
-    }
-    .btn-handbook-link:active {
-      background: var(--brown-soft);
-      transform: scale(0.96);
+    .svg-stroke-brown {
+      stroke: var(--brown-main);
+      fill: none;
     }
 
-    /* 自测挖空模式 (Cloze / Memory Mode) */
-    .cloze-word {
-      display: inline;
-      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    body.cloze-mode .cloze-word {
-      background: #f0e6da;
-      color: transparent !important;
-      border-bottom: 2px dashed #b3392f;
-      border-radius: 4px;
-      padding: 0 4px;
-      margin: 0 1px;
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-    }
-    body.cloze-mode .cloze-word::after {
-      content: "[?]";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      color: #b3392f;
-      font-size: 11px;
-      font-weight: 700;
-      opacity: 0.85;
-    }
-    body.cloze-mode .cloze-word.revealed {
-      background: #faefe7 !important;
-      color: #b3392f !important;
-      border-bottom: 2px solid #b3392f;
-    }
-    body.cloze-mode .cloze-word.revealed::after {
-      display: none;
+    .svg-fill-brown {
+      fill: var(--brown-main);
+      stroke: none;
     }
 
-    /* 采分点高亮与巧记口诀便签卡 */
-    .key-mark {
-      font-weight: 700;
-      color: #9e2a22;
-      background: rgba(179, 57, 47, 0.08);
-      padding: 1px 4px;
-      border-radius: 4px;
-    }
-    .mnemonic-box {
-      background: #fffdf9;
-      border: 1px dashed #dcc8b6;
-      border-left: 3px solid #b3392f;
-      border-radius: 6px;
-      padding: 6px 10px;
-      margin: 6px 0;
-      font-size: 12.5px;
-      color: var(--brown-main);
+    /* 顶部导航 - 稳固 Fixed 布局，彻底消除位置不固定 */
+    .header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(248, 246, 240, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: calc(var(--safe-top) + 6px) 10px 6px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      height: calc(var(--safe-top) + 54px);
+      box-sizing: border-box;
     }
 
-    /* 收藏星标 */
-    .btn-star-sent {
-      opacity: 0.35;
+    .header-left {
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
-      display: inline-flex;
-      vertical-align: middle;
-      margin-left: 4px;
-      transition: all 0.15s;
-    }
-    .btn-star-sent:hover, .btn-star-sent.active {
-      opacity: 1;
-    }
-    .btn-star-sent.active svg {
-      fill: #b3392f;
-      stroke: #b3392f;
+      flex: 1;
+      min-width: 0;
+      margin-right: 6px;
     }
 
-    /* 顶栏操作区按钮微调 */
+    .header-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--brown-main);
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-day-select {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-family: var(--font-serif);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .header-day-select span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* 顶栏操作按钮组：针对移动端极限 375px 紧凑优化，保证绝不溢出 */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .btn-header {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--brown-main);
+      border-radius: 12px;
+      padding: 4px 6px;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 2.5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+      touch-action: manipulation;
+    }
+
+    .btn-header:active {
+      transform: scale(0.95);
+      background: var(--brown-soft);
+    }
+
     .btn-header.active {
       background: var(--vermilion-soft);
       border-color: var(--vermilion-border);
@@ -218,353 +202,53 @@
       stroke: var(--vermilion);
     }
 
-    /* 棕色矢量 SVG 规范 */
-    .svg-icon {
-      display: inline-block;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-    .svg-stroke-brown {
-      stroke: var(--brown-main);
-      fill: none;
-    }
-    .svg-fill-brown {
-      fill: var(--brown-main);
-    }
-
-    /* 顶部导航 */
-    .header-bar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(248, 246, 240, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      padding: calc(var(--safe-top) + 8px) 14px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .header-badge {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--brown-main);
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .header-day-select {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-family: var(--font-serif);
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--text-main);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      max-width: 175px;
-      white-space: nowrap;
-    }
-    .header-day-select span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 4.5px;
-      flex-shrink: 0;
-    }
-
-    .btn-header {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      color: var(--brown-main);
-      border-radius: 14px;
-      padding: 4px 7.5px;
-      font-size: 11px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 3.5px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .btn-header:active {
-      transform: scale(0.96);
-      background: var(--brown-soft);
-    }
-
+    /* 主体容器限制在 100% 宽度，消除任何横向撑破 */
     .container {
+      width: 100%;
       max-width: 680px;
       margin: 0 auto;
-      padding: 14px 14px;
-    }
-
-    /* 顶部导学标语卡 */
-    .hero-card {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-left: 3.5px solid var(--vermilion);
-      border-radius: 4px 10px 10px 4px;
-      padding: 13px 15px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-card);
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: 15.5px;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 3px;
-    }
-
-    .hero-desc {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.55;
-    }
-
-    .hero-tip {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 4px;
-      color: var(--brown-main);
-      font-weight: 600;
-    }
-
-    /* 知识点大卡片 */
-    .recite-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 16px 14px 14px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-card);
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-    }
-
-    .recite-card.active {
-      border-color: var(--vermilion);
-      box-shadow: var(--shadow-active);
-    }
-
-    .recite-card.active::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--vermilion);
-      border-top-left-radius: 13px;
-      border-bottom-left-radius: 13px;
-    }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tag-badge {
-      font-size: 11px;
-      font-weight: 600;
-      background: var(--vermilion-soft);
-      color: var(--vermilion);
-      padding: 2px 7px;
-      border-radius: 10px;
-    }
-
-    .time-badge {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .recite-card.active .time-badge {
-      color: var(--vermilion);
-    }
-
-    .btn-repeat {
-      background: #fbf9f5;
-      border: 1px solid var(--brown-border);
-      color: var(--brown-main);
-      font-size: 11.5px;
-      border-radius: 12px;
-      padding: 3px 9px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: 600;
-    }
-
-    .btn-repeat:active {
-      background: var(--brown-soft);
-    }
-
-    .card-title {
-      font-family: var(--font-serif);
-      font-size: 16.5px;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 4px;
-      line-height: 1.45;
-    }
-
-    .card-sub {
-      font-size: 12.5px;
-      color: var(--text-light);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    /* 结构语义分段块 */
-    .para-item {
-      background: var(--bg-para);
-      border: 1px solid var(--border-para);
-      border-left: 2.5px solid #dcd4c5;
-      border-radius: 8px;
       padding: 10px 12px;
-      margin-bottom: 11px;
-      transition: all 0.2s ease;
+      box-sizing: border-box;
     }
 
-    .para-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .para-item.active-para {
-      background: var(--bg-para-active);
-      border-left-color: var(--vermilion);
-      border-color: #eeddd8;
-      box-shadow: 0 2px 8px rgba(179, 57, 47, 0.06);
-    }
-
-    .para-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .para-lead {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--brown-main);
-      letter-spacing: 0.2px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .para-lead-icon {
-      width: 7px;
-      height: 7px;
-      border-radius: 2px;
-      background: var(--brown-main);
-      display: inline-block;
-    }
-
-    .para-time {
-      font-size: 11px;
-      color: var(--text-light);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .para-text {
-      font-size: 15px;
-      color: #2b2723;
-      line-height: 1.85;
-      word-break: break-word;
-    }
-
-    /* 逐句朗读高亮 */
-    .sent {
-      display: inline;
-      padding: 1px 2px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .sent:hover {
-      background: #f4ede4;
-    }
-
-    .sent.reading {
-      background: #ffe8cc;
-      color: #9a3412;
-      font-weight: 600;
-      box-shadow: 0 0 0 2px #fed7aa;
-    }
-
-    /* 底部悬浮控制台 */
+    /* 底部悬浮控制台 - 坚固 Fixed 布局，精调 375px 移动端防溢出 */
     .player-dock {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 200;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid var(--border-color);
-      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
-      padding: 9px 16px calc(9px + var(--safe-bottom));
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+      padding: 7px 10px calc(7px + var(--safe-bottom));
+      box-sizing: border-box;
     }
 
     .dock-container {
+      width: 100%;
       max-width: 680px;
       margin: 0 auto;
+      box-sizing: border-box;
     }
 
     .progress-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 7px;
+      gap: 8px;
+      margin-bottom: 8px;
+      width: 100%;
     }
 
     .time-lbl {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-light);
-      min-width: 38px;
+      font-size: 11px;
       font-variant-numeric: tabular-nums;
+      color: var(--text-light);
+      min-width: 34px;
+      font-weight: 600;
+      line-height: 1;
     }
 
     .time-lbl.right {
@@ -574,51 +258,45 @@
     .progress-bar-bg {
       flex: 1;
       height: 6px;
-      background: #e8e2d5;
+      background: #e6e0d5;
       border-radius: 3px;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
       touch-action: none;
     }
 
     .progress-bar-fill {
       height: 100%;
-      background: var(--vermilion);
-      border-radius: 3px;
       width: 0%;
-      pointer-events: none;
+      background: linear-gradient(90deg, var(--vermilion), #d65244);
+      border-radius: 3px;
+      transition: width 0.1s linear;
       position: relative;
-    }
-
-    .progress-bar-fill::after {
-      content: "";
-      position: absolute;
-      right: -5px;
-      top: -3px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-      border: 2px solid var(--vermilion);
     }
 
     .controls-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 2px;
+      width: 100%;
     }
 
     .sub-btn-group {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
     .main-btn-group {
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: center;
+      gap: clamp(3px, 1.8vw, 10px);
+      flex: 1;
+      min-width: 0;
     }
 
     .dock-btn {
@@ -629,22 +307,24 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       border-radius: 20px;
       transition: all 0.15s;
+      touch-action: manipulation;
     }
 
     .dock-btn.text-btn {
-      padding: 5px 9px;
+      padding: 4px 7px;
       background: #f5f2eb;
       border: 1px solid var(--border-color);
       color: var(--brown-main);
-      border-radius: 12px;
-      font-size: 12px;
+      border-radius: 10px;
+      font-size: 11.5px;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
+      white-space: nowrap;
     }
 
     .dock-btn.text-btn.active {
@@ -653,13 +333,23 @@
       color: var(--vermilion);
     }
 
+    /* 播放大按钮：消除点击死区与触摸穿透 */
     .play-btn {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
       background: var(--vermilion);
       color: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(179, 57, 47, 0.35);
+      box-shadow: 0 3px 12px rgba(179, 57, 47, 0.32);
+      flex-shrink: 0;
+      cursor: pointer;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .play-btn svg {
+      pointer-events: none;
     }
 
     .play-btn:active {
@@ -667,16 +357,22 @@
     }
 
     .skip-btn {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
       color: var(--brown-main);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .skip-btn svg {
+      pointer-events: none;
     }
 
     .skip-btn:active {
-      transform: scale(0.92);
+      transform: scale(0.90);
     }
 
     /* 多期目录抽屉弹窗 (Day Drawer Modal) */
@@ -1603,6 +1299,276 @@
       }
       showToast(`已切换至 ${currentDayData.day || dayId}`);
     };
+
+    // ==================== 7. 播放控制与音视频核心引擎 ====================
+    let isUserInteracting = false;
+    let interactionTimer = null;
+
+    // 用户手动滚动/触摸时，暂时暂停自动跟随2.5秒，避免页面与用户抢夺控制权
+    window.addEventListener("touchstart", () => {
+      isUserInteracting = true;
+      clearTimeout(interactionTimer);
+      interactionTimer = setTimeout(() => { isUserInteracting = false; }, 2500);
+    }, { passive: true });
+
+    window.addEventListener("wheel", () => {
+      isUserInteracting = true;
+      clearTimeout(interactionTimer);
+      interactionTimer = setTimeout(() => { isUserInteracting = false; }, 2500);
+    }, { passive: true });
+
+    function updatePlayState(isPlaying) {
+      if (playIcon) playIcon.style.display = isPlaying ? "none" : "block";
+      if (pauseIcon) pauseIcon.style.display = isPlaying ? "block" : "none";
+    }
+
+    function togglePlay() {
+      if (!audio.src) {
+        if (currentDayData) {
+          audio.src = currentDayData.audioUrl;
+        } else {
+          showToast("请先选择带背期数");
+          return;
+        }
+      }
+
+      if (audio.paused) {
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => {
+            updatePlayState(true);
+          }).catch(err => {
+            console.warn("Play error, trying fallback:", err);
+            // 本地同源音频双重兜底
+            if (currentDayData && currentDayData.id.startsWith("tj_") && !audio.src.includes("/audio/")) {
+              audio.src = `audio/tuijie_${currentDayData.id.replace('tj_', '').toUpperCase()}.mp3`;
+              audio.play().then(() => updatePlayState(true)).catch(() => {
+                showToast("音频加载中，请再次点击播放");
+              });
+            } else {
+              showToast("点击播放");
+            }
+          });
+        }
+      } else {
+        audio.pause();
+        updatePlayState(false);
+      }
+    }
+
+    if (btnPlay) {
+      btnPlay.addEventListener("click", togglePlay);
+    }
+
+    if (btnBack15) {
+      btnBack15.addEventListener("click", () => {
+        audio.currentTime = Math.max(0, audio.currentTime - 15);
+        showToast("后退 15 秒");
+      });
+    }
+
+    if (btnFwd15) {
+      btnFwd15.addEventListener("click", () => {
+        const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
+        audio.currentTime = Math.min(total, audio.currentTime + 15);
+        showToast("快进 15 秒");
+      });
+    }
+
+    if (btnSpeed) {
+      btnSpeed.addEventListener("click", () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        const spd = speeds[speedIdx];
+        audio.playbackRate = spd;
+        btnSpeed.innerText = spd + "x";
+        showToast(`语速: ${spd}x`);
+      });
+    }
+
+    window.setCardLoop = function(cardId) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
+      const s = parseFloat(card.dataset.start);
+      const e = parseFloat(card.dataset.end);
+      repeatRange = [s, e];
+      loopMode = "card";
+      if (btnLoop) btnLoop.classList.add("active");
+      if (loopText) loopText.innerText = "单章";
+      audio.currentTime = s;
+      if (audio.paused) audio.play().catch(e => console.log(e));
+      showToast("已开启本章循环复读");
+    };
+
+    if (btnLoop) {
+      btnLoop.addEventListener("click", () => {
+        if (loopMode === "none") {
+          if (currentActiveCard) {
+            setCardLoop(currentActiveCard.id);
+          } else {
+            showToast("请先播放某个考点模块");
+          }
+        } else {
+          loopMode = "none";
+          repeatRange = null;
+          btnLoop.classList.remove("active");
+          if (loopText) loopText.innerText = "全篇";
+          showToast("已恢复连续播放");
+        }
+      });
+    }
+
+    // 进度条拖拽寻轨
+    function seekByEvent(e) {
+      if (!progressBarBg) return;
+      const rect = progressBarBg.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
+      audio.currentTime = pct * total;
+    }
+
+    if (progressBarBg) {
+      progressBarBg.addEventListener("click", seekByEvent);
+      progressBarBg.addEventListener("touchstart", (e) => {
+        seekByEvent(e);
+        const onMove = (ev) => seekByEvent(ev);
+        const onEnd = () => {
+          window.removeEventListener("touchmove", onMove);
+          window.removeEventListener("touchend", onEnd);
+        };
+        window.addEventListener("touchmove", onMove, { passive: true });
+        window.addEventListener("touchend", onEnd, { once: true });
+      }, { passive: true });
+    }
+
+    // 跟随开关
+    if (btnScrollToggle) {
+      btnScrollToggle.addEventListener("click", () => {
+        isAutoScrollEnabled = !isAutoScrollEnabled;
+        if (scrollStatusText) scrollStatusText.innerText = isAutoScrollEnabled ? "跟随" : "锁定";
+        btnScrollToggle.classList.toggle("active", isAutoScrollEnabled);
+        showToast(isAutoScrollEnabled ? "开启自动跟随" : "已锁定手动滚动");
+      });
+    }
+
+    // 定位当前句
+    if (btnLocate) {
+      btnLocate.addEventListener("click", () => {
+        if (currentActiveSent) {
+          const targetY = window.pageYOffset + currentActiveSent.getBoundingClientRect().top - (window.innerHeight * 0.35);
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+          showToast("已定位至当前朗读句");
+        } else if (currentActiveCard) {
+          const targetY = window.pageYOffset + currentActiveCard.getBoundingClientRect().top - (window.innerHeight * 0.35);
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      });
+    }
+
+    // ==================== 8. 音频事件与毫秒级高精度跟随 ====================
+    audio.addEventListener("timeupdate", () => {
+      const curr = audio.currentTime;
+      const total = audio.duration || (currentDayData ? currentDayData.duration : 1800);
+
+      if (progressBarFill) progressBarFill.style.width = ((curr / total) * 100) + "%";
+      if (currTimeLbl) currTimeLbl.innerText = formatTime(curr);
+      if (totalTimeLbl) totalTimeLbl.innerText = formatTime(total);
+
+      // 单章循环复读
+      if (loopMode === "card" && repeatRange) {
+        if (curr >= repeatRange[1]) {
+          audio.currentTime = repeatRange[0];
+          return;
+        }
+      }
+
+      // 1. 匹配当前卡片
+      const cards = document.querySelectorAll(".recite-card");
+      let activeCard = null;
+      for (const card of cards) {
+        const s = parseFloat(card.dataset.start);
+        const e = parseFloat(card.dataset.end);
+        if (curr >= s && curr < e) {
+          activeCard = card;
+          break;
+        }
+      }
+      if (activeCard && activeCard !== currentActiveCard) {
+        if (currentActiveCard) currentActiveCard.classList.remove("active");
+        activeCard.classList.add("active");
+        currentActiveCard = activeCard;
+      }
+
+      // 2. 匹配当前段落
+      const paras = document.querySelectorAll(".para-item");
+      let activePara = null;
+      for (const p of paras) {
+        const s = parseFloat(p.dataset.pst);
+        const e = parseFloat(p.dataset.pet);
+        if (curr >= s && curr < e) {
+          activePara = p;
+          break;
+        }
+      }
+      if (activePara && activePara !== currentActivePara) {
+        if (currentActivePara) currentActivePara.classList.remove("active-para");
+        activePara.classList.add("active-para");
+        currentActivePara = activePara;
+      }
+
+      // 3. 匹配当前朗读句与无抖动精准居中
+      const sents = document.querySelectorAll(".sent");
+      let activeSent = null;
+      for (const sent of sents) {
+        const st = parseFloat(sent.dataset.st);
+        const et = parseFloat(sent.dataset.et);
+        if (curr >= st && curr < et) {
+          activeSent = sent;
+          break;
+        }
+      }
+
+      // 核心优化：仅在当前朗读句发生变更那一瞬触发一次平滑滚动，杜绝抖动抽搐！
+      if (activeSent && activeSent !== currentActiveSent) {
+        if (currentActiveSent) currentActiveSent.classList.remove("reading");
+        activeSent.classList.add("reading");
+        currentActiveSent = activeSent;
+
+        // 若开启自动跟随且用户当前未触摸屏幕，执行精准视线居中
+        if (isAutoScrollEnabled && !isUserInteracting) {
+          const targetY = window.pageYOffset + activeSent.getBoundingClientRect().top - (window.innerHeight * 0.35);
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }
+    });
+
+    audio.addEventListener("play", () => updatePlayState(true));
+    audio.addEventListener("pause", () => updatePlayState(false));
+    audio.addEventListener("loadedmetadata", () => {
+      const dur = audio.duration || (currentDayData ? currentDayData.duration : 1800);
+      if (totalTimeLbl) totalTimeLbl.innerText = formatTime(dur);
+    });
+
+    // 系统媒体中心控制
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.setActionHandler("play", () => togglePlay());
+      navigator.mediaSession.setActionHandler("pause", () => togglePlay());
+      navigator.mediaSession.setActionHandler("seekbackward", () => {
+        audio.currentTime = Math.max(0, audio.currentTime - 15);
+      });
+      navigator.mediaSession.setActionHandler("seekforward", () => {
+        const total = audio.duration || 1800;
+        audio.currentTime = Math.min(total, audio.currentTime + 15);
+      });
+      navigator.mediaSession.setActionHandler("previoustrack", () => {
+        const prevId = getAdjacentDayId(-1);
+        if (prevId) switchDay(prevId);
+      });
+      navigator.mediaSession.setActionHandler("nexttrack", () => {
+        const nextId = getAdjacentDayId(1);
+        if (nextId) switchDay(nextId);
+      });
+    }
 
     applyFontScale(currentFontScaleIdx);
     loadDay("tj_d01");
